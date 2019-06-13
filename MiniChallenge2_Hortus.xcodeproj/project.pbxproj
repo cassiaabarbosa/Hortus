@@ -35,7 +35,7 @@
 		4F388151228E438400C70C07 /* Log+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Log+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		4FA265AB228B8CFF002D233D /* CreatePlantVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePlantVC.swift; sourceTree = "<group>"; };
 		4FA265AD228C6B13002D233D /* GardenVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GardenVC.swift; sourceTree = "<group>"; };
-		4FA265AE228C6B13002D233D /* PlantCardCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlantCardCell.swift; sourceTree = "<group>"; };
+		4FA265AE228C6B13002D233D /* PlantCardCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlantCardCell.swift; path = ../ViewControllers/PlantCardCell.swift; sourceTree = "<group>"; };
 		4FA265B1228C6B2C002D233D /* CircularProgressBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircularProgressBar.swift; sourceTree = "<group>"; };
 		4FC6A28E229710A10056CD30 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4FC6A293229888920056CD30 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CardView.swift; path = ../CardView.swift; sourceTree = "<group>"; };
@@ -83,6 +83,7 @@
 		4FA265A3228B6138002D233D /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				4FA265AE228C6B13002D233D /* PlantCardCell.swift */,
 				4F38814E228E438400C70C07 /* Plant+CoreDataClass.swift */,
 				4F38814F228E438400C70C07 /* Plant+CoreDataProperties.swift */,
 				4F388150228E438400C70C07 /* Log+CoreDataClass.swift */,
@@ -96,7 +97,6 @@
 			isa = PBXGroup;
 			children = (
 				4FA265AD228C6B13002D233D /* GardenVC.swift */,
-				4FA265AE228C6B13002D233D /* PlantCardCell.swift */,
 				4FA265AB228B8CFF002D233D /* CreatePlantVC.swift */,
 			);
 			path = ViewControllers;

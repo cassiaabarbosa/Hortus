@@ -131,10 +131,6 @@ class CreatePlantVC : UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         default:
             fatalError("404 - Interval")
         }
-        print(plant.wateredTime)
-        print(plant.nextWateringTime)
-        
-//        plant.wateringPeriod = Int32(Calendar.current.component(.hour, from: Date()))
         
         
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }

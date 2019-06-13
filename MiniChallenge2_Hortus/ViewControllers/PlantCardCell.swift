@@ -62,32 +62,4 @@ class PlantCardCell: UICollectionViewCell {
         alert.addAction(UIAlertAction(title: "Cancelar", style: .destructive, handler: { _ in }))
         self.parentVC!.present(alert, animated: true, completion: nil)
     }
-    
-    
-    @IBAction func deleteButton(_ sender: UIButton) {
-//        context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-//        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-//        context?.delete(self.plant!)
-//        appDelegate.saveContext()
-//        parentVC?.plantsCollection.remo
-//
-//        collectionView?.reloadData()
-//        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Plant")
-//        fetchRequest.predicate = NSPredicate(format: "id", plant.id!)
-//
-//        do{
-//            let test = try context?.fetch(fetchRequest)
-//            let objectToDelete = test[0] as! NSManagedObject
-//            context?.delete(objectToDelete)
-//        }
-    }
-    
-    
-//    func createCell(plant:Plant) -> UICollectionViewCell{
-//        plantName.text = plant.name
-////        wateringPeriod.text = String(plant.wateringPeriod) + " horas"
-////        plantImage.image = plant.image?.image
-//        return self
-//        
-//    }
 }
