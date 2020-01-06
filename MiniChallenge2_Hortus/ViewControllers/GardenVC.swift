@@ -143,7 +143,7 @@ class GardenVC : UICollectionViewController {
 
 
         alert.addAction(UIAlertAction(title: "Apagar", style: .destructive, handler: { (action) in
-            //apagar
+            // apagartyhujkmnbvfghjk
             self.plantsCollection.remove(at: cell.plantIndex!)
             self.context?.delete(cell.plant!)
             self.collectionView.reloadData()
