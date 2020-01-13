@@ -19,13 +19,14 @@
 		4FC6A294229888920056CD30 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC6A293229888920056CD30 /* CardView.swift */; };
 		4FC6A29822988D5D0056CD30 /* RoundedImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC6A29722988D5D0056CD30 /* RoundedImageView.swift */; };
 		CB0E0E6F2284BB1900AC6566 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB0E0E6E2284BB1900AC6566 /* AppDelegate.swift */; };
-		CB0E0E742284BB1900AC6566 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CB0E0E722284BB1900AC6566 /* Main.storyboard */; };
 		CB0E0E772284BB1900AC6566 /* MiniChallenge2_Hortus.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CB0E0E752284BB1900AC6566 /* MiniChallenge2_Hortus.xcdatamodeld */; };
 		CB0E0E7C2284BB1A00AC6566 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CB0E0E7A2284BB1A00AC6566 /* LaunchScreen.storyboard */; };
 		CBC1879F228B44E400D01A7E /* Celula.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC1879E228B44E400D01A7E /* Celula.swift */; };
 		CBC187A3228B510000D01A7E /* TelaTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC187A2228B510000D01A7E /* TelaTableViewController.swift */; };
 		CBC187A5228B55A100D01A7E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC187A4228B55A100D01A7E /* ViewController.swift */; };
 		CBC187A7228B5B6600D01A7E /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC187A6228B5B6600D01A7E /* CollectionViewController.swift */; };
+		CBD6924723CCF1A0003D9864 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD6924623CCF19F003D9864 /* Extensions.swift */; };
+		CBD6924A23CCF9A3003D9864 /* GardenVCHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD6924923CCF9A3003D9864 /* GardenVCHandler.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,7 +43,6 @@
 		4FC6A29722988D5D0056CD30 /* RoundedImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedImageView.swift; sourceTree = "<group>"; };
 		CB0E0E6B2284BB1900AC6566 /* MiniChallenge2_Hortus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MiniChallenge2_Hortus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB0E0E6E2284BB1900AC6566 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		CB0E0E732284BB1900AC6566 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CB0E0E762284BB1900AC6566 /* MiniChallenge2_Hortus.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MiniChallenge2_Hortus.xcdatamodel; sourceTree = "<group>"; };
 		CB0E0E7B2284BB1A00AC6566 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CB0E0E7D2284BB1A00AC6566 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -50,6 +50,8 @@
 		CBC187A2228B510000D01A7E /* TelaTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TelaTableViewController.swift; sourceTree = "<group>"; };
 		CBC187A4228B55A100D01A7E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		CBC187A6228B5B6600D01A7E /* CollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
+		CBD6924623CCF19F003D9864 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		CBD6924923CCF9A3003D9864 /* GardenVCHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GardenVCHandler.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,13 +75,6 @@
 			path = Classes;
 			sourceTree = "<group>";
 		};
-		4F8320BF22989548003B0865 /* view */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = view;
-			sourceTree = "<group>";
-		};
 		4FA265A3228B6138002D233D /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -95,8 +90,8 @@
 		4FA265A6228B616B002D233D /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				4FA265AD228C6B13002D233D /* GardenVC.swift */,
 				4FA265AE228C6B13002D233D /* PlantCardCell.swift */,
+				4FA265AD228C6B13002D233D /* GardenVC.swift */,
 				4FA265AB228B8CFF002D233D /* CreatePlantVC.swift */,
 			);
 			path = ViewControllers;
@@ -121,12 +116,10 @@
 		CB0E0E6D2284BB1900AC6566 /* MiniChallenge2_Hortus */ = {
 			isa = PBXGroup;
 			children = (
-				4F8320BF22989548003B0865 /* view */,
 				4FA265A6228B616B002D233D /* ViewControllers */,
 				4FA265A3228B6138002D233D /* Models */,
 				4F5251342284C90E0026B207 /* Classes */,
 				CB0E0E6E2284BB1900AC6566 /* AppDelegate.swift */,
-				CB0E0E722284BB1900AC6566 /* Main.storyboard */,
 				4FC6A28E229710A10056CD30 /* Assets.xcassets */,
 				CBC187A2228B510000D01A7E /* TelaTableViewController.swift */,
 				CBC187A4228B55A100D01A7E /* ViewController.swift */,
@@ -134,8 +127,26 @@
 				CB0E0E7D2284BB1A00AC6566 /* Info.plist */,
 				CB0E0E752284BB1900AC6566 /* MiniChallenge2_Hortus.xcdatamodeld */,
 				CBC187A6228B5B6600D01A7E /* CollectionViewController.swift */,
+				CBD6924823CCF983003D9864 /* Delegates */,
+				CBD6924323CCEF78003D9864 /* Helpers */,
 			);
 			path = MiniChallenge2_Hortus;
+			sourceTree = "<group>";
+		};
+		CBD6924323CCEF78003D9864 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				CBD6924623CCF19F003D9864 /* Extensions.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		CBD6924823CCF983003D9864 /* Delegates */ = {
+			isa = PBXGroup;
+			children = (
+				CBD6924923CCF9A3003D9864 /* GardenVCHandler.swift */,
+			);
+			path = Delegates;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -198,7 +209,6 @@
 			files = (
 				CB0E0E7C2284BB1A00AC6566 /* LaunchScreen.storyboard in Resources */,
 				4FC6A28F229710A10056CD30 /* Assets.xcassets in Resources */,
-				CB0E0E742284BB1900AC6566 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -223,7 +233,9 @@
 				4FA265AC228B8CFF002D233D /* CreatePlantVC.swift in Sources */,
 				CBC187A5228B55A100D01A7E /* ViewController.swift in Sources */,
 				4FA265B2228C6B2C002D233D /* CircularProgressBar.swift in Sources */,
+				CBD6924723CCF1A0003D9864 /* Extensions.swift in Sources */,
 				4F388155228E438400C70C07 /* Log+CoreDataProperties.swift in Sources */,
+				CBD6924A23CCF9A3003D9864 /* GardenVCHandler.swift in Sources */,
 				CB0E0E6F2284BB1900AC6566 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -231,14 +243,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		CB0E0E722284BB1900AC6566 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				CB0E0E732284BB1900AC6566 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		CB0E0E7A2284BB1A00AC6566 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
