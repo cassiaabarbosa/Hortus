@@ -10,15 +10,15 @@ import Foundation
 import UIKit
 import CoreData
 
-class GardenVC : UIViewController, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+class GardenVC : UIViewController, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UITextViewDelegate {
     
     
     var context : NSManagedObjectContext?
     var plant : Plant?
     var collectionview: UICollectionView!
     var cellId = "Cell"
+    var emptyLabel = CustomLabel()
     var plantsCollection = [Plant]()
-    
     let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
     
     
@@ -37,8 +37,13 @@ class GardenVC : UIViewController, UICollectionViewDataSource, UICollectionViewD
 
         navigationController?.navigationBar.barTintColor = UIColor.App.navigation
         navigationController?.navigationBar.tintColor = UIColor.App.navigationItens
-        navigationItem.setRightBarButton(UIBarButtonItem(image: #imageLiteral(resourceName: "Add button"), style: .done, target: self, action: #selector(create_cells)), animated: true)
+        navigationItem.setRightBarButton(UIBarButtonItem(image: #imageLiteral(resourceName: "Add button"), style: .done, target: self, action: #selector(showsCreatePlantVC)), animated: true)
         
+        emptyLabel = CustomLabel(frame: CGRect(x: 0, y: 0, width: 300, height: 100))
+        
+        emptyLabel.text = "Seu jardim está vazio. Clique na florzinha no canto superior direito para adicionar uma planta."
+        emptyLabel.center = self.view.center
+
         
         context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
@@ -52,7 +57,8 @@ class GardenVC : UIViewController, UICollectionViewDataSource, UICollectionViewD
         collectionview.showsVerticalScrollIndicator = true
         collectionview.backgroundColor = UIColor.white
         self.view.addSubview(collectionview)
-
+        self.view.addSubview(emptyLabel)
+        addEmptyLabel()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -61,22 +67,22 @@ class GardenVC : UIViewController, UICollectionViewDataSource, UICollectionViewD
     
 
 
-    func loadImageFromDiskWith(fileName: String) -> UIImage? {
-
-        let documentDirectory = FileManager.SearchPathDirectory.documentDirectory
-
-        let userDomainMask = FileManager.SearchPathDomainMask.userDomainMask
-        let paths = NSSearchPathForDirectoriesInDomains(documentDirectory, userDomainMask, true)
-
-        if let dirPath = paths.first {
-            let imageUrl = URL(fileURLWithPath: dirPath).appendingPathComponent(fileName)
-            let image = UIImage(contentsOfFile: imageUrl.path)
-            return image
-
-        }
-
-        return nil
-    }
+//    func loadImageFromDiskWith(fileName: String) -> UIImage? {
+//
+//        let documentDirectory = FileManager.SearchPathDirectory.documentDirectory
+//
+//        let userDomainMask = FileManager.SearchPathDomainMask.userDomainMask
+//        let paths = NSSearchPathForDirectoriesInDomains(documentDirectory, userDomainMask, true)
+//
+//        if let dirPath = paths.first {
+//            let imageUrl = URL(fileURLWithPath: dirPath).appendingPathComponent(fileName)
+//            let image = UIImage(contentsOfFile: imageUrl.path)
+//            return image
+//
+//        }
+//
+//        return nil
+//    }
 
     @objc func create_cells(){
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Plant")
@@ -95,30 +101,44 @@ class GardenVC : UIViewController, UICollectionViewDataSource, UICollectionViewD
         }
     }
 
-    func showSimpleAlert(cell:PlantCardCell) {
-        let alert = UIAlertController(title: "Apagar planta", message: "Você deseja mesmo apagar essa planta e todos seus dados?", preferredStyle: .actionSheet)
-
-
-        alert.addAction(UIAlertAction(title: "Apagar", style: .destructive, handler: { (action) in
-            self.plantsCollection.remove(at: cell.plantIndex!)
-            self.context?.delete(cell.plant!)
-            guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-            appDelegate.saveContext()
-
-        }))
-
-
-        alert.addAction(UIAlertAction(title: "Cancelar", style: UIAlertAction.Style.default, handler: { _ in }))
-        self.present(alert, animated: true, completion: nil)
-    }
-
-    @objc func longTap (_ sender: UILongPressGestureRecognizer) {
-        if let celula = sender.view as? PlantCardCell{
-            if sender.state == .began{
-                showSimpleAlert(cell: celula)
-            }
+//    func showSimpleAlert(cell:PlantCardCell) {
+//        let alert = UIAlertController(title: "Apagar planta", message: "Você deseja mesmo apagar essa planta e todos seus dados?", preferredStyle: .actionSheet)
+//
+//
+//        alert.addAction(UIAlertAction(title: "Apagar", style: .destructive, handler: { (action) in
+//            self.plantsCollection.remove(at: cell.plantIndex!)
+//            self.context?.delete(cell.plant!)
+//            guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+//            appDelegate.saveContext()
+//
+//        }))
+//
+//
+//        alert.addAction(UIAlertAction(title: "Cancelar", style: UIAlertAction.Style.default, handler: { _ in }))
+//        self.present(alert, animated: true, completion: nil)
+//    }
+//
+//    @objc func longTap (_ sender: UILongPressGestureRecognizer) {
+//        if let celula = sender.view as? PlantCardCell{
+//            if sender.state == .began{
+//                showSimpleAlert(cell: celula)
+//            }
+//        }
+//
+//    }
+    
+    func addEmptyLabel() {
+        if (plantsCollection.count != 0) {
+            emptyLabel.isHidden = true
+        }else {
+            emptyLabel.isHidden = false
         }
-
+    }
+    
+    @objc func showsCreatePlantVC(_ sender: Any) {
+        let nextVC = CreatePlantVC()
+        nextVC.modalPresentationStyle = .fullScreen
+        self.present(nextVC, animated: true, completion: nil)
     }
 }
 
