@@ -11,7 +11,9 @@ import UIKit
 extension UIColor {
     struct App {
         static var navigation: UIColor { return #colorLiteral(red: 0.6779737473, green: 0.8722688556, blue: 0.7128722072, alpha: 1) }
-        static var navigationItens: UIColor { return #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1) }
+        static var navigationTitle: UIColor { return #colorLiteral(red: 0.9999018312, green: 1, blue: 0.9998798966, alpha: 1) }
+        static var modalButton: UIColor { return .systemBlue}
+        static var delete: UIColor { return .systemRed }
 //        static var change: UIColor { return #colorLiteral(red: 0.2901960784, green: 0.3058823529, blue: 0.4117647059, alpha: 1) }
 //        static var check: UIColor { return #colorLiteral(red: 0.2509803922, green: 0.5490196078, blue: 0.6, alpha: 1) }
 //        static var error: UIColor { return #colorLiteral(red: 0.6117647059, green: 0.1098039216, blue: 0.06274509804, alpha: 1) }
