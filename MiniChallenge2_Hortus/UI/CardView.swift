@@ -26,7 +26,7 @@ class CardView: UIStackView {
         let ctx: CGContext = UIGraphicsGetCurrentContext()!
         ctx.saveGState()
         
-        var rect = CGRect(x: xf, y: yf, width: rectWidth, height: rectHeight)
+        let rect = CGRect(x: xf, y: yf, width: rectWidth, height: rectHeight)
         let clipPath: CGPath = UIBezierPath(roundedRect: rect, cornerRadius: 25).cgPath
         
         ctx.addPath(clipPath)

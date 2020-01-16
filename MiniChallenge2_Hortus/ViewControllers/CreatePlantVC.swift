@@ -11,15 +11,51 @@ import UIKit
 import CoreData
 import Photos
 
-class CreatePlantVC : UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UINavigationControllerDelegate,  UIImagePickerControllerDelegate{
+class CreatePlantVC : UITableViewController, UIPickerViewDelegate, UIPickerViewDataSource,  UIImagePickerControllerDelegate{
+    
+    var plantImage: UIImageView = UIImageView()
+    var plantName: UILabel = UILabel()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        self.title = "Adicionar planta"
+        navigationController?.navigationBar.barTintColor = UIColor.App.navigation
+        navigationController?.navigationBar.tintColor = UIColor.App.modalButton
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.App.navigationTitle]
+        
+        navigationItem.setRightBarButton(UIBarButtonItem(title: "Adicionar", style: .done, target: self, action: #selector(cancelCreation(_:))), animated: true)
+        navigationItem.setLeftBarButton(UIBarButtonItem(title: "Cancelar", style: .plain , target: self, action: #selector(cancelCreation(_:))), animated: true)
+        
+        navigationItem.leftBarButtonItem?.tintColor = UIColor.App.delete
+        
+    }
+    
+    @objc func cancelCreation(_ sender: Any){
+        
+        self.dismiss(animated: true) {
+            
+        }
+    }
+    
+    
+    @objc func doneCreation(_ sender: Any){
+        
+        
+    }
+    
+    
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 2
     }
     
+    
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return 2
     }
-    
+}
+
+
 //
 //    @IBOutlet weak var fldName: UITextField!
 //    @IBOutlet weak var imgPlantImage: UIImageView!
@@ -176,4 +212,4 @@ class CreatePlantVC : UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
 //        }
 //
 //    }
-}
+
