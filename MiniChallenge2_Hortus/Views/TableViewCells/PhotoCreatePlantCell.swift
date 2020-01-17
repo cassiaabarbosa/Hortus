@@ -27,7 +27,7 @@ class PhotoCreatePlantCell: UITableViewCell {
     
     private let addPhotoButton: UIButton = {
         let addPhotoButton = UIButton(type: .custom)
-        addPhotoButton.setImage(#imageLiteral(resourceName: "Group 7"), for: .normal)
+        addPhotoButton.setImage(#imageLiteral(resourceName: "Scissor"), for: .normal)
         addPhotoButton.imageView?.contentMode = .scaleAspectFill
         return addPhotoButton
     }()
