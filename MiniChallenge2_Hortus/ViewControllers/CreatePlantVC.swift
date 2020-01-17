@@ -15,32 +15,109 @@ class CreatePlantVC : UITableViewController, UIPickerViewDelegate, UIPickerViewD
     
     var plantImage: UIImageView = UIImageView()
     var plantName: UILabel = UILabel()
+    let nameCellId: String = "nameCellId"
+    let photoCellId: String = "photoCellid"
+    let taskCellId: String = "taskCellId"
+    var data = Array<Any>()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        if #available(iOS 13.0, *) {
+            overrideUserInterfaceStyle = .light
+        } else {
+            // Fallback on earlier versions
+        }
         
         self.title = "Adicionar planta"
         navigationController?.navigationBar.barTintColor = UIColor.App.navigation
         navigationController?.navigationBar.tintColor = UIColor.App.modalButton
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.App.navigationTitle]
+        navigationController?.navigationBar.isTranslucent = false
         
         navigationItem.setRightBarButton(UIBarButtonItem(title: "Adicionar", style: .done, target: self, action: #selector(cancelCreation(_:))), animated: true)
         navigationItem.setLeftBarButton(UIBarButtonItem(title: "Cancelar", style: .plain , target: self, action: #selector(cancelCreation(_:))), animated: true)
         
         navigationItem.leftBarButtonItem?.tintColor = UIColor.App.delete
         
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        
+        tableView.delegate = self
+        tableView.dataSource = self
+        
+        
+        createTableView()
+        
+        
+        tableView.register(PhotoCreatePlantCell.self, forCellReuseIdentifier: photoCellId)
+        tableView.register(TaskCreatePlantCell.self, forCellReuseIdentifier: taskCellId)
+        //tableView.register(NameCreatePlantCell.self, forCellReuserIdentifier: nameCellId)
+        //Register cells
     }
+    
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if (data[indexPath.row] is PhotoCreatePlantCell) {
+            if let cell = tableView.dequeueReusableCell(withIdentifier: photoCellId) as? PhotoCreatePlantCell {
+                return cell
+            }
+        }else if (data [indexPath.row] is TaskCreatePlantCell){
+            if let cell = tableView.dequeueReusableCell(withIdentifier: taskCellId) as? TaskCreatePlantCell {
+                    return cell
+                }
+        }
+        return UITableViewCell()
+    }
+    
+
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 9
+    }
+    
+    
+//    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+//        let headerTitles = ["Nome", "Foto", "Floração", "Colheita", "Exposição Solar", "Fertilização", "Rega", "Poda", "Pesticidas"]
+//        if section < headerTitles.count {
+//            return headerTitles[section]
+//        }
+//
+//        return nil
+//    }
+    
+    func createTableView() {
+        data.append(PhotoInformation(plantPhoto: #imageLiteral(resourceName: "PlantaPadrao")))
+        data.append(TaskInformation(taskImage: #imageLiteral(resourceName: "Add button"), taskPeriod: "", taskNextAction: ""))
+        data.append(TaskInformation(taskImage: #imageLiteral(resourceName: "Flower"), taskPeriod: "A cada 30 dias", taskNextAction: "33333"))
+        data.append(TaskInformation(taskImage: #imageLiteral(resourceName: "Harvest"), taskPeriod: "A cada 30 dias", taskNextAction: ""))
+        data.append(TaskInformation(taskImage: #imageLiteral(resourceName: "Sun"), taskPeriod: "A cada 30 dias", taskNextAction: ""))
+        data.append(TaskInformation(taskImage: #imageLiteral(resourceName: "Booster"), taskPeriod: "A cada 30 dias", taskNextAction: ""))
+        data.append(TaskInformation(taskImage: #imageLiteral(resourceName: "Drop"), taskPeriod: "A cada 30 dias", taskNextAction: ""))
+        data.append(TaskInformation(taskImage: #imageLiteral(resourceName: "Scissor"), taskPeriod: "A cada 30 dias", taskNextAction: ""))
+        data.append(TaskInformation(taskImage: #imageLiteral(resourceName: "Pesticide"), taskPeriod: "A cada 30 dias", taskNextAction: ""))
+        
+        tableView.reloadData()
+    }
+    
     
     @objc func cancelCreation(_ sender: Any){
         
         self.dismiss(animated: true) {
-            
         }
     }
     
     
     @objc func doneCreation(_ sender: Any){
-        
         
     }
     

@@ -21,7 +21,11 @@
 		CB0E0E6F2284BB1900AC6566 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB0E0E6E2284BB1900AC6566 /* AppDelegate.swift */; };
 		CB0E0E772284BB1900AC6566 /* MiniChallenge2_Hortus.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CB0E0E752284BB1900AC6566 /* MiniChallenge2_Hortus.xcdatamodeld */; };
 		CB0E0E7C2284BB1A00AC6566 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CB0E0E7A2284BB1A00AC6566 /* LaunchScreen.storyboard */; };
-		CBC1879F228B44E400D01A7E /* Celula.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC1879E228B44E400D01A7E /* Celula.swift */; };
+		CB7E50B523D1F874002DCA45 /* TaskCreatePlantCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7E50B423D1F874002DCA45 /* TaskCreatePlantCell.swift */; };
+		CB7E50B723D1F9F5002DCA45 /* TaskInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7E50B623D1F9F5002DCA45 /* TaskInformation.swift */; };
+		CB7E50B923D23353002DCA45 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7E50B823D23353002DCA45 /* Model.swift */; };
+		CB7E50BB23D23F3D002DCA45 /* PhotoCreatePlantCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7E50BA23D23F3D002DCA45 /* PhotoCreatePlantCell.swift */; };
+		CB7E50BE23D23F92002DCA45 /* PhotoInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7E50BD23D23F92002DCA45 /* PhotoInformation.swift */; };
 		CBC187A7228B5B6600D01A7E /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC187A6228B5B6600D01A7E /* CollectionViewController.swift */; };
 		CBD3DD7D23CD1BA4009BB2A1 /* CustomLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD3DD7C23CD1BA4009BB2A1 /* CustomLabel.swift */; };
 		CBD6924723CCF1A0003D9864 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD6924623CCF19F003D9864 /* Extensions.swift */; };
@@ -45,7 +49,11 @@
 		CB0E0E762284BB1900AC6566 /* MiniChallenge2_Hortus.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MiniChallenge2_Hortus.xcdatamodel; sourceTree = "<group>"; };
 		CB0E0E7B2284BB1A00AC6566 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CB0E0E7D2284BB1A00AC6566 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		CBC1879E228B44E400D01A7E /* Celula.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Celula.swift; sourceTree = "<group>"; };
+		CB7E50B423D1F874002DCA45 /* TaskCreatePlantCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskCreatePlantCell.swift; sourceTree = "<group>"; };
+		CB7E50B623D1F9F5002DCA45 /* TaskInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskInformation.swift; sourceTree = "<group>"; };
+		CB7E50B823D23353002DCA45 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		CB7E50BA23D23F3D002DCA45 /* PhotoCreatePlantCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCreatePlantCell.swift; sourceTree = "<group>"; };
+		CB7E50BD23D23F92002DCA45 /* PhotoInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoInformation.swift; sourceTree = "<group>"; };
 		CBC187A6228B5B6600D01A7E /* CollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
 		CBD3DD7C23CD1BA4009BB2A1 /* CustomLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLabel.swift; sourceTree = "<group>"; };
 		CBD6924623CCF19F003D9864 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
@@ -70,6 +78,8 @@
 				4F38814F228E438400C70C07 /* Plant+CoreDataProperties.swift */,
 				4F388150228E438400C70C07 /* Log+CoreDataClass.swift */,
 				4F388151228E438400C70C07 /* Log+CoreDataProperties.swift */,
+				CB7E50BD23D23F92002DCA45 /* PhotoInformation.swift */,
+				CB7E50B623D1F9F5002DCA45 /* TaskInformation.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -87,6 +97,7 @@
 		CB0E0E622284BB1800AC6566 = {
 			isa = PBXGroup;
 			children = (
+				CB7E50B823D23353002DCA45 /* Model.swift */,
 				CB0E0E6D2284BB1900AC6566 /* MiniChallenge2_Hortus */,
 			);
 			sourceTree = "<group>";
@@ -103,14 +114,15 @@
 		CB0E0E6D2284BB1900AC6566 /* MiniChallenge2_Hortus */ = {
 			isa = PBXGroup;
 			children = (
-				4FA265A6228B616B002D233D /* ViewControllers */,
-				4FA265A3228B6138002D233D /* Models */,
-				CBD6924823CCF983003D9864 /* Delegates */,
-				CBD6924323CCEF78003D9864 /* Helpers */,
-				CBD3DD7E23CD1C84009BB2A1 /* UI */,
-				CB0E0E6C2284BB1900AC6566 /* Products */,
 				CB0E0E6E2284BB1900AC6566 /* AppDelegate.swift */,
 				4FC6A28E229710A10056CD30 /* Assets.xcassets */,
+				CBD6924823CCF983003D9864 /* Delegates */,
+				CBD6924323CCEF78003D9864 /* Helpers */,
+				4FA265A3228B6138002D233D /* Models */,
+				4FA265A6228B616B002D233D /* ViewControllers */,
+				CBD3DD7E23CD1C84009BB2A1 /* Views */,
+				CB0E0E6C2284BB1900AC6566 /* Products */,
+				CB7E50B323D1F7E1002DCA45 /* UI Elements */,
 				CB0E0E7A2284BB1A00AC6566 /* LaunchScreen.storyboard */,
 				CB0E0E7D2284BB1A00AC6566 /* Info.plist */,
 				CB0E0E752284BB1900AC6566 /* MiniChallenge2_Hortus.xcdatamodeld */,
@@ -118,17 +130,33 @@
 			path = MiniChallenge2_Hortus;
 			sourceTree = "<group>";
 		};
-		CBD3DD7E23CD1C84009BB2A1 /* UI */ = {
+		CB7E50B323D1F7E1002DCA45 /* UI Elements */ = {
+			isa = PBXGroup;
+			children = (
+				4FA265B1228C6B2C002D233D /* CircularProgressBar.swift */,
+				4FC6A29722988D5D0056CD30 /* RoundedImageView.swift */,
+				CBD3DD7C23CD1BA4009BB2A1 /* CustomLabel.swift */,
+			);
+			path = "UI Elements";
+			sourceTree = "<group>";
+		};
+		CB7E50BC23D23F5F002DCA45 /* TableViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				CB7E50BA23D23F3D002DCA45 /* PhotoCreatePlantCell.swift */,
+				CB7E50B423D1F874002DCA45 /* TaskCreatePlantCell.swift */,
+			);
+			path = TableViewCells;
+			sourceTree = "<group>";
+		};
+		CBD3DD7E23CD1C84009BB2A1 /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				4FC6A293229888920056CD30 /* CardView.swift */,
-				CBD3DD7C23CD1BA4009BB2A1 /* CustomLabel.swift */,
 				4FA265AE228C6B13002D233D /* PlantCardCell.swift */,
-				4FA265B1228C6B2C002D233D /* CircularProgressBar.swift */,
-				CBC1879E228B44E400D01A7E /* Celula.swift */,
-				4FC6A29722988D5D0056CD30 /* RoundedImageView.swift */,
+				CB7E50BC23D23F5F002DCA45 /* TableViewCells */,
 			);
-			path = UI;
+			path = Views;
 			sourceTree = "<group>";
 		};
 		CBD6924323CCEF78003D9864 /* Helpers */ = {
@@ -223,15 +251,19 @@
 				4FA265AF228C6B13002D233D /* GardenVC.swift in Sources */,
 				4F388153228E438400C70C07 /* Plant+CoreDataProperties.swift in Sources */,
 				4FC6A294229888920056CD30 /* CardView.swift in Sources */,
+				CB7E50BB23D23F3D002DCA45 /* PhotoCreatePlantCell.swift in Sources */,
 				CB0E0E772284BB1900AC6566 /* MiniChallenge2_Hortus.xcdatamodeld in Sources */,
-				CBC1879F228B44E400D01A7E /* Celula.swift in Sources */,
+				CB7E50BE23D23F92002DCA45 /* PhotoInformation.swift in Sources */,
 				4FA265B0228C6B13002D233D /* PlantCardCell.swift in Sources */,
 				4F388154228E438400C70C07 /* Log+CoreDataClass.swift in Sources */,
+				CB7E50B723D1F9F5002DCA45 /* TaskInformation.swift in Sources */,
 				4F388152228E438400C70C07 /* Plant+CoreDataClass.swift in Sources */,
 				4FA265AC228B8CFF002D233D /* CreatePlantVC.swift in Sources */,
 				4FA265B2228C6B2C002D233D /* CircularProgressBar.swift in Sources */,
 				CBD6924723CCF1A0003D9864 /* Extensions.swift in Sources */,
 				4F388155228E438400C70C07 /* Log+CoreDataProperties.swift in Sources */,
+				CB7E50B523D1F874002DCA45 /* TaskCreatePlantCell.swift in Sources */,
+				CB7E50B923D23353002DCA45 /* Model.swift in Sources */,
 				CBD6924A23CCF9A3003D9864 /* GardenVCHandler.swift in Sources */,
 				CB0E0E6F2284BB1900AC6566 /* AppDelegate.swift in Sources */,
 			);
