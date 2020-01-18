@@ -19,6 +19,7 @@ class CreatePlantVC : UITableViewController, UIPickerViewDelegate, UIPickerViewD
     let photoCellId: String = "photoCellid"
     let taskCellId: String = "taskCellId"
     var data = Array<Any>()
+    var text: UITextView = UITextView()
     
     
     override func viewDidLoad() {
@@ -51,7 +52,8 @@ class CreatePlantVC : UITableViewController, UIPickerViewDelegate, UIPickerViewD
         
         tableView.register(PhotoCreatePlantCell.self, forCellReuseIdentifier: photoCellId)
         tableView.register(TaskCreatePlantCell.self, forCellReuseIdentifier: taskCellId)
-        //tableView.register(NameCreatePlantCell.self, forCellReuserIdentifier: nameCellId)
+        tableView.register(TaskCreatePlantCell.self, forCellReuseIdentifier: nameCellId)
+
         //Register cells
     }
     
@@ -67,7 +69,7 @@ class CreatePlantVC : UITableViewController, UIPickerViewDelegate, UIPickerViewD
             if let cell = tableView.dequeueReusableCell(withIdentifier: photoCellId) as? PhotoCreatePlantCell {
                 return cell
             }
-        }else if (data [indexPath.row] is TaskInformation){
+        }else if (data[indexPath.row] is TaskInformation) {
             if let cell = tableView.dequeueReusableCell(withIdentifier: taskCellId) as? TaskCreatePlantCell {
 
                 // Código que eu adicionei pra converter a data da linha numa
@@ -95,7 +97,7 @@ class CreatePlantVC : UITableViewController, UIPickerViewDelegate, UIPickerViewD
     
     func createTableView() {
         data.append(PhotoInformation(plantPhoto: #imageLiteral(resourceName: "AddFotoCompleto")))
-        data.append(TaskInformation(taskImage: #imageLiteral(resourceName: "Add button"), taskPeriod: "", taskNextAction: ""))
+        data.append(NameInformation(plantName: "jj"))
         data.append(TaskInformation(taskImage: #imageLiteral(resourceName: "Flower"), taskPeriod: "A cada 30 dias", taskNextAction: "33333"))
         data.append(TaskInformation(taskImage: #imageLiteral(resourceName: "Harvest"), taskPeriod: "A cada 30 dias", taskNextAction: ""))
         data.append(TaskInformation(taskImage: #imageLiteral(resourceName: "Sun"), taskPeriod: "A cada 30 dias", taskNextAction: ""))
