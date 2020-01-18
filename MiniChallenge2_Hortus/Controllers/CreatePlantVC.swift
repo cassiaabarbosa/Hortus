@@ -19,6 +19,7 @@ class CreatePlantVC : UITableViewController, UIPickerViewDelegate, UIPickerViewD
     let photoCellId: String = "photoCellid"
     let taskCellId: String = "taskCellId"
     var data = Array<Any>()
+    var text: UITextView = UITextView()
     
     
     override func viewDidLoad() {
@@ -51,7 +52,8 @@ class CreatePlantVC : UITableViewController, UIPickerViewDelegate, UIPickerViewD
         
         tableView.register(PhotoCreatePlantCell.self, forCellReuseIdentifier: photoCellId)
         tableView.register(TaskCreatePlantCell.self, forCellReuseIdentifier: taskCellId)
-        //tableView.register(NameCreatePlantCell.self, forCellReuserIdentifier: nameCellId)
+        tableView.register(TaskCreatePlantCell.self, forCellReuseIdentifier: nameCellId)
+
         //Register cells
     }
     
@@ -63,14 +65,20 @@ class CreatePlantVC : UITableViewController, UIPickerViewDelegate, UIPickerViewD
     
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if (data[indexPath.row] is PhotoCreatePlantCell) {
+        if (data[indexPath.row] is PhotoInformation) {
             if let cell = tableView.dequeueReusableCell(withIdentifier: photoCellId) as? PhotoCreatePlantCell {
                 return cell
             }
-        }else if (data [indexPath.row] is TaskCreatePlantCell){
+        }else if (data[indexPath.row] is TaskInformation) {
             if let cell = tableView.dequeueReusableCell(withIdentifier: taskCellId) as? TaskCreatePlantCell {
+
+                // Código que eu adicionei pra converter a data da linha numa
+                // TaskInformation e atualizar a da célula com esse valor
+                if let taskInformation = data[indexPath.row] as? TaskInformation {
+                    cell.taskInformation = taskInformation
                     return cell
                 }
+            }
         }
         return UITableViewCell()
     }
@@ -86,18 +94,10 @@ class CreatePlantVC : UITableViewController, UIPickerViewDelegate, UIPickerViewD
     }
     
     
-//    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-//        let headerTitles = ["Nome", "Foto", "Floração", "Colheita", "Exposição Solar", "Fertilização", "Rega", "Poda", "Pesticidas"]
-//        if section < headerTitles.count {
-//            return headerTitles[section]
-//        }
-//
-//        return nil
-//    }
     
     func createTableView() {
-        data.append(PhotoInformation(plantPhoto: #imageLiteral(resourceName: "PlantaPadrao")))
-        data.append(TaskInformation(taskImage: #imageLiteral(resourceName: "Add button"), taskPeriod: "", taskNextAction: ""))
+        data.append(PhotoInformation(plantPhoto: #imageLiteral(resourceName: "AddFotoCompleto")))
+        data.append(NameInformation(plantName: "jj"))
         data.append(TaskInformation(taskImage: #imageLiteral(resourceName: "Flower"), taskPeriod: "A cada 30 dias", taskNextAction: "33333"))
         data.append(TaskInformation(taskImage: #imageLiteral(resourceName: "Harvest"), taskPeriod: "A cada 30 dias", taskNextAction: ""))
         data.append(TaskInformation(taskImage: #imageLiteral(resourceName: "Sun"), taskPeriod: "A cada 30 dias", taskNextAction: ""))
@@ -289,4 +289,5 @@ class CreatePlantVC : UITableViewController, UIPickerViewDelegate, UIPickerViewD
 //        }
 //
 //    }
+
 

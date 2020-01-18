@@ -11,7 +11,7 @@ import UIKit
 class PhotoCreatePlantCell: UITableViewCell {
     
     var photoInformation: PhotoInformation? {
-        didSet{
+        didSet {
             photo.image = photoInformation?.plantPhoto
         }
     }
@@ -27,7 +27,7 @@ class PhotoCreatePlantCell: UITableViewCell {
     
     private let addPhotoButton: UIButton = {
         let addPhotoButton = UIButton(type: .custom)
-        addPhotoButton.setImage(#imageLiteral(resourceName: "Group 7"), for: .normal)
+        addPhotoButton.setImage(#imageLiteral(resourceName: "Scissor"), for: .normal)
         addPhotoButton.imageView?.contentMode = .scaleAspectFill
         return addPhotoButton
     }()
@@ -38,7 +38,7 @@ class PhotoCreatePlantCell: UITableViewCell {
         addSubview(photo)
         addSubview(addPhotoButton)
         
-        photo.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: nil, paddingTop: 5, paddingLeft: 5, paddingBottom: 5, paddingRight: 0, width: 90, height: 0, enableInsets: false)
+        photo.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: nil, paddingTop: 5, paddingLeft: 5, paddingBottom: 5, paddingRight: 0, width: 50, height: 0, enableInsets: false)
         addPhotoButton.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: nil, paddingTop: 5, paddingLeft: 5, paddingBottom: 5, paddingRight: 0, width: 90, height: 0, enableInsets: false)
         
         }
