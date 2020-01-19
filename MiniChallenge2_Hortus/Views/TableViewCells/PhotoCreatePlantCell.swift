@@ -18,8 +18,8 @@ class PhotoCreatePlantCell: UITableViewCell, UIImagePickerControllerDelegate {
     
     
     public var photo: UIImageView = {
-        let photo = UIImageView(image: #imageLiteral(resourceName: "AddFotoCompleto"))
-        photo.contentMode = .scaleToFill
+        let photo = UIImageView(image: #imageLiteral(resourceName: "Group 9"))
+        photo.contentMode = .scaleAspectFill
         photo.clipsToBounds = true
         photo.translatesAutoresizingMaskIntoConstraints = false
         photo.backgroundColor = .black
@@ -29,7 +29,7 @@ class PhotoCreatePlantCell: UITableViewCell, UIImagePickerControllerDelegate {
     
     public var addPhotoButton: UIButton = {
         let addPhotoButton = UIButton(type: UIButton.ButtonType.custom)
-        addPhotoButton.setImage(#imageLiteral(resourceName: "BotaoRega"), for: .normal)
+        addPhotoButton.setImage(UIImage(named: "AddPhotoButton"), for: .normal)
         
         return addPhotoButton
     }()
