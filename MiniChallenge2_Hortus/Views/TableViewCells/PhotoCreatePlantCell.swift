@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PhotoCreatePlantCell: UITableViewCell {
+class PhotoCreatePlantCell: UITableViewCell, UIImagePickerControllerDelegate {
     
     var photoInformation: PhotoInformation? {
         didSet {
@@ -16,21 +16,27 @@ class PhotoCreatePlantCell: UITableViewCell {
         }
     }
     
-    private let photo: UIImageView = {
+    
+    public var photo: UIImageView = {
         let photo = UIImageView(image: #imageLiteral(resourceName: "AddFotoCompleto"))
-        photo.contentMode = .scaleAspectFit
+        photo.contentMode = .scaleToFill
         photo.clipsToBounds = true
         photo.translatesAutoresizingMaskIntoConstraints = false
+        photo.backgroundColor = .black
         return photo
     }()
     
     
-    private let addPhotoButton: UIButton = {
-        let addPhotoButton = UIButton(type: .custom)
-        addPhotoButton.setImage(#imageLiteral(resourceName: "Scissor"), for: .normal)
-        addPhotoButton.imageView?.contentMode = .scaleAspectFill
+    public var addPhotoButton: UIButton = {
+        let addPhotoButton = UIButton(type: UIButton.ButtonType.custom)
+        addPhotoButton.setImage(#imageLiteral(resourceName: "BotaoRega"), for: .normal)
+        
         return addPhotoButton
     }()
+    
+    
+    var addPhotoButtonClickedClosure : (()->Void)?
+    
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
     super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -38,11 +44,20 @@ class PhotoCreatePlantCell: UITableViewCell {
         addSubview(photo)
         addSubview(addPhotoButton)
         
-        photo.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: nil, paddingTop: 5, paddingLeft: 5, paddingBottom: 5, paddingRight: 0, width: 50, height: 0, enableInsets: false)
-        addPhotoButton.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: nil, paddingTop: 5, paddingLeft: 5, paddingBottom: 5, paddingRight: 0, width: 90, height: 0, enableInsets: false)
+        
+        photo.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: frame.size.width, height: frame.size.width, enableInsets: false)
+        
+        addPhotoButton.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: frame.size.width, height: frame.size.width, enableInsets: false)
+        
+        addPhotoButton.addTarget(self, action: #selector(addPhotoButtonClicked(_:)), for: .touchUpInside)
         
         }
+    
+    @IBAction func addPhotoButtonClicked(_ sender: UIButton) {
+        addPhotoButtonClickedClosure?()
         
+    }
+    
             required init?(coder: NSCoder) {
                 fatalError("init(coder:) has not been implemented")
         }
