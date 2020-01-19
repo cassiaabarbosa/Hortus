@@ -3,7 +3,7 @@
 //  MiniChallenge2_Hortus
 //
 //  Created by Edgar Sgroi on 14/05/19.
-//  Copyright © 2019 Hortus. All rights reserved.
+//  Copyright ©️ 2019 Hortus. All rights reserved.
 //
 
 import Foundation
@@ -11,7 +11,7 @@ import UIKit
 import CoreData
 import Photos
 
-class CreatePlantVC : UITableViewController, UIPickerViewDelegate, UIPickerViewDataSource,  UIImagePickerControllerDelegate{
+class CreatePlantVC : UITableViewController, UIPickerViewDelegate, UIPickerViewDataSource,  UIImagePickerControllerDelegate, UITextFieldDelegate{
     
     var plantImage: UIImageView = UIImageView()
     var plantName: UILabel = UILabel()
@@ -19,7 +19,8 @@ class CreatePlantVC : UITableViewController, UIPickerViewDelegate, UIPickerViewD
     let photoCellId: String = "photoCellid"
     let taskCellId: String = "taskCellId"
     var data = Array<Any>()
-    var text: UITextView = UITextView()
+    var pickerAddPhotoButton = UIImagePickerController()
+    var tempPlantPhoto: UIImage = UIImage()
     
     
     override func viewDidLoad() {
@@ -46,15 +47,25 @@ class CreatePlantVC : UITableViewController, UIPickerViewDelegate, UIPickerViewD
         tableView.delegate = self
         tableView.dataSource = self
         
+        pickerAddPhotoButton.delegate = self as? UIImagePickerControllerDelegate & UINavigationControllerDelegate
         
         createTableView()
         
         
         tableView.register(PhotoCreatePlantCell.self, forCellReuseIdentifier: photoCellId)
         tableView.register(TaskCreatePlantCell.self, forCellReuseIdentifier: taskCellId)
-        tableView.register(TaskCreatePlantCell.self, forCellReuseIdentifier: nameCellId)
-
+        tableView.register(NameCreatePlantCell.self, forCellReuseIdentifier: nameCellId)
         //Register cells
+        
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
+        
+        view.addGestureRecognizer(tap)
+    }
+    
+    
+    @objc func dismissKeyboard() {
+        //Causes the view (or one of its embedded text fields) to resign the first responder status.
+        view.endEditing(true)
     }
     
     
@@ -67,22 +78,64 @@ class CreatePlantVC : UITableViewController, UIPickerViewDelegate, UIPickerViewD
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if (data[indexPath.row] is PhotoInformation) {
             if let cell = tableView.dequeueReusableCell(withIdentifier: photoCellId) as? PhotoCreatePlantCell {
-                return cell
+                if let photoInformation = data[indexPath.row] as? PhotoInformation {
+                    cell.photoInformation = photoInformation
+                    cell.addPhotoButtonClickedClosure = {[self] in
+                        let alert = UIAlertController(title: "Adicionar foto da Planta", message: nil, preferredStyle: .alert)
+                        
+                        alert.addAction(UIAlertAction(title: "Câmera", style: .default, handler: { (action) in
+                            if UIImagePickerController.isSourceTypeAvailable(.camera) {
+                                self.pickerAddPhotoButton.delegate = self as? UIImagePickerControllerDelegate & UINavigationControllerDelegate
+                                self.pickerAddPhotoButton.sourceType = .camera
+                                self.pickerAddPhotoButton.allowsEditing = false
+                                self.present(self.pickerAddPhotoButton, animated: true, completion: nil)
+                                
+                            }}))
+                        
+                        alert.addAction(UIAlertAction(title: "Galeria", style: UIAlertAction.Style.default, handler: { (action) in
+                            if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
+                                self.pickerAddPhotoButton.delegate = self as? UIImagePickerControllerDelegate & UINavigationControllerDelegate
+                                self.pickerAddPhotoButton.sourceType = .photoLibrary
+                                self.pickerAddPhotoButton.allowsEditing = false
+                                self.present(self.pickerAddPhotoButton, animated: true, completion: nil)
+                                
+                            }}))
+                        
+                        self.present(alert, animated: true) {
+                            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.dismissAlertController))
+                            alert.view.superview?.subviews[0].addGestureRecognizer(tapGesture)
+                        }
+                    }
+                    return cell
+                }
+                
             }
         }else if (data[indexPath.row] is TaskInformation) {
             if let cell = tableView.dequeueReusableCell(withIdentifier: taskCellId) as? TaskCreatePlantCell {
-
-                // Código que eu adicionei pra converter a data da linha numa
-                // TaskInformation e atualizar a da célula com esse valor
                 if let taskInformation = data[indexPath.row] as? TaskInformation {
                     cell.taskInformation = taskInformation
                     return cell
                 }
             }
+        } else if (data[indexPath.row] is NameInformation) {
+            if let cell = tableView.dequeueReusableCell(withIdentifier: nameCellId) as? NameCreatePlantCell {
+                return cell
+            }
         }
+        
         return UITableViewCell()
     }
     
+    
+    let indexPathOfCellYouWantToChange = IndexPath(row: 0, section: 0)
+
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+      if indexPath == indexPathOfCellYouWantToChange {
+        return 400
+      } else {
+        return UITableView.automaticDimension
+      }
+    }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -96,8 +149,8 @@ class CreatePlantVC : UITableViewController, UIPickerViewDelegate, UIPickerViewD
     
     
     func createTableView() {
-        data.append(PhotoInformation(plantPhoto: #imageLiteral(resourceName: "AddFotoCompleto")))
-        data.append(NameInformation(plantName: "jj"))
+        data.append(PhotoInformation(plantPhoto: #imageLiteral(resourceName: "hotencia")))
+        data.append(NameInformation(plantName: ""))
         data.append(TaskInformation(taskImage: #imageLiteral(resourceName: "Flower"), taskPeriod: "A cada 30 dias", taskNextAction: "33333"))
         data.append(TaskInformation(taskImage: #imageLiteral(resourceName: "Harvest"), taskPeriod: "A cada 30 dias", taskNextAction: ""))
         data.append(TaskInformation(taskImage: #imageLiteral(resourceName: "Sun"), taskPeriod: "A cada 30 dias", taskNextAction: ""))
@@ -112,8 +165,7 @@ class CreatePlantVC : UITableViewController, UIPickerViewDelegate, UIPickerViewD
     
     @objc func cancelCreation(_ sender: Any){
         
-        self.dismiss(animated: true) {
-        }
+        self.dismiss(animated: true)
     }
     
     
@@ -130,10 +182,27 @@ class CreatePlantVC : UITableViewController, UIPickerViewDelegate, UIPickerViewD
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return 2
     }
+    
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        
+        pickerAddPhotoButton.dismiss(animated: true, completion: nil)
+        
+        guard let pickedImage = info[.originalImage] as? UIImage else {
+            return print("Error")
+            }
+        //PhotoCreatePlantCell.photo.image
+        }
+        
+    
+    @objc func dismissAlertController(){
+        self.dismiss(animated: true, completion: nil)
+    }
+    
 }
 
 
-//
+
 //    @IBOutlet weak var fldName: UITextField!
 //    @IBOutlet weak var imgPlantImage: UIImageView!
 //    @IBOutlet weak var pkrWateringPeriod: UIPickerView!
@@ -289,5 +358,3 @@ class CreatePlantVC : UITableViewController, UIPickerViewDelegate, UIPickerViewD
 //        }
 //
 //    }
-
-

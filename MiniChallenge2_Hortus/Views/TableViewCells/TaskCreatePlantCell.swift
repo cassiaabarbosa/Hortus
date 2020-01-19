@@ -55,7 +55,7 @@ class TaskCreatePlantCell: UITableViewCell {
         addSubview(taskNextActionLabel)
         
         taskImage.centerYAnchor.constraint(equalTo:self.contentView.centerYAnchor).isActive = true
-        taskImage.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: nil, paddingTop: 5, paddingLeft: 5, paddingBottom: 5, paddingRight: 0, width: 90, height: 0, enableInsets: false)
+        taskImage.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: nil, paddingTop: 5, paddingLeft: 5, paddingBottom: 5, paddingRight: 0, width: 90, height: 50, enableInsets: false)
         
         taskPeriodLabel.anchor(top: topAnchor, left: taskImage.rightAnchor, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 10, paddingBottom: 0, paddingRight: 0, width: frame.size.width / 2, height: 0, enableInsets: false)
         taskPeriodLabel.centerYAnchor.constraint(equalTo:self.contentView.centerYAnchor).isActive = true
@@ -64,20 +64,7 @@ class TaskCreatePlantCell: UITableViewCell {
         taskNextActionLabel.centerYAnchor.constraint(equalTo:self.contentView.centerYAnchor).isActive = true
         taskNextActionLabel.anchor(top: topAnchor, left: taskImage.rightAnchor, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 150, paddingBottom: 0, paddingRight: 0, width: frame.size.width / 2, height: 0, enableInsets: false)
         
-        
-        
-//         productDescriptionLabel.anchor(top: productNameLabel.bottomAnchor, left: productImage.rightAnchor, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 10, paddingBottom: 0, paddingRight: 0, width: frame.size.width / 2, height: 0, enableInsets: false)
-         
-//     let stackView = UIStackView(arrangedSubviews: [decreaseButton,productQuantity,increaseButton])
-//     stackView.distribution = .equalSpacing
-//     stackView.axis = .horizontal
-//     stackView.spacing = 5
-//     addSubview(stackView)
-//     stackView.anchor(top: topAnchor, left: productNameLabel.rightAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 15, paddingLeft: 5, paddingBottom: 15, paddingRight: 10, width: 0, height: 70, enableInsets: false)
-//
-//     }
-     
-     
+    
     
 }
     
