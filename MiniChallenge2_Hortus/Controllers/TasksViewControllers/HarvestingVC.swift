@@ -13,8 +13,9 @@ import Photos
 
 class HarvestingVC : UITableViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate, UINavigationControllerDelegate {
     
-    let frequencyCellId: String = "nameCellId"
-    let lastActionCellId: String = "photoCellid"
+    let frequencyCellId: String = "frequencyCellId"
+    let lastActionCellId: String = "lastActionCellid"
+    let datePickerViewCellId: String = "datePickerViewCellId"
     var dataFlowering = Array<Any>()
     var lastActionArray = [LastActionInformation]()
     var frequencyArray = [FrequencyInformation]()
@@ -129,7 +130,7 @@ class HarvestingVC : UITableViewController, UIPickerViewDelegate, UIPickerViewDa
     func createTableView() {
         frequencyArray.append(FrequencyInformation(frequencyLabel: "Período de rega", plantFrequency: ""))
         
-        lastActionArray.append(LastActionInformation(lastActionLabel: "Última rega"))
+        lastActionArray.append(LastActionInformation(lastActionLabel: "Última rega", lastAction: ""))
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {

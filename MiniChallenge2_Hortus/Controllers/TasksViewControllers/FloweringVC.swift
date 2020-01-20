@@ -11,13 +11,16 @@ import UIKit
 import CoreData
 import Photos
 
-class FloweringVC : UITableViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate, UINavigationControllerDelegate {
+class FloweringVC : UITableViewController, UIPickerViewDelegate, UITextFieldDelegate, UINavigationControllerDelegate {
     
-    let frequencyCellId: String = "nameCellId"
-    let lastActionCellId: String = "photoCellid"
-    var dataFlowering = Array<Any>()
+    let frequencyCellId: String = "frequencyCellId"
+    let lastActionCellId: String = "lastActionCellid"
+    let datePickerViewCellId: String = "datePickerViewCellId"
     var lastActionArray = [LastActionInformation]()
     var frequencyArray = [FrequencyInformation]()
+    var datePickerArray = [DatePickerInformation]()
+    public var inputDates: [Date] = []
+    var datePicker =  UIDatePicker()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,6 +46,16 @@ class FloweringVC : UITableViewController, UIPickerViewDelegate, UIPickerViewDat
         
         tableView.register(FrequencyCell.self, forCellReuseIdentifier: frequencyCellId)
         tableView.register(LastActionCell.self, forCellReuseIdentifier: lastActionCellId)
+        tableView.register(DatePickerViewCell.self, forCellReuseIdentifier: datePickerViewCellId)
+        
+        
+//        func indexPathToInsertDatePicker(indexPath: IndexPath) -> IndexPath {
+//            if let datePickerIndexPath = datePickerIndexPath, datePickerIndexPath.row < indexPath.row {
+//                return indexPath
+//            } else {
+//                return IndexPath(row: indexPath.row + 1, section: indexPath.section)
+//            }
+//        }
         
     }
     
@@ -54,30 +67,21 @@ class FloweringVC : UITableViewController, UIPickerViewDelegate, UIPickerViewDat
     
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.section == 0 {
-            if let cell = tableView.dequeueReusableCell(withIdentifier: frequencyCellId) as? FrequencyCell {
-                if let frequencyInformation = frequencyArray[indexPath.row] as? FrequencyInformation {
-                    cell.frequencyInformation = frequencyInformation
-                    return cell
+                if let cell = tableView.dequeueReusableCell(withIdentifier: frequencyCellId) as? FrequencyCell {
+                    if let frequencyInformation = frequencyArray[indexPath.row] as? FrequencyInformation {
+                        cell.frequencyInformation = frequencyInformation
+                        return cell
+                    }
                 }
-            }
-        } else if indexPath.section == 1 {
-            if let cell = tableView.dequeueReusableCell(withIdentifier: lastActionCellId) as? LastActionCell {
-                if let lastActionInformation = lastActionArray[indexPath.row] as? LastActionInformation {
-                    cell.lastActionInformation = lastActionInformation
-                    return cell
-                }
-            }
-        }
+                
+                if let cell  = tableView.dequeueReusableCell(withIdentifier: datePickerViewCellId) as? DatePickerViewCell {
+                        //cell.updateCell(date: inputDates[indexPath.row - 1], indexPath: indexPath)
+                        return cell
+                    }
         
         return UITableViewCell()
     }
     
-    
-    
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 50
-    }
     
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -87,10 +91,11 @@ class FloweringVC : UITableViewController, UIPickerViewDelegate, UIPickerViewDat
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
-            return 1
+               return 2
         }
         else if section == 1 {
-            return 1
+            return 2
+            
         }
         return 0
     }
@@ -126,18 +131,37 @@ class FloweringVC : UITableViewController, UIPickerViewDelegate, UIPickerViewDat
     
     
     func createTableView() {
-        frequencyArray.append(FrequencyInformation(frequencyLabel: "Período de rega", plantFrequency: ""))
+        frequencyArray.append(FrequencyInformation(frequencyLabel: "Período de rega", plantFrequency: "00/00/00"))
         
-        lastActionArray.append(LastActionInformation(lastActionLabel: "Última rega"))
+        lastActionArray.append(LastActionInformation(lastActionLabel: "Última rega", lastAction: "00/00/00"))
+        
+        datePickerArray.append(DatePickerInformation(datePickerLabel: ""))
     }
     
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        1
+    
+    
+    func didChangeDate(date: Date, indexPath: IndexPath) {
+        inputDates[indexPath.row] = date
+        tableView.reloadRows(at: [indexPath], with: .none)
     }
     
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        1
-    }
+//    func indexPathToInsertDatePicker(indexPath: IndexPath) -> IndexPath {
+//        if let datePickerIndexPath = datePickerIndexPath, datePickerIndexPath.row < indexPath.row {
+//            return indexPath
+//        } else {
+//            return IndexPath(row: indexPath.row + 1, section: indexPath.section)
+//        }
+//    }
+//
+//    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        if datePickerIndexPath == indexPath {
+//            return 162
+//        } else {
+//            return 50
+//        }
+//    }
+
 
 
 }
+

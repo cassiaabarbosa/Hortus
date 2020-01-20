@@ -13,7 +13,7 @@ class LastActionCell: UITableViewCell {
     var lastActionInformation: LastActionInformation? {
         didSet {
             lastActionLabel.text = lastActionInformation?.lastActionLabel
-            //lastAction
+            lastAction.text = lastActionInformation?.lastAction
         }
     }
     
@@ -27,28 +27,28 @@ class LastActionCell: UITableViewCell {
     }()
     
     
-//    public var plantFrequency: UILabel = {
-//        let plantFrequency = UILabel()
-//        plantFrequency.textColor = .black
-//        plantFrequency.font = UIFont.systemFont(ofSize: 17)
-//        plantFrequency.textAlignment = .left
-//        plantFrequency.numberOfLines = 0
-//        return plantFrequency
-//        }()
+    public var lastAction: UILabel = {
+        let lastAction = UILabel()
+        lastAction.textColor = .black
+        lastAction.font = UIFont.systemFont(ofSize: 17)
+        lastAction.textAlignment = .left
+        lastAction.numberOfLines = 0
+        return lastAction
+        }()
     
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
     super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         addSubview(lastActionLabel)
-        //addSubview(plantFrequency)
+        addSubview(lastAction)
         
         lastActionLabel.centerYAnchor.constraint(equalTo:self.contentView.centerYAnchor).isActive = true
         lastActionLabel.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: nil, paddingTop: 5, paddingLeft: 5, paddingBottom: 5, paddingRight: 0, width: frame.size.width, height: 0, enableInsets: false)
         
-//        plantFrequency.anchor(top: topAnchor, left: frequencyLabel.rightAnchor, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: frame.size.width, height: 0, enableInsets: false)
-//        plantFrequency.centerYAnchor.constraint(equalTo:self.contentView.centerYAnchor).isActive = true
-//        
+        lastAction.anchor(top: topAnchor, left: lastActionLabel.rightAnchor, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: frame.size.width, height: 0, enableInsets: false)
+        lastAction.centerYAnchor.constraint(equalTo:self.contentView.centerYAnchor).isActive = true
+        
         
         self.separatorInset = UIEdgeInsets.zero
         self.layoutMargins = UIEdgeInsets.zero

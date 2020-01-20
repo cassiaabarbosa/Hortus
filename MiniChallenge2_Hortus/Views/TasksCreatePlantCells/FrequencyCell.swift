@@ -8,6 +8,19 @@
 
 import UIKit
 
+/// Date Format type
+enum DateFormatType: String {
+    /// Time
+    case time = "HH:mm:ss"
+    
+    /// Date with hours
+    case dateWithTime = "dd/MMM/yyyy  HH:mm"
+    
+    /// Date
+    case date = "dd/MMM/yyyy"
+}
+
+
 class FrequencyCell: UITableViewCell {
     
     var frequencyInformation: FrequencyInformation? {
@@ -42,7 +55,6 @@ class FrequencyCell: UITableViewCell {
         
         addSubview(frequencyLabel)
         addSubview(plantFrequency)
-        //addSubview(taskNextActionLabel)
         
         frequencyLabel.centerYAnchor.constraint(equalTo:self.contentView.centerYAnchor).isActive = true
         frequencyLabel.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: nil, paddingTop: 5, paddingLeft: 5, paddingBottom: 5, paddingRight: 0, width: frame.size.width , height: 0, enableInsets: false)
@@ -56,8 +68,30 @@ class FrequencyCell: UITableViewCell {
         
     }
     
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+
+        // Configure the view for the selected state
+    }
+    
+    // Update text
+    func updateText(date: Date) {
+        plantFrequency.text = date.convertToString(dateformat: .dateWithTime)
+    }
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+}
+
+extension Date {
+    
+    func convertToString(dateformat formatType: DateFormatType) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = formatType.rawValue
+        let newDate: String = dateFormatter.string(from: self)
+        return newDate
     }
     
 }

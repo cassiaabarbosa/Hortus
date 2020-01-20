@@ -13,8 +13,9 @@ import Photos
 
 class SunExposureVC : UITableViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate, UINavigationControllerDelegate {
     
-    let frequencyCellId: String = "nameCellId"
-    let lastActionCellId: String = "photoCellid"
+    let frequencyCellId: String = "frequencyCellId"
+    let lastActionCellId: String = "lastActionCellid"
+    let datePickerViewCellId: String = "datePickerViewCellId"
     var dataFlowering = Array<Any>()
     var lastActionArray = [LastActionInformation]()
     var frequencyArray = [FrequencyInformation]()
@@ -129,7 +130,7 @@ class SunExposureVC : UITableViewController, UIPickerViewDelegate, UIPickerViewD
     func createTableView() {
         frequencyArray.append(FrequencyInformation(frequencyLabel: "Período de rega", plantFrequency: ""))
         
-        lastActionArray.append(LastActionInformation(lastActionLabel: "Última rega"))
+        lastActionArray.append(LastActionInformation(lastActionLabel: "Última rega", lastAction: ""))
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {

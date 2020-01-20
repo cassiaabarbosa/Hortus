@@ -39,6 +39,8 @@
 		CB7E50BB23D23F3D002DCA45 /* PhotoCreatePlantCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7E50BA23D23F3D002DCA45 /* PhotoCreatePlantCell.swift */; };
 		CB7E50BE23D23F92002DCA45 /* PhotoInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7E50BD23D23F92002DCA45 /* PhotoInformation.swift */; };
 		CBC187A7228B5B6600D01A7E /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC187A6228B5B6600D01A7E /* CollectionViewController.swift */; };
+		CBD1009123D5F2910079C753 /* DatePickerViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD1009023D5F2910079C753 /* DatePickerViewCell.swift */; };
+		CBD1009323D5F2E70079C753 /* DatePickerInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD1009223D5F2E70079C753 /* DatePickerInformation.swift */; };
 		CBD3DD7D23CD1BA4009BB2A1 /* CustomLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD3DD7C23CD1BA4009BB2A1 /* CustomLabel.swift */; };
 		CBD6924723CCF1A0003D9864 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD6924623CCF19F003D9864 /* Extensions.swift */; };
 		CBD6924A23CCF9A3003D9864 /* GardenVCHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD6924923CCF9A3003D9864 /* GardenVCHandler.swift */; };
@@ -79,6 +81,8 @@
 		CB7E50BA23D23F3D002DCA45 /* PhotoCreatePlantCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCreatePlantCell.swift; sourceTree = "<group>"; };
 		CB7E50BD23D23F92002DCA45 /* PhotoInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoInformation.swift; sourceTree = "<group>"; };
 		CBC187A6228B5B6600D01A7E /* CollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
+		CBD1009023D5F2910079C753 /* DatePickerViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerViewCell.swift; sourceTree = "<group>"; };
+		CBD1009223D5F2E70079C753 /* DatePickerInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerInformation.swift; sourceTree = "<group>"; };
 		CBD3DD7C23CD1BA4009BB2A1 /* CustomLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLabel.swift; sourceTree = "<group>"; };
 		CBD6924623CCF19F003D9864 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		CBD6924923CCF9A3003D9864 /* GardenVCHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GardenVCHandler.swift; sourceTree = "<group>"; };
@@ -199,6 +203,7 @@
 			isa = PBXGroup;
 			children = (
 				4FC6A293229888920056CD30 /* CardView.swift */,
+				CBD1009023D5F2910079C753 /* DatePickerViewCell.swift */,
 				4FA265AE228C6B13002D233D /* PlantCardCell.swift */,
 				CB7E50BC23D23F5F002DCA45 /* CreatePlantCells */,
 				CB13A0DB23D52ED900DD4778 /* TasksCreatePlantCells */,
@@ -210,6 +215,7 @@
 			isa = PBXGroup;
 			children = (
 				CBD6924623CCF19F003D9864 /* Extensions.swift */,
+				CBD1009223D5F2E70079C753 /* DatePickerInformation.swift */,
 				CB13A0DC23D5301E00DD4778 /* FrequencyInformation.swift */,
 				CB13A0DE23D5304100DD4778 /* LastActionInformation.swift */,
 				CB37880523D275B9001B2479 /* NameInformation.swift */,
@@ -323,6 +329,8 @@
 				4FA265AC228B8CFF002D233D /* CreatePlantVC.swift in Sources */,
 				CB37880623D275B9001B2479 /* NameInformation.swift in Sources */,
 				4FA265B2228C6B2C002D233D /* CircularProgressBar.swift in Sources */,
+				CBD1009123D5F2910079C753 /* DatePickerViewCell.swift in Sources */,
+				CBD1009323D5F2E70079C753 /* DatePickerInformation.swift in Sources */,
 				CBD6924723CCF1A0003D9864 /* Extensions.swift in Sources */,
 				4F388155228E438400C70C07 /* Log+CoreDataProperties.swift in Sources */,
 				CB13A0DF23D5304100DD4778 /* LastActionInformation.swift in Sources */,
