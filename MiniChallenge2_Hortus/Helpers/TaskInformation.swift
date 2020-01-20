@@ -12,7 +12,7 @@ struct TaskInformation {
     
     var taskImage: UIImage
     var taskPeriod: String
-    var taskNextAction: String
+    //var taskNextAction: String
     
     //struct is a undefined class
 }

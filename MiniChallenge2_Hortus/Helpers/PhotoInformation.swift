@@ -11,4 +11,5 @@ import UIKit
 struct PhotoInformation {
     
     var plantPhoto: UIImage
+    
 }

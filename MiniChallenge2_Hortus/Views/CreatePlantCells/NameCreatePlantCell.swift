@@ -17,10 +17,9 @@ class NameCreatePlantCell : UITableViewCell, UITextFieldDelegate {
         name.clipsToBounds = true
         name.autocapitalizationType = .words
         name.font = UIFont.systemFont(ofSize: 17)
-        name.enablesReturnKeyAutomatically = true
         let centeredParagraphStyle = NSMutableParagraphStyle()
         centeredParagraphStyle.alignment = .center
-        let attributedPlaceholder = NSAttributedString(string: "Digite o nome da planta...", attributes: [NSAttributedString.Key.paragraphStyle: centeredParagraphStyle])
+        let attributedPlaceholder = NSAttributedString(string: "Digite o nome da planta", attributes: [NSAttributedString.Key.paragraphStyle: centeredParagraphStyle])
         name.textAlignment = .center
         name.attributedPlaceholder = attributedPlaceholder
         return name
@@ -35,6 +34,9 @@ class NameCreatePlantCell : UITableViewCell, UITextFieldDelegate {
         
         name.delegate = self
         name.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: frame.size.width, height: 50, enableInsets: false)
+        
+        self.separatorInset = UIEdgeInsets.zero
+        self.layoutMargins = UIEdgeInsets.zero
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
