@@ -11,16 +11,15 @@ import UIKit
 import CoreData
 import Photos
 
-class CreatePlantVC : UITableViewController, UIPickerViewDelegate, UIPickerViewDataSource, UIImagePickerControllerDelegate, UITextFieldDelegate, UINavigationControllerDelegate {
+class CreatePlantVC : UITableViewController, UIImagePickerControllerDelegate, UITextFieldDelegate, UINavigationControllerDelegate {
     
-    var plantImage: UIImageView = UIImageView()
-    var plantName: UILabel = UILabel()
+    //var plantImage: UIImageView = UIImageView()
+    //var plantName: UILabel = UILabel()
     let nameCellId: String = "nameCellId"
     let photoCellId: String = "photoCellid"
     let taskCellId: String = "taskCellId"
     var data = Array<Any>()
     var pickerAddPhotoButton = UIImagePickerController()
-    var tempPlantPhoto: UIImage = UIImage()
     
     
     override func viewDidLoad() {
@@ -31,7 +30,7 @@ class CreatePlantVC : UITableViewController, UIPickerViewDelegate, UIPickerViewD
             // Fallback on earlier versions
         }
         
-        self.title = "Adicionar planta"
+        self.title = "Nova Planta"
         navigationController?.navigationBar.barTintColor = UIColor.App.navigation
         navigationController?.navigationBar.tintColor = UIColor.App.modalButton
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.App.navigationTitle]
@@ -42,14 +41,21 @@ class CreatePlantVC : UITableViewController, UIPickerViewDelegate, UIPickerViewD
         
         navigationItem.leftBarButtonItem?.tintColor = UIColor.App.delete
         
-        tableView.translatesAutoresizingMaskIntoConstraints = false
+        //tableView.translatesAutoresizingMaskIntoConstraints = false
         
         tableView.delegate = self
         tableView.dataSource = self
         
+        tableView.backgroundColor = .lightGray
+        tableView.tableFooterView = UIView(frame: CGRect.zero)
+        
+        tableView.keyboardDismissMode = .onDrag
+        
+        
         pickerAddPhotoButton.delegate = self
         
         createTableView()
+        
         
         
         tableView.register(PhotoCreatePlantCell.self, forCellReuseIdentifier: photoCellId)
@@ -57,15 +63,12 @@ class CreatePlantVC : UITableViewController, UIPickerViewDelegate, UIPickerViewD
         tableView.register(NameCreatePlantCell.self, forCellReuseIdentifier: nameCellId)
         //Register cells
         
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
+
+        func textFieldShouldReturn(textField: UITextField) -> Bool {
+            textField.resignFirstResponder()
+            return true
+        }
         
-        view.addGestureRecognizer(tap)
-    }
-    
-    
-    @objc func dismissKeyboard() {
-        //Causes the view (or one of its embedded text fields) to resign the first responder status.
-        view.endEditing(true)
     }
     
     
@@ -124,62 +127,93 @@ class CreatePlantVC : UITableViewController, UIPickerViewDelegate, UIPickerViewD
         }
         
         return UITableViewCell()
+        
     }
     
+    
     let indexPathOfCellYouWantToChange = IndexPath(row: 0, section: 0)
-
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
       if indexPath == indexPathOfCellYouWantToChange {
         return 400
       } else {
         return 50
       }
+        
     }
 
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
+        
     }
     
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 9
+        
     }
     
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.row == 2 {
+        let floweringVC = FloweringVC()
+         navigationController?.pushViewController(floweringVC, animated: true)
+            
+        }else if indexPath.row == 3 {
+            let harvestingVC = HarvestingVC()
+             navigationController?.pushViewController(harvestingVC, animated: true)
+            
+        }else if indexPath.row == 4 {
+            let sunExposureVC = SunExposureVC()
+             navigationController?.pushViewController(sunExposureVC, animated: true)
+            
+        }else if indexPath.row == 5 {
+            let fertilizingVC = FertilizingVC()
+             navigationController?.pushViewController(fertilizingVC, animated: true)
+            
+        }else if indexPath.row == 6 {
+            let wateringVC = WateringVC()
+             navigationController?.pushViewController(wateringVC, animated: true)
+            
+        }else if indexPath.row == 7 {
+            let pruningVC = PruningVC()
+             navigationController?.pushViewController(pruningVC, animated: true)
+            
+        }else if indexPath.row == 8 {
+            let pesticideVC = PesticideVC()
+             navigationController?.pushViewController(pesticideVC, animated: true)
     
+        }
+        
+    }
+    
+
     func createTableView() {
         data.append(PhotoInformation(plantPhoto: #imageLiteral(resourceName: "AddFotoCompleto")))
         data.append(NameInformation(plantName: ""))
-        data.append(TaskInformation(taskImage: #imageLiteral(resourceName: "Flower"), taskPeriod: "Floresce cada 30 dias", taskNextAction: "Próxima: 00/00/00"))
-        data.append(TaskInformation(taskImage: #imageLiteral(resourceName: "Harvest"), taskPeriod: "A cada 30 dias", taskNextAction: ""))
-        data.append(TaskInformation(taskImage: #imageLiteral(resourceName: "Sun"), taskPeriod: "A cada 30 dias", taskNextAction: ""))
-        data.append(TaskInformation(taskImage: #imageLiteral(resourceName: "Booster"), taskPeriod: "A cada 30 dias", taskNextAction: ""))
-        data.append(TaskInformation(taskImage: #imageLiteral(resourceName: "Drop"), taskPeriod: "A cada 30 dias", taskNextAction: ""))
-        data.append(TaskInformation(taskImage: #imageLiteral(resourceName: "Scissor"), taskPeriod: "A cada 30 dias", taskNextAction: ""))
-        data.append(TaskInformation(taskImage: #imageLiteral(resourceName: "Pesticide"), taskPeriod: "A cada 30 dias", taskNextAction: ""))
+        data.append(TaskInformation(taskImage: #imageLiteral(resourceName: "Flower"), taskPeriod: "Floração"))
+        data.append(TaskInformation(taskImage: #imageLiteral(resourceName: "Harvest"), taskPeriod: "Colheita"))
+        data.append(TaskInformation(taskImage: #imageLiteral(resourceName: "Sun"), taskPeriod: "Exposição solar"))
+        data.append(TaskInformation(taskImage: #imageLiteral(resourceName: "Booster"), taskPeriod: "Fertilização"))
+        data.append(TaskInformation(taskImage: #imageLiteral(resourceName: "Drop"), taskPeriod: "Regagem"))
+        data.append(TaskInformation(taskImage: #imageLiteral(resourceName: "Scissor"), taskPeriod: "Poda"))
+        data.append(TaskInformation(taskImage: #imageLiteral(resourceName: "Pesticide"), taskPeriod: "Pesticidas"))
         
         tableView.reloadData()
+        
     }
     
     
     @objc func cancelCreation(_ sender: Any){
         
         self.dismiss(animated: true)
-    }
-    
-    
-    @objc func doneCreation(_ sender: Any){
         
     }
     
     
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 2
-    }
-    
-    
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return 2
+    @objc func doneCreation(_ sender: Any){
+        //criar a célula
+        
     }
     
     
@@ -189,17 +223,22 @@ class CreatePlantVC : UITableViewController, UIPickerViewDelegate, UIPickerViewD
         
         guard let pickedImage = info[.originalImage] as? UIImage else {
             return print("Error")
+            
         }
 
         if data[0] is PhotoInformation {
             data[0] = PhotoInformation(plantPhoto: pickedImage)
             tableView.reloadData()
+            
         }
+        
     }
         
     
     @objc func dismissAlertController(){
+        
         self.dismiss(animated: true, completion: nil)
+        
     }
     
 }

@@ -11,4 +11,5 @@ import UIKit
 struct NameInformation {
     
     var plantName: String
+    
 }

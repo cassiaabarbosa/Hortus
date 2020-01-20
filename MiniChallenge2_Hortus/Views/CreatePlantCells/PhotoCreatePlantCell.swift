@@ -51,6 +51,8 @@ class PhotoCreatePlantCell: UITableViewCell, UIImagePickerControllerDelegate {
         
         addPhotoButton.addTarget(self, action: #selector(addPhotoButtonClicked(_:)), for: .touchUpInside)
         
+        self.separatorInset = UIEdgeInsets.zero
+        self.layoutMargins = UIEdgeInsets.zero
         }
     
     @IBAction func addPhotoButtonClicked(_ sender: UIButton) {
