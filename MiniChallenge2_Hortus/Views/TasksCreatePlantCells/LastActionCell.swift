@@ -8,31 +8,7 @@
 
 import UIKit
 
-
-class LastActionCell: UITableViewCell, UIPickerViewDataSource, UIPickerViewDelegate {
-    
-    var pickerDataDays: [String] = ["1","2"]
-    var pickerData: [String] = ["D","A","C"]
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 2
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        if component == 0 {
-            return pickerData.count
-        }else{
-            return pickerDataDays.count
-        }
-    }
-    
-    
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        if component == 0 {
-            return pickerData[row]
-        }else {
-            return pickerDataDays[row]
-        }
-    }
+class LastActionCell: UITableViewCell {
     
     
     var lastActionInformation: LastActionInformation? {
@@ -43,6 +19,8 @@ class LastActionCell: UITableViewCell, UIPickerViewDataSource, UIPickerViewDeleg
         }
     }
     
+    
+    
     public var lastActionLabel: UILabel = {
         let lastActionLabel = UILabel()
         lastActionLabel.textColor = .black
@@ -51,6 +29,7 @@ class LastActionCell: UITableViewCell, UIPickerViewDataSource, UIPickerViewDeleg
         lastActionLabel.numberOfLines = 0
         return lastActionLabel
     }()
+    
     
     
     public var lastAction: UILabel = {
@@ -63,10 +42,13 @@ class LastActionCell: UITableViewCell, UIPickerViewDataSource, UIPickerViewDeleg
         }()
     
     
-    public var picker: UIPickerView = {
-        let picker = UIPickerView()
+    
+    public var picker: UIDatePicker = {
+        let picker = UIDatePicker()
         return picker
     }()
+    
+    
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
     super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -74,10 +56,10 @@ class LastActionCell: UITableViewCell, UIPickerViewDataSource, UIPickerViewDeleg
         addSubview(lastActionLabel)
         addSubview(lastAction)
         addSubview(picker)
-        
-        picker.delegate = self
+    
         lastActionLabel.centerYAnchor.constraint(equalTo:self.contentView.centerYAnchor).isActive = true
         lastActionLabel.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: nil, paddingTop: 5, paddingLeft: 5, paddingBottom: 5, paddingRight: 0, width: frame.size.width/2, height: 0, enableInsets: false)
+        
         
         lastAction.anchor(top: topAnchor, left: nil, bottom: nil, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: frame.size.width/2, height: 0, enableInsets: false)
         lastAction.centerYAnchor.constraint(equalTo:self.contentView.centerYAnchor).isActive = true
@@ -85,24 +67,51 @@ class LastActionCell: UITableViewCell, UIPickerViewDataSource, UIPickerViewDeleg
         
         self.separatorInset = UIEdgeInsets.zero
         self.layoutMargins = UIEdgeInsets.zero
+        
+        initView()
+        didChangeDate()
    
     }
+    
+    
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
     
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
     
-    
-    func updateText(date: Date) {
+    func currentDate(date: Date) {
         lastAction.text = date.convertToString(dateformat: .dateWithTime)
+        
     }
+    
+    
+    
+    func initView() {
+        picker.addTarget(self, action: #selector(datePickerChanged), for: .valueChanged)
+        
+    }
+    
+    
+    
+    @objc func datePickerChanged(sender: UIDatePicker) {
+        let formatter: DateFormatter = DateFormatter()
+        formatter.dateStyle = .medium
+        formatter.timeStyle = .short
+        
+        let selectedDate = formatter.string(from: sender.date)
+        lastAction.text = selectedDate
+
+    }
+    
+    
+    
+    public func didChangeDate() {
+        lastAction.text = DateFormatter.localizedString(from: picker.date, dateStyle: .medium, timeStyle: .short)
+        
+    }
+
     
 }
 

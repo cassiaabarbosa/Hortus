@@ -9,18 +9,18 @@
 import Foundation
 import UIKit
 import CoreData
-import Photos
 
-class PesticideVC : UITableViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate, UINavigationControllerDelegate {
+class PesticideVC : UITableViewController, UITextFieldDelegate, UINavigationControllerDelegate {
     
     let frequencyCellId: String = "frequencyCellId"
-   let lastActionCellId: String = "lastActionCellid"
-    let datePickerViewCellId: String = "datePickerViewCellId"
-    var dataFlowering = Array<Any>()
-    var lastActionArray = [LastActionInformation]()
-    var frequencyArray = [FrequencyInformation]()
-    var datePicker =  UIDatePicker()
+    let lastActionCellId: String = "lastActionCellid"
+    var data = Array<Any>()
+    var inputDates: [Date] = []
+    var inputTexts: [String] = []
     var picker = UIPickerView()
+    var datePicker = UIDatePicker()
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,7 +41,7 @@ class PesticideVC : UITableViewController, UIPickerViewDelegate, UIPickerViewDat
         tableView.backgroundColor = .lightGray
         tableView.tableFooterView = UIView(frame: CGRect.zero)
         
-        
+        addInitailValue()
         createTableView()
         
         tableView.register(FrequencyCell.self, forCellReuseIdentifier: frequencyCellId)
@@ -50,78 +50,67 @@ class PesticideVC : UITableViewController, UIPickerViewDelegate, UIPickerViewDat
     }
     
     
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.section == 0 {
-                if let cell = tableView.dequeueReusableCell(withIdentifier: frequencyCellId) as? FrequencyCell {
-                    if let frequencyInformation = frequencyArray[indexPath.row] as? FrequencyInformation {
-                        cell.frequencyInformation = frequencyInformation
-                        return cell
-                    }
-                }
-        } else if indexPath.section == 1{
-                if let cell = tableView.dequeueReusableCell(withIdentifier: lastActionCellId) as? LastActionCell {
-                    if let lastActionInformation = lastActionArray[indexPath.row] as? LastActionInformation {
-                        cell.lastActionInformation = lastActionInformation
-                        return cell
-                    }
-                }
-        }
-        
-        return UITableViewCell()
-    }
-    
-    
-    
-    
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 50
-    }
-    
     
     override func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 2
     }
     
     
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 0 {
-            return 1
-        }
-        else if section == 1 {
-            return 1
-        }
-        return 0
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if (data[indexPath.row] is FrequencyInformation) {
+                if let cell = tableView.dequeueReusableCell(withIdentifier: frequencyCellId) as? FrequencyCell {
+                    if let frequencyInformation = data[indexPath.row] as? FrequencyInformation {
+                        cell.frequencyInformation = frequencyInformation
+                        return cell
+                    }
+                }
+            } else{
+                if let cell = tableView.dequeueReusableCell(withIdentifier: lastActionCellId) as? LastActionCell {
+                    if indexPath.row < data.count {
+                        if let lastActionInformation = data[indexPath.row] as? LastActionInformation {
+                            cell.lastActionInformation = lastActionInformation
+                            cell.currentDate(date: inputDates[0])
+                            datePicker = cell.picker
+                            return cell
+                        }
+                    }
+                }
+            }
+        return UITableViewCell()
     }
+    
+    
+    func addInitailValue() {
+        inputDates.append(Date())
+        
+    }
+    
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        300.0
+    }
+    
+    
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
-    
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-
-        let sectionName: String
-        switch section {
-            case 0:
-                sectionName =  " "
-            default:
-                sectionName = " "
-        }
-        return sectionName
-    }
-    
-    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        30.0
     }
     
     
-    override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int){
-        view.tintColor = UIColor.lightGray
-        let header = view as! UITableViewHeaderFooterView
-        header.textLabel?.textColor = UIColor.white
-    }
 
     override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
@@ -130,17 +119,9 @@ class PesticideVC : UITableViewController, UIPickerViewDelegate, UIPickerViewDat
     
     
     func createTableView() {
-        //frequencyArray.append(FrequencyInformation(frequencyLabel: "Período de rega", plantFrequency: ""))
+        data.append(FrequencyInformation(frequencyLabel: "Período de rega", plantFrequency: " ", picker: picker))
         
-        //lastActionArray.append(LastActionInformation(lastActionLabel: "Última rega", lastAction: ""))
+        data.append(LastActionInformation(lastActionLabel: "Última rega", lastAction: "", picker: datePicker))
     }
     
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        1
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        1
-    }
-
 }

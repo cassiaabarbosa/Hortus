@@ -194,7 +194,7 @@ class CreatePlantVC : UITableViewController, UIImagePickerControllerDelegate, UI
         data.append(TaskInformation(taskImage: #imageLiteral(resourceName: "Flower"), taskPeriod: "Floração"))
         data.append(TaskInformation(taskImage: #imageLiteral(resourceName: "Harvest"), taskPeriod: "Colheita"))
         data.append(TaskInformation(taskImage: #imageLiteral(resourceName: "Sun"), taskPeriod: "Exposição solar"))
-        data.append(TaskInformation(taskImage: #imageLiteral(resourceName: "Booster"), taskPeriod: "Fertilização"))
+        data.append(TaskInformation(taskImage: #imageLiteral(resourceName: "Booster"), taskPeriod: "Fertilizantes"))
         data.append(TaskInformation(taskImage: #imageLiteral(resourceName: "Drop"), taskPeriod: "Regagem"))
         data.append(TaskInformation(taskImage: #imageLiteral(resourceName: "Scissor"), taskPeriod: "Poda"))
         data.append(TaskInformation(taskImage: #imageLiteral(resourceName: "Pesticide"), taskPeriod: "Pesticidas"))
