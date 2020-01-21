@@ -9,12 +9,37 @@
 import UIKit
 
 
-class LastActionCell: UITableViewCell {
+class LastActionCell: UITableViewCell, UIPickerViewDataSource, UIPickerViewDelegate {
+    
+    var pickerDataDays: [String] = ["1","2"]
+    var pickerData: [String] = ["D","A","C"]
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 2
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        if component == 0 {
+            return pickerData.count
+        }else{
+            return pickerDataDays.count
+        }
+    }
+    
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        if component == 0 {
+            return pickerData[row]
+        }else {
+            return pickerDataDays[row]
+        }
+    }
+    
     
     var lastActionInformation: LastActionInformation? {
         didSet {
             lastActionLabel.text = lastActionInformation?.lastActionLabel
             lastAction.text = lastActionInformation?.lastAction
+            picker = lastActionInformation!.picker
         }
     }
     
@@ -38,12 +63,19 @@ class LastActionCell: UITableViewCell {
         }()
     
     
+    public var picker: UIPickerView = {
+        let picker = UIPickerView()
+        return picker
+    }()
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
     super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         addSubview(lastActionLabel)
         addSubview(lastAction)
+        addSubview(picker)
         
+        picker.delegate = self
         lastActionLabel.centerYAnchor.constraint(equalTo:self.contentView.centerYAnchor).isActive = true
         lastActionLabel.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: nil, paddingTop: 5, paddingLeft: 5, paddingBottom: 5, paddingRight: 0, width: frame.size.width/2, height: 0, enableInsets: false)
         

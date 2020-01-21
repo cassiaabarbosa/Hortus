@@ -21,6 +21,8 @@ class PickerViewCell: UITableViewCell {
     
     var indexPath: IndexPath!
     var delegate: PickerDelegate?
+    let section1:[String] = ["dias", "meses", "anos"]
+    let section2:[String] = ["1", "2", "3","4"]
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -38,18 +40,19 @@ class PickerViewCell: UITableViewCell {
 
     }
     
-//    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-//        return 2
-//    }
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+       return 2
+    }
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 2
+    }
     
     
-    
-    
-    
-//    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-//        return numero[row]
-//
-//    }
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return numero[row]
+
+    }
     
 //    func initView() {
 //        picker.addTarget(self, action: #selector(dateDidChange), for: .valueChanged)

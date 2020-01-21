@@ -12,5 +12,6 @@ struct LastActionInformation {
     
     var lastActionLabel: String
     var lastAction: String
+    var picker: UIPickerView
     
 }

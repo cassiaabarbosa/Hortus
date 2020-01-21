@@ -19,6 +19,8 @@ class FertilizingVC : UITableViewController, UIPickerViewDelegate, UIPickerViewD
     var dataFlowering = Array<Any>()
     var lastActionArray = [LastActionInformation]()
     var frequencyArray = [FrequencyInformation]()
+    var datePicker =  UIDatePicker()
+    var picker = UIPickerView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -128,9 +130,9 @@ class FertilizingVC : UITableViewController, UIPickerViewDelegate, UIPickerViewD
     
     
     func createTableView() {
-        frequencyArray.append(FrequencyInformation(frequencyLabel: "Período de rega", plantFrequency: ""))
+        //frequencyArray.append(FrequencyInformation(frequencyLabel: "Período de rega", plantFrequency: "", picker: <#UIPickerView#>))
         
-        lastActionArray.append(LastActionInformation(lastActionLabel: "Última rega", lastAction: ""))
+        //lastActionArray.append(LastActionInformation(lastActionLabel: "Última rega", lastAction: ""))
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {

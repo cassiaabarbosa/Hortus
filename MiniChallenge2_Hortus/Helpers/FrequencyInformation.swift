@@ -12,5 +12,6 @@ struct FrequencyInformation {
     
     var frequencyLabel: String
     var plantFrequency: String
+    var picker: UIPickerView
     
 }
