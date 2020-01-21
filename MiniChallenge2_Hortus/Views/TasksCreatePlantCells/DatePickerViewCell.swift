@@ -8,7 +8,6 @@
 
 import UIKit
 
-
 protocol DatePickerDelegate: class {
     func didChangeDate(date: Date, indexPath: IndexPath)
 }
@@ -23,29 +22,27 @@ class DatePickerViewCell: UITableViewCell {
         
     }()
     
-    public var indexPath: IndexPath!
-    public var delegate: DatePickerDelegate?
+    var indexPath: IndexPath!
+    var delegate: DatePickerDelegate?
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
     super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         addSubview(datePicker)
         
-         datePicker.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: frame.size.width, height: frame.size.width, enableInsets: false)
         
+         datePicker.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: frame.size.width, height: frame.size.width, enableInsets: false)
         
     }
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        initView()
-    }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        
+        initView()
         // Configure the view for the selected state
     }
+    
     
     func initView() {
         datePicker.addTarget(self, action: #selector(dateDidChange), for: .valueChanged)
@@ -58,12 +55,14 @@ class DatePickerViewCell: UITableViewCell {
     
     @objc func dateDidChange(_ sender: UIDatePicker) {
         let indexPathForDisplayDate = IndexPath(row: indexPath.row - 1, section: indexPath.section)
-        delegate?.didChangeDate(date: sender.date, indexPath: indexPath)
+        delegate?.didChangeDate(date: sender.date, indexPath: indexPathForDisplayDate)
     }
-
     
     
     required init?(coder: NSCoder) {
             fatalError("init(coder:) has not been implemented")
     }
 }
+
+
+
