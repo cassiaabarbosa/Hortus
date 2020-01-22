@@ -22,6 +22,8 @@ class FrequencyCell: UITableViewCell, UIPickerViewDelegate, UIPickerViewDataSour
     var pickerDataDays: [String] = ["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31"]
     var pickerData: [String] = ["Horas","Dias","Meses"]
     var labelText: [String] = ["", ""]
+    
+    
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 2
     }
@@ -89,20 +91,21 @@ class FrequencyCell: UITableViewCell, UIPickerViewDelegate, UIPickerViewDataSour
         addSubview(plantFrequency)
         addSubview(picker)
         
-        picker.delegate = self
+        //picker.delegate = self
+    
         
-        frequencyLabel.centerYAnchor.constraint(equalTo:self.contentView.centerYAnchor).isActive = true
-        frequencyLabel.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: nil, paddingTop: 5, paddingLeft: 5, paddingBottom: 5, paddingRight: 0, width: frame.size.width/2, height: 0, enableInsets: false)
+        frequencyLabel.anchor(top: topAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 25, paddingLeft: 10, paddingBottom: 0, paddingRight: 0, width: 0, height: 0, enableInsets: false)
+        
+        plantFrequency.anchor(top: topAnchor, left: nil, bottom: nil , right: rightAnchor, paddingTop: 25, paddingLeft: 0, paddingBottom: 0, paddingRight: 10, width: 0, height: 0, enableInsets: false)
+        
+        plantFrequency.textAlignment = .right
+        
 
-        plantFrequency.centerYAnchor.constraint(equalTo:self.contentView.centerYAnchor).isActive = true
-        plantFrequency.anchor(top: topAnchor, left: nil, bottom: nil, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: frame.size.width/2, height: 0, enableInsets: false)
-        
-//       // picker.centerYAnchor.constraint(equalTo:self.contentView.centerYAnchor).isActive = true
-//        picker.anchor(top: frequencyLabel.bottomAnchor, left: leftAnchor, bottom: bottomAnchor, right: nil, paddingTop: 0, paddingLeft: 5, paddingBottom: 100, paddingRight: 0, width: frame.size.width, height: frame.size.width, enableInsets: false)
+        picker.anchor(top: self.topAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 60, paddingLeft: 5, paddingBottom: 0, paddingRight: 0, width: frame.size.width, height: 100, enableInsets: true)
         
         
-        self.separatorInset = UIEdgeInsets.zero
-        self.layoutMargins = UIEdgeInsets.zero
+        self.separatorInset = .zero
+        self.selectionStyle = .none
         
     }
     

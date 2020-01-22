@@ -20,6 +20,6 @@ extension Log {
     @NSManaged public var action: String?
     @NSManaged public var date: NSDate?
     @NSManaged public var id: String?
-    @NSManaged public var plant: Plant?
+    @NSManaged public var plant: Plant
 
 }

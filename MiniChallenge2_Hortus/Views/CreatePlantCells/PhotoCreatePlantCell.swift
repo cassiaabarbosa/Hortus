@@ -53,6 +53,7 @@ class PhotoCreatePlantCell: UITableViewCell, UIImagePickerControllerDelegate {
         
         self.separatorInset = UIEdgeInsets.zero
         self.layoutMargins = UIEdgeInsets.zero
+        self.selectionStyle = .none
         }
     
     @IBAction func addPhotoButtonClicked(_ sender: UIButton) {

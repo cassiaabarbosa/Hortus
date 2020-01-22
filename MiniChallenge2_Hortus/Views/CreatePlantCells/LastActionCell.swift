@@ -57,16 +57,21 @@ class LastActionCell: UITableViewCell {
         addSubview(lastAction)
         addSubview(picker)
     
-        lastActionLabel.centerYAnchor.constraint(equalTo:self.contentView.centerYAnchor).isActive = true
-        lastActionLabel.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: nil, paddingTop: 5, paddingLeft: 5, paddingBottom: 5, paddingRight: 0, width: frame.size.width/2, height: 0, enableInsets: false)
+       lastActionLabel.anchor(top: topAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 25, paddingLeft: 10, paddingBottom: 0, paddingRight: 0, width: 0, height: 0, enableInsets: false)
+        
+        lastAction.anchor(top: topAnchor, left: nil, bottom: nil , right: rightAnchor, paddingTop: 25, paddingLeft: 0, paddingBottom: 0, paddingRight: 10, width: 0, height: 0, enableInsets: false)
+        
+        lastAction.textAlignment = .right
+        
+
+        picker.anchor(top: self.topAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 60, paddingLeft: 5, paddingBottom: 0, paddingRight: 0, width: frame.size.width, height: 50, enableInsets: false)
         
         
-        lastAction.anchor(top: topAnchor, left: nil, bottom: nil, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: frame.size.width/2, height: 0, enableInsets: false)
-        lastAction.centerYAnchor.constraint(equalTo:self.contentView.centerYAnchor).isActive = true
+        self.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: UIScreen.main.bounds.width)
         
-        
-        self.separatorInset = UIEdgeInsets.zero
         self.layoutMargins = UIEdgeInsets.zero
+        
+        self.selectionStyle = .none
         
         initView()
         didChangeDate()

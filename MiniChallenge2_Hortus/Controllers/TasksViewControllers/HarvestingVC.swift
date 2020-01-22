@@ -100,16 +100,19 @@ class HarvestingVC : UITableViewController, UITextFieldDelegate, UINavigationCon
     }
     
     
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        300.0
-    }
-    
-    
-    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+            self.tableView.beginUpdates()
+            self.tableView.endUpdates()
+        
+        }
 
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if self.tableView.indexPathForSelectedRow?.row == indexPath.row {
+            return 150;
+        } else {
+        return 50;
+        }
     }
-    
     
 
     override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {

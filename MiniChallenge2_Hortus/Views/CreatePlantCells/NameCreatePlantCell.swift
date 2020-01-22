@@ -33,10 +33,13 @@ class NameCreatePlantCell : UITableViewCell, UITextFieldDelegate {
         addSubview(name)
         
         name.delegate = self
+        
+        
         name.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: frame.size.width, height: 50, enableInsets: false)
         
-        self.separatorInset = UIEdgeInsets.zero
+        self.separatorInset = .zero
         self.layoutMargins = UIEdgeInsets.zero
+        self.selectionStyle = .none
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

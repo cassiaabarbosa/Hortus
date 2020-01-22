@@ -1,23 +1,33 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14490.99" systemVersion="18D42" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="Log" representedClassName=".Log" syncable="YES">
-        <attribute name="action" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
-        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="plant" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Plant" inverseName="history" inverseEntity="Plant" syncable="YES"/>
-    </entity>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15702" systemVersion="19C57" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Plant" representedClassName=".Plant" syncable="YES">
-        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="image" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="nextWateringTime" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
-        <attribute name="wateredTime" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
-        <attribute name="wateringInterval" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="wateringPeriod" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <relationship name="history" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Log" inverseName="plant" inverseEntity="Log" syncable="YES"/>
+        <attribute name="fertilizingPeriod" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="fertilizingTime" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="floweringPeriod" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="floweringTime" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="harvestingPeriod" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="harvestTime" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="id" optional="YES" attributeType="String"/>
+        <attribute name="image" optional="YES" attributeType="String"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="nextFertilizingTime" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="nextFloweringTime" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="nextHarvestingTime" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="nextPesticideTime" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="nextPruningTime" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="nextSunExposureTime" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="nextWateringTime" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="pesticidePeriod" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="pesticideTime" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="pruningPeriod" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="pruningTime" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="sunExposurePeriod" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="sunExposureTime" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="wateredTime" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="wateringInterval" optional="YES" attributeType="String"/>
+        <attribute name="wateringPeriod" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
     </entity>
     <elements>
-        <element name="Log" positionX="292.75" positionY="116.953125" width="128" height="103"/>
-        <element name="Plant" positionX="-63" positionY="-18" width="128" height="165"/>
+        <element name="Plant" positionX="-63" positionY="-18" width="128" height="418"/>
     </elements>
 </model>

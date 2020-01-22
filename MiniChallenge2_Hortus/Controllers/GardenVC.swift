@@ -16,7 +16,7 @@ class GardenVC : UIViewController, UICollectionViewDataSource, UICollectionViewD
     var context : NSManagedObjectContext?
     var plant : Plant?
     var collectionview: UICollectionView!
-    var cellId = "Cell"
+    var cellId:String = "cellId"
     var emptyLabel: CustomLabel = CustomLabel()
     var plantsCollection = [Plant]()
     let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
@@ -24,9 +24,11 @@ class GardenVC : UIViewController, UICollectionViewDataSource, UICollectionViewD
     let searchController = UISearchController(searchResultsController: nil)
     
     
+    
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        return plantsCollection.count
+        return 10
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -53,6 +55,15 @@ class GardenVC : UIViewController, UICollectionViewDataSource, UICollectionViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        collectionview = UICollectionView(frame: self.view.frame, collectionViewLayout: layout)
+        collectionview.dataSource = self
+        collectionview.delegate = self
+        collectionview.register(PlantCardCell.self, forCellWithReuseIdentifier: cellId)
+        collectionview.showsVerticalScrollIndicator = false
+        collectionview.backgroundColor = UIColor.white
+        self.view.addSubview(collectionview)
 
         self.title = "Meu Jardim"
 

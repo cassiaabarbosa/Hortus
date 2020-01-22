@@ -63,10 +63,8 @@ class TaskCreatePlantCell: UITableViewCell {
         
         //taskNextActionLabel.centerYAnchor.constraint(equalTo:self.contentView.centerYAnchor).isActive = true
         //taskNextActionLabel.anchor(top: topAnchor, left: taskImage.rightAnchor, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 150, paddingBottom: 0, paddingRight: 0, width: frame.size.width / 2, height: 0, enableInsets: false)
-        self.separatorInset = UIEdgeInsets.zero
-        self.layoutMargins = UIEdgeInsets.zero
-        
-        self.accessoryType = .disclosureIndicator
+        self.separatorInset = .zero
+        self.selectionStyle = .none
     
     
 }
