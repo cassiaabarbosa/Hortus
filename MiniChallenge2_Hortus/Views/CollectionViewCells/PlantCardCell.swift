@@ -15,10 +15,12 @@ class PlantCardCell: UICollectionViewCell {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 17)
         label.textColor = UIColor.white
-        label.text = "Rosa Vermelhakkkkk"
+        label.text = "Rosa Vermelha"
         label.textAlignment = .center
         label.backgroundColor = .darkGray
-        label.translatesAutoresizingMaskIntoConstraints = false
+        label.translatesAutoresizingMaskIntoConstraints = true
+        label.layer.cornerRadius = 20
+        label.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner]
         return label
     }()
     
@@ -28,8 +30,10 @@ class PlantCardCell: UICollectionViewCell {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "red rose")
         imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.layer.cornerRadius = 20
         return imageView
     }()
+    
     
     
     override init(frame: CGRect) {
@@ -40,35 +44,24 @@ class PlantCardCell: UICollectionViewCell {
         addSubview(namePlantLabel)
         
         plantImageView.layer.masksToBounds = true
-        plantImageView.layer.cornerRadius = 20
+        namePlantLabel.layer.masksToBounds = true
         
         backgroundColor = .none
+        self.layer.masksToBounds = false
+        self.layer.shadowColor = UIColor.black.cgColor
+        self.layer.shadowOffset = CGSize(width: 7.5, height: 7.5)
+        self.layer.shadowRadius = 3.0
+        self.layer.shadowOpacity = 1
+        
+        plantImageView.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0, enableInsets: false)
+        
+        namePlantLabel.anchor(top: nil, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 50, enableInsets: false)
         
 //        plantImageView.leftAnchor.constraint(equalTo: leftAnchor, constant: 0).isActive = true
 //        plantImageView.topAnchor.constraint(equalTo: topAnchor, constant: 0).isActive = true
 //        plantImageView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0).isActive = true
 //        plantImageView.rightAnchor.constraint(equalTo: rightAnchor, constant: 0).isActive = true
-        
-        plantImageView.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0, enableInsets: false)
-        
-        namePlantLabel.anchor(top: nil, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 30, enableInsets: false)
-        
-        
-        
-        self.layer.masksToBounds = true
-        self.layer.cornerRadius = 20
-//        plantImageView.heightAnchor.constraint(equalToConstant: 36).isActive = true
-//        plantImageView.widthAnchor.constraint(equalToConstant: 36).isActive = true
-//        plantImageView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
-        
-        //plantImageView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-        
-        //plantImageView.centerYAnchor.constraint(equalTo: self.tableView.centerYAnchor).isActive = true
-        
 
-        
-
-        
     }
     
     

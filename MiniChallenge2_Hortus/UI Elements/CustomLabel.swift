@@ -23,8 +23,11 @@ class CustomLabel: UILabel {
     func initializeLabel() {
         self.numberOfLines = 5
         self.textAlignment = .center
-        self.font = UIFont(name: "Halvetica", size: 13)
+        self.font = UIFont.systemFont(ofSize: 17)
         self.textColor = UIColor.lightGray
+        self.text = "Seu jardim está vazio. Clique na florzinha no canto superior direito para adicionar uma planta."
+        self.frame = CGRect(x: 0, y: 0, width: 300, height: 100)
 
     }
+    
 }

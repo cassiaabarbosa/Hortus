@@ -11,6 +11,6 @@ import UIKit
 struct LastActionInformation {
     
     var lastActionLabel: String
-    var picker: UIDatePicker
+//    var picker: UIDatePicker
     
 }

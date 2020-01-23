@@ -10,11 +10,10 @@ import UIKit
 
 class LastActionCell: UITableViewCell {
     
-    
     var lastActionInformation: LastActionInformation? {
         didSet {
             lastActionLabel.text = lastActionInformation?.lastActionLabel
-            picker = lastActionInformation!.picker
+            
         }
     }
     
@@ -31,36 +30,15 @@ class LastActionCell: UITableViewCell {
     
     
     
-    public var picker: UIDatePicker = {
-        let picker = UIDatePicker()
-        picker.datePickerMode = .date
-        return picker
-    }()
-    
-    
-    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
     super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         addSubview(lastActionLabel)
-        addSubview(picker)
-    
-        lastActionLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-       lastActionLabel.anchor(top: topAnchor, left: nil, bottom: nil, right: nil, paddingTop: 15, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0, enableInsets: false)
+
+       lastActionLabel.anchor(top: topAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 20, paddingLeft: 10, paddingBottom: 0, paddingRight: 0, width: 0, height: 0, enableInsets: false)
         
-//        lastAction.anchor(top: topAnchor, left: nil, bottom: nil , right: rightAnchor, paddingTop: 25, paddingLeft: 0, paddingBottom: 0, paddingRight: 10, width: 0, height: 0, enableInsets: false)
-//
-//        lastAction.textAlignment = .right
-        
-        picker.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-        picker.anchor(top: topAnchor, left: nil, bottom: nil, right: nil, paddingTop: 50, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 245, height: 100 , enableInsets: false)
-        
-        
-        self.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: UIScreen.main.bounds.width)
-        
-        self.layoutMargins = UIEdgeInsets.zero
-        
-        self.selectionStyle = .none
+        self.separatorInset = .zero
+        self.selectionStyle = .default
         
         initView()
         didChangeDate()
@@ -83,7 +61,7 @@ class LastActionCell: UITableViewCell {
     
     
     func initView() {
-        picker.addTarget(self, action: #selector(datePickerChanged), for: .valueChanged)
+//        picker.addTarget(self, action: #selector(datePickerChanged), for: .valueChanged)
         
     }
     
@@ -94,7 +72,7 @@ class LastActionCell: UITableViewCell {
         formatter.dateStyle = .medium
         formatter.timeStyle = .short
         
-        let selectedDate = formatter.string(from: sender.date)
+//        let selectedDate = formatter.string(from: sender.date)
         //lastAction.text = selectedDate
 
     }
