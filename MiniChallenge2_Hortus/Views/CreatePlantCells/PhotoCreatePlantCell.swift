@@ -18,7 +18,7 @@ class PhotoCreatePlantCell: UITableViewCell, UIImagePickerControllerDelegate {
     
     
     public var photo: UIImageView = {
-        let photo = UIImageView(image: #imageLiteral(resourceName: "Group 9"))
+        let photo = UIImageView(image: #imageLiteral(resourceName: "AddFotoCompleto"))
         photo.contentMode = .scaleAspectFill
         photo.clipsToBounds = true
         photo.translatesAutoresizingMaskIntoConstraints = false
@@ -45,9 +45,9 @@ class PhotoCreatePlantCell: UITableViewCell, UIImagePickerControllerDelegate {
         addSubview(addPhotoButton)
         
         
-        photo.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: frame.size.width, height: frame.size.width, enableInsets: false)
+        photo.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0, enableInsets: false)
         
-        addPhotoButton.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: frame.size.width, height: frame.size.width, enableInsets: false)
+        addPhotoButton.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0, enableInsets: false)
         
         addPhotoButton.addTarget(self, action: #selector(addPhotoButtonClicked(_:)), for: .touchUpInside)
         

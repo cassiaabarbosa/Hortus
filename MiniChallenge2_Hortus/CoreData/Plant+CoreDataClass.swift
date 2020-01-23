@@ -2,7 +2,7 @@
 //  Plant+CoreDataClass.swift
 //  MiniChallenge2_Hortus
 //
-//  Created by Cassia Aparecida Barbosa on 21/01/20.
+//  Created by Cassia Aparecida Barbosa on 22/01/20.
 //  Copyright © 2020 Hortus. All rights reserved.
 //
 //

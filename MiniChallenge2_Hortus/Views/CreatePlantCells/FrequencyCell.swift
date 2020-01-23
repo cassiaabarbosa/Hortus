@@ -30,18 +30,18 @@ class FrequencyCell: UITableViewCell, UIPickerViewDelegate, UIPickerViewDataSour
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         if component == 0 {
-            return pickerDataDays.count
-        }else{
             return pickerData.count
+        }else{
+            return pickerDataDays.count
         }
     }
     
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         if component == 0 {
-            return pickerDataDays[row]
-        }else {
             return pickerData[row]
+        }else {
+            return pickerDataDays[row]
         }
     }
     
@@ -52,7 +52,7 @@ class FrequencyCell: UITableViewCell, UIPickerViewDelegate, UIPickerViewDataSour
 
             labelText[0] = pickerDataDays[0]
             labelText[1] = pickerData[0]
-            plantFrequency.text = "\(labelText[0])   \(labelText[1])"
+//            plantFrequency.text = "\(labelText[0])   \(labelText[1])"
             picker = frequencyInformation!.picker
         }
     }
@@ -67,18 +67,10 @@ class FrequencyCell: UITableViewCell, UIPickerViewDelegate, UIPickerViewDataSour
     }()
     
     
-    public var plantFrequency: UILabel = {
-        let plantFrequency = UILabel()
-        plantFrequency.textColor = .black
-        plantFrequency.font = UIFont.systemFont(ofSize: 17)
-        plantFrequency.textAlignment = .left
-        plantFrequency.numberOfLines = 0
-        return plantFrequency
-        }()
-    
     
     public var picker: UIPickerView = {
         let picker = UIPickerView()
+        picker.contentMode = .center
         return picker
     }()
     
@@ -88,20 +80,16 @@ class FrequencyCell: UITableViewCell, UIPickerViewDelegate, UIPickerViewDataSour
     super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         addSubview(frequencyLabel)
-        addSubview(plantFrequency)
         addSubview(picker)
         
-        //picker.delegate = self
+        picker.delegate = self
     
+        frequencyLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         
-        frequencyLabel.anchor(top: topAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 25, paddingLeft: 10, paddingBottom: 0, paddingRight: 0, width: 0, height: 0, enableInsets: false)
+        frequencyLabel.anchor(top: topAnchor, left: nil, bottom: nil, right: nil, paddingTop: 15, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0, enableInsets: false)
         
-        plantFrequency.anchor(top: topAnchor, left: nil, bottom: nil , right: rightAnchor, paddingTop: 25, paddingLeft: 0, paddingBottom: 0, paddingRight: 10, width: 0, height: 0, enableInsets: false)
-        
-        plantFrequency.textAlignment = .right
-        
-
-        picker.anchor(top: self.topAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 60, paddingLeft: 5, paddingBottom: 0, paddingRight: 0, width: frame.size.width, height: 100, enableInsets: true)
+        picker.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+        picker.anchor(top: topAnchor, left: nil, bottom: nil, right: nil, paddingTop: 50, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 245, height: 100, enableInsets: true)
         
         
         self.separatorInset = .zero
@@ -122,11 +110,11 @@ class FrequencyCell: UITableViewCell, UIPickerViewDelegate, UIPickerViewDataSour
     
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        if component == 0 {
-            labelText[0] = pickerDataDays[row]
-        } else {
-            labelText[1] = pickerData[row]
-        }
-        plantFrequency.text = "\(labelText[0])  \(labelText[1])"
+//        if component == 0 {
+//            labelText[0] = pickerDataDays[row]
+//        } else {
+//            labelText[1] = pickerData[row]
+//        }
+//        plantFrequency.text = "\(labelText[0])  \(labelText[1])"
     }
 }

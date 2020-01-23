@@ -131,9 +131,9 @@ class FloweringVC : UITableViewController, UITextFieldDelegate, UINavigationCont
     
     
     func createTableView() {
-        data.append(FrequencyInformation(frequencyLabel: "Período de rega", plantFrequency: " ", picker: picker))
+        data.append(FrequencyInformation(frequencyLabel: "Período de rega",  picker: picker))
         
-        data.append(LastActionInformation(lastActionLabel: "Última rega", lastAction: " ", picker: datePicker))
+        data.append(LastActionInformation(lastActionLabel: "Última rega",  picker: datePicker))
         
     }
     

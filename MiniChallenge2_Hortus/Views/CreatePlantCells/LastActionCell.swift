@@ -14,7 +14,6 @@ class LastActionCell: UITableViewCell {
     var lastActionInformation: LastActionInformation? {
         didSet {
             lastActionLabel.text = lastActionInformation?.lastActionLabel
-            lastAction.text = lastActionInformation?.lastAction
             picker = lastActionInformation!.picker
         }
     }
@@ -32,19 +31,9 @@ class LastActionCell: UITableViewCell {
     
     
     
-    public var lastAction: UILabel = {
-        let lastAction = UILabel()
-        lastAction.textColor = .black
-        lastAction.font = UIFont.systemFont(ofSize: 17)
-        lastAction.textAlignment = .left
-        lastAction.numberOfLines = 0
-        return lastAction
-        }()
-    
-    
-    
     public var picker: UIDatePicker = {
         let picker = UIDatePicker()
+        picker.datePickerMode = .date
         return picker
     }()
     
@@ -54,17 +43,17 @@ class LastActionCell: UITableViewCell {
     super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         addSubview(lastActionLabel)
-        addSubview(lastAction)
         addSubview(picker)
     
-       lastActionLabel.anchor(top: topAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 25, paddingLeft: 10, paddingBottom: 0, paddingRight: 0, width: 0, height: 0, enableInsets: false)
+        lastActionLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+       lastActionLabel.anchor(top: topAnchor, left: nil, bottom: nil, right: nil, paddingTop: 15, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0, enableInsets: false)
         
-        lastAction.anchor(top: topAnchor, left: nil, bottom: nil , right: rightAnchor, paddingTop: 25, paddingLeft: 0, paddingBottom: 0, paddingRight: 10, width: 0, height: 0, enableInsets: false)
+//        lastAction.anchor(top: topAnchor, left: nil, bottom: nil , right: rightAnchor, paddingTop: 25, paddingLeft: 0, paddingBottom: 0, paddingRight: 10, width: 0, height: 0, enableInsets: false)
+//
+//        lastAction.textAlignment = .right
         
-        lastAction.textAlignment = .right
-        
-
-        picker.anchor(top: self.topAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 60, paddingLeft: 5, paddingBottom: 0, paddingRight: 0, width: frame.size.width, height: 50, enableInsets: false)
+        picker.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+        picker.anchor(top: topAnchor, left: nil, bottom: nil, right: nil, paddingTop: 50, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 245, height: 100 , enableInsets: false)
         
         
         self.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: UIScreen.main.bounds.width)
@@ -87,7 +76,7 @@ class LastActionCell: UITableViewCell {
     
     
     func currentDate(date: Date) {
-        lastAction.text = date.convertToString(dateformat: .dateWithTime)
+//        lastAction.text = date.convertToString(dateformat: .dateWithTime)
         
     }
     
@@ -106,14 +95,14 @@ class LastActionCell: UITableViewCell {
         formatter.timeStyle = .short
         
         let selectedDate = formatter.string(from: sender.date)
-        lastAction.text = selectedDate
+        //lastAction.text = selectedDate
 
     }
     
     
     
     public func didChangeDate() {
-        lastAction.text = DateFormatter.localizedString(from: picker.date, dateStyle: .medium, timeStyle: .short)
+//        lastAction.text = DateFormatter.localizedString(from: picker.date, dateStyle: .medium, timeStyle: .short)
         
     }
 

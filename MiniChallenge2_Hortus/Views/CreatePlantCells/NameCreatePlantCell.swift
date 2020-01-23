@@ -10,6 +10,12 @@ import UIKit
 
 class NameCreatePlantCell : UITableViewCell, UITextFieldDelegate {
     
+    var nameInformation: NameInformation? {
+        didSet {
+            name = nameInformation!.plantNameField
+        }
+    }
+    
      var name: UITextField = {
         let name = UITextField()
         name.text = ""
@@ -35,7 +41,7 @@ class NameCreatePlantCell : UITableViewCell, UITextFieldDelegate {
         name.delegate = self
         
         
-        name.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: frame.size.width, height: 50, enableInsets: false)
+        name.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0, enableInsets: false)
         
         self.separatorInset = .zero
         self.layoutMargins = UIEdgeInsets.zero

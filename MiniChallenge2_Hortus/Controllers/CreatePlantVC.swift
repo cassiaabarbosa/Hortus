@@ -15,8 +15,11 @@ import Photos
 
 class CreatePlantVC : UITableViewController, UIImagePickerControllerDelegate, UITextFieldDelegate, UINavigationControllerDelegate {
     
-    //var plantImage: UIImageView = UIImageView()
-    //var plantName: UILabel = UILabel()
+    var context : NSManagedObjectContext?
+    
+    var pickerDataDays: [String] = ["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31"]
+    var pickerData: [String] = ["Horas","Dias","Meses"]
+    
     let nameCellId: String = "nameCellId"
     let photoCellId: String = "photoCellid"
     let taskCellId: String = "taskCellId"
@@ -31,45 +34,57 @@ class CreatePlantVC : UITableViewController, UIImagePickerControllerDelegate, UI
     var fifthSectionData = Array<Any>()
     var sixthSectionData = Array<Any>()
     var seventhSectionData = Array<Any>()
+    
     var pickerAddPhotoButton = UIImagePickerController()
+    
     var inputDates: [Date] = []
     var inputTexts: [String] = []
     
-    var firstSectionpicker = UIPickerView()
-    var firstSectiondatePicker = UIDatePicker()
+    var floweringPicker = UIPickerView()
+    var floweringDatePicker = UIDatePicker()
     
-    var secondSectionpicker = UIPickerView()
-    var secondSectiondatePicker = UIDatePicker()
+    var harvestingPicker = UIPickerView()
+    var harvestingDatePicker = UIDatePicker()
     
-    var thirdSectionpicker = UIPickerView()
-    var thirdSectionpickerDatePicker = UIDatePicker()
+    var sunExposurePicker = UIPickerView()
+    var sunExposureDatePicker = UIDatePicker()
     
-    var fourthSectionpicker = UIPickerView()
-    var fourthSectionpickerDatePicker = UIDatePicker()
-    
-    
-    var fifthSectionpicker = UIPickerView()
-    var fifthSectionpickerDatePicker = UIDatePicker()
+    var boosterPicker = UIPickerView()
+    var boosterDatePicker = UIDatePicker()
     
     
-    var sixthSectionpicker = UIPickerView()
-    var sixthSectionpickerDatePicker = UIDatePicker()
+    var wateringPicker = UIPickerView()
+    var wateringDatePicker = UIDatePicker()
     
     
-    var seventhSectionpicker = UIPickerView()
-    var seventhSectionpickerDatePicker = UIDatePicker()
+    var pruningPicker = UIPickerView()
+    var pruningDatePicker = UIDatePicker()
+    
+    
+    var pesticidePicker = UIPickerView()
+    var pesticideDatePicker = UIDatePicker()
     
     var tableViewCells: [UITableViewCell] = []
     
+    var plantName = UITextField()
+    
+    var plantImage = UIImage()
+
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        //context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        
+        
         if #available(iOS 13.0, *) {
             overrideUserInterfaceStyle = .light
         } else {
             // Fallback on earlier versions
         }
+        
         
         self.title = "Nova Planta"
         navigationController?.navigationBar.barTintColor = UIColor.App.navigation
@@ -86,23 +101,26 @@ class CreatePlantVC : UITableViewController, UIImagePickerControllerDelegate, UI
         
         tableView.delegate = self
         tableView.dataSource = self
+        //tableView.addSubview(headerView)
+        //tableView.addSubview(labelView)
         
         tableView.backgroundColor = .lightGray
         //tableView.tableFooterView = UIView(frame: CGRect.zero)
         
         tableView.keyboardDismissMode = .onDrag
         
-        
+        plantImage = #imageLiteral(resourceName: "AddFotoCompleto")
         
         pickerAddPhotoButton.delegate = self
         
         addInitailValue()
         createTableView()
         
+        //self.headerView.backgroundColor = .red
+        //self.labelView.text = "My header view"
         
         
         tableView.register(PhotoCreatePlantCell.self, forCellReuseIdentifier: photoCellId)
-        tableView.register(TaskCreatePlantCell.self, forCellReuseIdentifier: taskCellId)
         tableView.register(NameCreatePlantCell.self, forCellReuseIdentifier: nameCellId)
         tableView.register(FrequencyCell.self, forCellReuseIdentifier: frequencyCellId)
         tableView.register(LastActionCell.self, forCellReuseIdentifier: lastActionCellId)
@@ -122,41 +140,67 @@ class CreatePlantVC : UITableViewController, UIImagePickerControllerDelegate, UI
         // Dispose of any resources that can be recreated.
     }
     
-    
+
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return " "
     }
     
+    
+    
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section == 0 {
             return 0
         }
-        return 100
+        return 75
     }
     
     
-    override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        let vw = UIView()
-        vw.backgroundColor = UIColor.clear
-        let titleLabel = UILabel(frame: CGRect(x:10,y: 5 ,width:350,height:150))
-        titleLabel.numberOfLines = 0;
-        titleLabel.lineBreakMode = .byWordWrapping
-        titleLabel.backgroundColor = UIColor.clear
-        titleLabel.font = UIFont(name: "Montserrat-Regular", size: 12)
-        titleLabel.text  = "Footer text here"
-        vw.addSubview(titleLabel)
-        return vw
-    }
+    
+        override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+                let headerView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: tableView.frame.width, height: 100))
+    
+            let label = UILabel()
+                label.frame = CGRect.init(x: 5, y: 25, width: headerView.frame.width-10, height: headerView.frame.height-10)
+            
+            label.font = UIFont.systemFont(ofSize: 17)
+            label.textColor = .black
+            
+            
+            let image = UIImageView()
+            //image.topAnchor = CGRect.init(x: 0, y: 25, width: 50, height: 50)
 
+            
+                headerView.addSubview(label)
+                headerView.addSubview(image)
+            
+            
+            if section ==  1 {
+                image.image = #imageLiteral(resourceName: "Flower")
+                label.text = "Floração"
+            }else if section == 2 {
+                 image.image = #imageLiteral(resourceName: "Harvest")
+                 label.text = "Colheita"
+            }else if section == 3 {
+                 image.image = #imageLiteral(resourceName: "Sun")
+                label.text = "Exposição solar"
+            }else if section == 4 {
+                 image.image = #imageLiteral(resourceName: "Booster")
+                label.text = "Fertilizantes"
+            }else if section == 5 {
+                 image.image = #imageLiteral(resourceName: "Drop")
+                label.text = "Rega"
+            }else if section == 6 {
+                 image.image = #imageLiteral(resourceName: "Scisor")
+                label.text = "Poda"
+            }else {
+                 image.image = #imageLiteral(resourceName: "Pesticide")
+                label.text = "Pesticidas"
+            }
+            
     
-    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        if section == 2 {
-            return 100
-        }
-        return 0
-    }
-    
+                return headerView
+            }
     
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -203,16 +247,6 @@ class CreatePlantVC : UITableViewController, UIImagePickerControllerDelegate, UI
             
         }else if indexPath.section == 1 {
                 if indexPath.row == 0 {
-                    if (firstSectionData[indexPath.row] is TaskInformation) {
-                        if let cell = tableView.dequeueReusableCell(withIdentifier: taskCellId) as? TaskCreatePlantCell {
-                            if let taskInformation = firstSectionData[indexPath.row] as? TaskInformation {
-                                cell.taskInformation = taskInformation
-                                return cell
-                            }
-                        }
-                    }
-                
-                }else if indexPath.row == 1 {
                     if (firstSectionData[indexPath.row] is FrequencyInformation) {
                         if let cell = tableView.dequeueReusableCell(withIdentifier: frequencyCellId) as? FrequencyCell {
                             if let frequencyInformation = firstSectionData[indexPath.row] as? FrequencyInformation {
@@ -221,7 +255,7 @@ class CreatePlantVC : UITableViewController, UIImagePickerControllerDelegate, UI
                             }
                         }
                     }
-                }else if indexPath.row == 2{
+                }else if indexPath.row == 1{
                     if (firstSectionData[indexPath.row] is LastActionInformation) {
                         if let cell = tableView.dequeueReusableCell(withIdentifier: lastActionCellId) as? LastActionCell {
                             if let lastActionInformation = firstSectionData[indexPath.row] as? LastActionInformation {
@@ -233,16 +267,6 @@ class CreatePlantVC : UITableViewController, UIImagePickerControllerDelegate, UI
                 }
         } else if indexPath.section == 2 {
             if indexPath.row == 0 {
-                if (secondSectionData[indexPath.row] is TaskInformation) {
-                    if let cell = tableView.dequeueReusableCell(withIdentifier: taskCellId) as? TaskCreatePlantCell {
-                        if let taskInformation = secondSectionData[indexPath.row] as? TaskInformation {
-                            cell.taskInformation = taskInformation
-                            return cell
-                        }
-                    }
-                }
-            
-            }else if indexPath.row == 1 {
                 if (secondSectionData[indexPath.row] is FrequencyInformation) {
                     if let cell = tableView.dequeueReusableCell(withIdentifier: frequencyCellId) as? FrequencyCell {
                         if let frequencyInformation = secondSectionData[indexPath.row] as? FrequencyInformation {
@@ -251,7 +275,7 @@ class CreatePlantVC : UITableViewController, UIImagePickerControllerDelegate, UI
                         }
                     }
                 }
-            }else if indexPath.row == 2{
+            }else if indexPath.row == 1{
                 if (secondSectionData[indexPath.row] is LastActionInformation) {
                     if let cell = tableView.dequeueReusableCell(withIdentifier: lastActionCellId) as? LastActionCell {
                         if let lastActionInformation = secondSectionData[indexPath.row] as? LastActionInformation {
@@ -263,16 +287,6 @@ class CreatePlantVC : UITableViewController, UIImagePickerControllerDelegate, UI
             }
         }else if indexPath.section == 3{
             if indexPath.row == 0 {
-                if (thirdSectionData[indexPath.row] is TaskInformation) {
-                    if let cell = tableView.dequeueReusableCell(withIdentifier: taskCellId) as? TaskCreatePlantCell {
-                        if let taskInformation = thirdSectionData[indexPath.row] as? TaskInformation {
-                            cell.taskInformation = taskInformation
-                            return cell
-                        }
-                    }
-                }
-            
-            }else if indexPath.row == 1 {
                 if (thirdSectionData[indexPath.row] is FrequencyInformation) {
                     if let cell = tableView.dequeueReusableCell(withIdentifier: frequencyCellId) as? FrequencyCell {
                         if let frequencyInformation = thirdSectionData[indexPath.row] as? FrequencyInformation {
@@ -281,7 +295,7 @@ class CreatePlantVC : UITableViewController, UIImagePickerControllerDelegate, UI
                         }
                     }
                 }
-            }else if indexPath.row == 2{
+            }else if indexPath.row == 1{
                 if (thirdSectionData[indexPath.row] is LastActionInformation) {
                     if let cell = tableView.dequeueReusableCell(withIdentifier: lastActionCellId) as? LastActionCell {
                         if let lastActionInformation = thirdSectionData[indexPath.row] as? LastActionInformation {
@@ -292,131 +306,92 @@ class CreatePlantVC : UITableViewController, UIImagePickerControllerDelegate, UI
                 }
             }
         }else if indexPath.section == 4 {
-                   if indexPath.row == 0 {
-                       if (fourthSectionData[indexPath.row] is TaskInformation) {
-                           if let cell = tableView.dequeueReusableCell(withIdentifier: taskCellId) as? TaskCreatePlantCell {
-                               if let taskInformation = fourthSectionData[indexPath.row] as? TaskInformation {
-                                   cell.taskInformation = taskInformation
-                                   return cell
-                               }
-                           }
-                       }
-                   
-                   }else if indexPath.row == 1 {
-                       if (fourthSectionData[indexPath.row] is FrequencyInformation) {
-                           if let cell = tableView.dequeueReusableCell(withIdentifier: frequencyCellId) as? FrequencyCell {
-                               if let frequencyInformation = fourthSectionData[indexPath.row] as? FrequencyInformation {
-                                   cell.frequencyInformation = frequencyInformation
-                                   return cell
-                               }
-                           }
-                       }
-                   }else if indexPath.row == 2{
-                       if (fourthSectionData[indexPath.row] is LastActionInformation) {
-                           if let cell = tableView.dequeueReusableCell(withIdentifier: lastActionCellId) as? LastActionCell {
-                               if let lastActionInformation = fourthSectionData[indexPath.row] as? LastActionInformation {
-                                   cell.lastActionInformation = lastActionInformation
-                                   return cell
-                               }
-                           }
-                       }
-                   }
-               }else if indexPath.section == 5 {
-                   if indexPath.row == 0 {
-                       if (fifthSectionData[indexPath.row] is TaskInformation) {
-                           if let cell = tableView.dequeueReusableCell(withIdentifier: taskCellId) as? TaskCreatePlantCell {
-                               if let taskInformation = fifthSectionData[indexPath.row] as? TaskInformation {
-                                   cell.taskInformation = taskInformation
-                                   return cell
-                               }
-                           }
-                       }
-                   
-                   }else if indexPath.row == 1 {
-                       if (fifthSectionData[indexPath.row] is FrequencyInformation) {
-                           if let cell = tableView.dequeueReusableCell(withIdentifier: frequencyCellId) as? FrequencyCell {
-                               if let frequencyInformation = fifthSectionData[indexPath.row] as? FrequencyInformation {
-                                   cell.frequencyInformation = frequencyInformation
-                                   return cell
-                               }
-                           }
-                       }
-                   }else if indexPath.row == 2{
-                       if (fifthSectionData[indexPath.row] is LastActionInformation) {
-                           if let cell = tableView.dequeueReusableCell(withIdentifier: lastActionCellId) as? LastActionCell {
-                               if let lastActionInformation = fifthSectionData[indexPath.row] as? LastActionInformation {
-                                   cell.lastActionInformation = lastActionInformation
-                                   return cell
-                               }
-                           }
-                       }
-                   }
-               }else if indexPath.section == 6 {
-                   if indexPath.row == 0 {
-                       if (sixthSectionData[indexPath.row] is TaskInformation) {
-                           if let cell = tableView.dequeueReusableCell(withIdentifier: taskCellId) as? TaskCreatePlantCell {
-                               if let taskInformation = sixthSectionData[indexPath.row] as? TaskInformation {
-                                   cell.taskInformation = taskInformation
-                                   return cell
-                               }
-                           }
-                       }
-                   
-                   }else if indexPath.row == 1 {
-                       if (sixthSectionData[indexPath.row] is FrequencyInformation) {
-                           if let cell = tableView.dequeueReusableCell(withIdentifier: frequencyCellId) as? FrequencyCell {
-                               if let frequencyInformation = sixthSectionData[indexPath.row] as? FrequencyInformation {
-                                   cell.frequencyInformation = frequencyInformation
-                                   return cell
-                               }
-                           }
-                       }
-                   }else if indexPath.row == 2{
-                       if (sixthSectionData[indexPath.row] is LastActionInformation) {
-                           if let cell = tableView.dequeueReusableCell(withIdentifier: lastActionCellId) as? LastActionCell {
-                               if let lastActionInformation = sixthSectionData[indexPath.row] as? LastActionInformation {
-                                   cell.lastActionInformation = lastActionInformation
-                                   return cell
-                               }
-                           }
-                       }
-                   }
-               }else if indexPath.section == 7 {
-                   if indexPath.row == 0 {
-                       if (seventhSectionData[indexPath.row] is TaskInformation) {
-                           if let cell = tableView.dequeueReusableCell(withIdentifier: taskCellId) as? TaskCreatePlantCell {
-                               if let taskInformation = seventhSectionData[indexPath.row] as? TaskInformation {
-                                   cell.taskInformation = taskInformation
-                                   return cell
-                               }
-                           }
-                       }
-                   
-                   }else if indexPath.row == 1 {
-                       if (seventhSectionData[indexPath.row] is FrequencyInformation) {
-                           if let cell = tableView.dequeueReusableCell(withIdentifier: frequencyCellId) as? FrequencyCell {
-                               if let frequencyInformation = sixthSectionData[indexPath.row] as? FrequencyInformation {
-                                   cell.frequencyInformation = frequencyInformation
-                                   return cell
-                               }
-                           }
-                       }
-                   }else if indexPath.row == 2{
-                       if (seventhSectionData[indexPath.row] is LastActionInformation) {
-                           if let cell = tableView.dequeueReusableCell(withIdentifier: lastActionCellId) as? LastActionCell {
-                               if let lastActionInformation = seventhSectionData[indexPath.row] as? LastActionInformation {
-                                   cell.lastActionInformation = lastActionInformation
-                                   return cell
-                               }
-                           }
-                       }
-                   }
-               }
+            if indexPath.row == 0 {
+                if (fourthSectionData[indexPath.row] is FrequencyInformation) {
+                    if let cell = tableView.dequeueReusableCell(withIdentifier: frequencyCellId) as? FrequencyCell {
+                        if let frequencyInformation = fourthSectionData[indexPath.row] as? FrequencyInformation {
+                            cell.frequencyInformation = frequencyInformation
+                            return cell
+                        }
+                    }
+                }
+            }else if indexPath.row == 1{
+                if (fourthSectionData[indexPath.row] is LastActionInformation) {
+                    if let cell = tableView.dequeueReusableCell(withIdentifier: lastActionCellId) as? LastActionCell {
+                        if let lastActionInformation = fourthSectionData[indexPath.row] as? LastActionInformation {
+                            cell.lastActionInformation = lastActionInformation
+                            return cell
+                        }
+                    }
+                }
+            }
+        }else if indexPath.section == 5 {
+            if indexPath.row == 0 {
+                if (fifthSectionData[indexPath.row] is FrequencyInformation) {
+                    if let cell = tableView.dequeueReusableCell(withIdentifier: frequencyCellId) as? FrequencyCell {
+                        if let frequencyInformation = fifthSectionData[indexPath.row] as? FrequencyInformation {
+                            cell.frequencyInformation = frequencyInformation
+                            return cell
+                        }
+                    }
+                }
+            }else if indexPath.row == 1{
+                if (fifthSectionData[indexPath.row] is LastActionInformation) {
+                    if let cell = tableView.dequeueReusableCell(withIdentifier: lastActionCellId) as? LastActionCell {
+                        if let lastActionInformation = fifthSectionData[indexPath.row] as? LastActionInformation {
+                            cell.lastActionInformation = lastActionInformation
+                            return cell
+                        }
+                    }
+                }
+            }
+        }else if indexPath.section == 6 {
+            if indexPath.row == 0 {
+                if (sixthSectionData[indexPath.row] is FrequencyInformation) {
+                    if let cell = tableView.dequeueReusableCell(withIdentifier: frequencyCellId) as? FrequencyCell {
+                        if let frequencyInformation = sixthSectionData[indexPath.row] as? FrequencyInformation {
+                            cell.frequencyInformation = frequencyInformation
+                            return cell
+                        }
+                    }
+                }
+            }else if indexPath.row == 2{
+                if (sixthSectionData[indexPath.row] is LastActionInformation) {
+                    if let cell = tableView.dequeueReusableCell(withIdentifier: lastActionCellId) as? LastActionCell {
+                        if let lastActionInformation = sixthSectionData[indexPath.row] as? LastActionInformation {
+                            cell.lastActionInformation = lastActionInformation
+                            return cell
+                        }
+                    }
+                }
+            }
+        }else if indexPath.section == 7 {
+            if indexPath.row == 0 {
+                if (seventhSectionData[indexPath.row] is FrequencyInformation) {
+                    if let cell = tableView.dequeueReusableCell(withIdentifier: frequencyCellId) as? FrequencyCell {
+                        if let frequencyInformation = seventhSectionData[indexPath.row] as? FrequencyInformation {
+                            cell.frequencyInformation = frequencyInformation
+                            return cell
+                        }
+                    }
+                }
+            }else if indexPath.row == 1{
+                if (seventhSectionData[indexPath.row] is LastActionInformation) {
+                    if let cell = tableView.dequeueReusableCell(withIdentifier: lastActionCellId) as? LastActionCell {
+                        if let lastActionInformation = seventhSectionData[indexPath.row] as? LastActionInformation {
+                            cell.lastActionInformation = lastActionInformation
+                            return cell
+                        }
+                    }
+                }
+            }
+        }
         return UITableViewCell()
     }
     
     
     func addInitailValue() {
+        
         inputDates.append(Date())
         
     }
@@ -424,22 +399,22 @@ class CreatePlantVC : UITableViewController, UIImagePickerControllerDelegate, UI
 
     
     override func numberOfSections(in tableView: UITableView) -> Int {
+        
         return 8
         
     }
     
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 0 {
-            return 2
-        }
-        return 3
+        
+        return 2
     }
     
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.tableView.beginUpdates()
-        self.tableView.endUpdates()
+        
+//        self.tableView.beginUpdates()
+//        self.tableView.endUpdates()
     }
 
     
@@ -452,63 +427,44 @@ class CreatePlantVC : UITableViewController, UIImagePickerControllerDelegate, UI
                 return 50
             }
         }else{
-            if indexPath.row == 0 {
-                return 50
-            }else {
-                if self.tableView.indexPathForSelectedRow?.row == indexPath.row && tableView.indexPathForSelectedRow?.section == indexPath.section {
-                    return 150;
-                } else {
-                    return 50;
-                }
-            }
+            return 150
             
         }
     }
     
     
     
-//    override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-//        return UITableView.automaticDimension
-//    }
-    
-    
-
     func createTableView() {
-        data.append(PhotoInformation(plantPhoto: #imageLiteral(resourceName: "AddFotoCompleto")))
-        data.append(NameInformation(plantName: ""))
-        
-        firstSectionData.append(TaskInformation(taskImage: #imageLiteral(resourceName: "Flower"), taskPeriod: "Floração"))
-        firstSectionData.append(FrequencyInformation(frequencyLabel: "Intervalo de rega", plantFrequency: " ", picker: firstSectionpicker))
-        firstSectionData.append(LastActionInformation(lastActionLabel: "Última rega", lastAction: " ", picker: firstSectiondatePicker))
+        data.append(PhotoInformation(plantPhoto: plantImage))
+        data.append(NameInformation(plantNameField: plantName))
         
         
-        secondSectionData.append(TaskInformation(taskImage: #imageLiteral(resourceName: "Harvest"), taskPeriod: "Colheita"))
-        secondSectionData.append(FrequencyInformation(frequencyLabel: "Intervalo de colheita", plantFrequency: " ", picker: secondSectionpicker))
-       secondSectionData.append(LastActionInformation(lastActionLabel: "Última colheita", lastAction: " ", picker: secondSectiondatePicker))
+        firstSectionData.append(FrequencyInformation(frequencyLabel: "Intervalo de floração",  picker: floweringPicker))
+        firstSectionData.append(LastActionInformation(lastActionLabel: "Última floração", picker: floweringDatePicker))
         
         
-        thirdSectionData.append(TaskInformation(taskImage: #imageLiteral(resourceName: "Sun"), taskPeriod: "Exposição solar"))
-        thirdSectionData.append(FrequencyInformation(frequencyLabel: "Intervalo de rega", plantFrequency: " ", picker: thirdSectionpicker))
-        thirdSectionData.append(LastActionInformation(lastActionLabel: "Última exposição solar", lastAction: " ", picker: thirdSectionpickerDatePicker))
+        secondSectionData.append(FrequencyInformation(frequencyLabel: "Intervalo de colheita",  picker: harvestingPicker))
+       secondSectionData.append(LastActionInformation(lastActionLabel: "Última colheita",  picker: harvestingDatePicker))
         
         
-        fourthSectionData.append(TaskInformation(taskImage: #imageLiteral(resourceName: "Booster"), taskPeriod: "Fertilizantes"))
-        fourthSectionData.append(FrequencyInformation(frequencyLabel: "Intervalo de fertilização", plantFrequency: " ", picker: fourthSectionpicker))
-        fourthSectionData.append(LastActionInformation(lastActionLabel: "Última fertilização", lastAction: " ", picker: fourthSectionpickerDatePicker))
+        thirdSectionData.append(FrequencyInformation(frequencyLabel: "Intervalo de Exposição solar",  picker: sunExposurePicker))
+        thirdSectionData.append(LastActionInformation(lastActionLabel: "Última exposição solar", picker: sunExposureDatePicker))
         
         
-        fifthSectionData.append(TaskInformation(taskImage: #imageLiteral(resourceName: "Drop"), taskPeriod: "Regagem"))
-        fifthSectionData.append(FrequencyInformation(frequencyLabel: "Intervalo de rega", plantFrequency: " ", picker: fifthSectionpicker))
-        fifthSectionData.append(LastActionInformation(lastActionLabel: "Última rega", lastAction: " ", picker: fifthSectionpickerDatePicker))
+        fourthSectionData.append(FrequencyInformation(frequencyLabel: "Intervalo fertilização",  picker: boosterPicker))
+        fourthSectionData.append(LastActionInformation(lastActionLabel: "Última fertilização",  picker: boosterDatePicker))
         
         
-        sixthSectionData.append(TaskInformation(taskImage: #imageLiteral(resourceName: "Scisor"), taskPeriod: "Poda"))
-        sixthSectionData.append(FrequencyInformation(frequencyLabel: "Intervalo de poda", plantFrequency: " ", picker: sixthSectionpicker))
-        sixthSectionData.append(LastActionInformation(lastActionLabel: "Última poda", lastAction: " ", picker: sixthSectionpickerDatePicker))
+        fifthSectionData.append(FrequencyInformation(frequencyLabel: "Intervalo de rega",  picker: wateringPicker))
+        fifthSectionData.append(LastActionInformation(lastActionLabel: "Última rega",  picker: wateringDatePicker))
         
-        seventhSectionData.append(TaskInformation(taskImage: #imageLiteral(resourceName: "Pesticide"), taskPeriod: "Pesticidas"))
-        seventhSectionData.append(FrequencyInformation(frequencyLabel: "Intervalo de pesticidas", plantFrequency: " ", picker: seventhSectionpicker))
-        seventhSectionData.append(LastActionInformation(lastActionLabel: "Última aplicação de pesticidas", lastAction: " ", picker: seventhSectionpickerDatePicker))
+        
+        sixthSectionData.append(FrequencyInformation(frequencyLabel: "Intervalo de poda",  picker: pruningPicker))
+        sixthSectionData.append(LastActionInformation(lastActionLabel: "Última poda",  picker: pruningDatePicker))
+        
+
+        seventhSectionData.append(FrequencyInformation(frequencyLabel: "Intervalo de pesticidas",  picker: pesticidePicker))
+        seventhSectionData.append(LastActionInformation(lastActionLabel: "Última aplicação de pesticidas", picker: pesticideDatePicker))
         
         tableView.reloadData()
         
@@ -539,6 +495,7 @@ class CreatePlantVC : UITableViewController, UIImagePickerControllerDelegate, UI
         if data[0] is PhotoInformation {
             data[0] = PhotoInformation(plantPhoto: pickedImage)
             tableView.reloadData()
+            plantImage = pickedImage
             
         }
         
@@ -552,6 +509,60 @@ class CreatePlantVC : UITableViewController, UIImagePickerControllerDelegate, UI
     }
     
     
+    
+    func registerPlant () {
+        
+//        let plant = NSEntityDescription.insertNewObject(forEntityName: "Plant", into: context!) as! Plant
+//        
+//        plant.id = UUID()
+//        
+//        plant.name = plantName.text
+//        
+//        let temp:String = UUID().uuidString
+//        guard let imageName = temp as? String else { fatalError("Invalid Message Name!") }
+//        
+//        guard let image = plantImage as? UIImage else { fatalError("Invalid Image") }
+//        
+//        saveImage(imageName: imageName, image: image)
+//        plant.image = imageName
+//        
+//        plant.floweringPeriod = Int32(floweringPicker.selectedRow(inComponent: 0))
+//            //plant.floweringInterval
+        
+        
+        
+        
+    }
+    
+    
+    
+    func saveImage(imageName: String, image: UIImage) {
+        
+        guard let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return }
+        
+        let fileName = imageName
+        let fileURL = documentsDirectory.appendingPathComponent(fileName)
+        guard let data = image.jpegData(compressionQuality: 1) else { return }
+        
+        //Checks if file exists, removes it if so.
+        if FileManager.default.fileExists(atPath: fileURL.path) {
+            do {
+                try FileManager.default.removeItem(atPath: fileURL.path)
+                print("Removed old image")
+            } catch let removeError {
+                print("couldn't remove file at path", removeError)
+            }
+            
+        }
+        
+        do {
+            try data.write(to: fileURL)
+        } catch let error {
+            print("error saving file with error", error)
+        }
+        
+    }
+
     
 
     
