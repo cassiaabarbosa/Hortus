@@ -2,8 +2,8 @@
 //  Plant+CoreDataClass.swift
 //  MiniChallenge2_Hortus
 //
-//  Created by Edgar Sgroi on 16/05/19.
-//  Copyright © 2019 Hortus. All rights reserved.
+//  Created by Cassia Aparecida Barbosa on 22/01/20.
+//  Copyright © 2020 Hortus. All rights reserved.
 //
 //
 

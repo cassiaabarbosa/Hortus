@@ -14,19 +14,21 @@ class GardenVC : UIViewController, UICollectionViewDataSource, UICollectionViewD
     
     
     var context : NSManagedObjectContext?
-    var plant : Plant?
+    //var plant : Plant?
     var collectionview: UICollectionView!
-    var cellId = "Cell"
+    var cellId:String = "cellId"
     var emptyLabel: CustomLabel = CustomLabel()
-    var plantsCollection = [Plant]()
+    //var plantsCollection = [Plant]()
     let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
     //lazy var searchBar: UISearchBar = UISearchBar(frame: (CGRect(x: 0, y: 64, width:UIScreen.main.bounds.width, height: 100)))
     let searchController = UISearchController(searchResultsController: nil)
     
     
+    
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        return plantsCollection.count
+        return 10
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -37,7 +39,14 @@ class GardenVC : UIViewController, UICollectionViewDataSource, UICollectionViewD
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         
-        return CGSize(width: view.frame.width, height: 40)
+        return CGSize(width: view.frame.width, height: 20)
+    }
+    
+    
+    func collectionView(_ collectionView: UICollectionView, layout
+        collectionViewLayout: UICollectionViewLayout,
+                        minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 20.0
     }
     
 //    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
@@ -53,6 +62,15 @@ class GardenVC : UIViewController, UICollectionViewDataSource, UICollectionViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+//        collectionview = UICollectionView(frame: self.view.frame, collectionViewLayout: layout)
+//        collectionview.dataSource = self
+//        collectionview.delegate = self
+//        collectionview.register(PlantCardCell.self, forCellWithReuseIdentifier: cellId)
+//        collectionview.showsVerticalScrollIndicator = false
+//        collectionview.backgroundColor = UIColor.black
+//        self.view.addSubview(collectionview)
 
         self.title = "Meu Jardim"
 
@@ -78,11 +96,11 @@ class GardenVC : UIViewController, UICollectionViewDataSource, UICollectionViewD
         emptyLabel.center = self.view.center
         
         definesPresentationContext = true
-        context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        //context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-        layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-        layout.itemSize = CGSize(width: view.frame.width, height: 700)
+        layout.sectionInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
+        layout.itemSize = CGSize(width: view.frame.width/2.2, height: 300)
 
         collectionview = UICollectionView(frame: self.view.frame, collectionViewLayout: layout)
         collectionview.dataSource = self
@@ -90,12 +108,14 @@ class GardenVC : UIViewController, UICollectionViewDataSource, UICollectionViewD
         collectionview.register(PlantCardCell.self, forCellWithReuseIdentifier: cellId)
         collectionview.showsVerticalScrollIndicator = true
         collectionview.backgroundColor = UIColor.white
+        //collectionView.layer.masksToBounds = true
         
         self.view.addSubview(collectionview)
         self.view.addSubview(emptyLabel)
         
         addEmptyLabel()
         //self.view.addSubview(searchBar)
+        
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -131,20 +151,20 @@ class GardenVC : UIViewController, UICollectionViewDataSource, UICollectionViewD
 //    }
 
     @objc func create_cells(){
-        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Plant")
-        request.returnsObjectsAsFaults = false
-        if let context = context{
-            do{
-                let result = try context.fetch(request)
-                plantsCollection = []
-                for data in result as! [NSManagedObject]{
-                    plantsCollection.append(data as! Plant)
-                    print(data.value(forKey: "name") as! String)
-                }
-            }catch{
-                fatalError("404 - Non Entity")
-            }
-        }
+//        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Plant")
+//        request.returnsObjectsAsFaults = false
+//        if let context = context{
+//            do{
+//                let result = try context.fetch(request)
+//                plantsCollection = []
+//                for data in result as! [NSManagedObject]{
+//                    plantsCollection.append(data as! Plant)
+//                    print(data.value(forKey: "name") as! String)
+//                }
+//            }catch{
+//                fatalError("404 - Non Entity")
+//            }
+//        }
     }
 
 //    func showSimpleAlert(cell:PlantCardCell) {
@@ -174,11 +194,11 @@ class GardenVC : UIViewController, UICollectionViewDataSource, UICollectionViewD
 //    }
     
     func addEmptyLabel() {
-        if (plantsCollection.count != 0) {
-            emptyLabel.isHidden = true
-        }else {
-            emptyLabel.isHidden = false
-        }
+//        if (plantsCollection.count != 0) {
+//            emptyLabel.isHidden = true
+//        }else {
+//            emptyLabel.isHidden = false
+//        }
     }
     
     @objc func showsCreatePlantVC(_ sender: Any) {
