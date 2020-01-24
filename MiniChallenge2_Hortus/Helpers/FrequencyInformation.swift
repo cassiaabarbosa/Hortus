@@ -11,6 +11,6 @@ import UIKit
 struct FrequencyInformation {
     
     var frequencyLabel: String
-    var picker: UIPickerView
+//    var picker: UIPickerView
     
 }

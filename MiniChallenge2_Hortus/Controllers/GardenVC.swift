@@ -15,13 +15,13 @@ class GardenVC : UIViewController, UICollectionViewDataSource, UICollectionViewD
     
     var context : NSManagedObjectContext?
     //var plant : Plant?
+    //var plantsCollection = [Plant]()
     var collectionview: UICollectionView!
     var cellId:String = "cellId"
-    var emptyLabel: CustomLabel = CustomLabel()
-    //var plantsCollection = [Plant]()
+    var emptyLabel = CustomLabel()
     let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-    //lazy var searchBar: UISearchBar = UISearchBar(frame: (CGRect(x: 0, y: 64, width:UIScreen.main.bounds.width, height: 100)))
-    let searchController = UISearchController(searchResultsController: nil)
+//    let searchBar: UISearchBar = UISearchBar(frame: (CGRect(x: 0, y: 64, width:UIScreen.main.bounds.width, height: 100)))
+//    let searchController = UISearchController(searchResultsController: nil)
     
     
     
@@ -62,15 +62,6 @@ class GardenVC : UIViewController, UICollectionViewDataSource, UICollectionViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
-//        collectionview = UICollectionView(frame: self.view.frame, collectionViewLayout: layout)
-//        collectionview.dataSource = self
-//        collectionview.delegate = self
-//        collectionview.register(PlantCardCell.self, forCellWithReuseIdentifier: cellId)
-//        collectionview.showsVerticalScrollIndicator = false
-//        collectionview.backgroundColor = UIColor.black
-//        self.view.addSubview(collectionview)
 
         self.title = "Meu Jardim"
 
@@ -79,23 +70,23 @@ class GardenVC : UIViewController, UICollectionViewDataSource, UICollectionViewD
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.App.navigationTitle]
         navigationItem.setRightBarButton(UIBarButtonItem(image: #imageLiteral(resourceName: "Add button"), style: .done, target: self, action: #selector(showsCreatePlantVC)), animated: true)
         
-        searchController.searchBar.delegate = self as? UISearchBarDelegate
-        searchController.hidesNavigationBarDuringPresentation = true
-        searchController.searchResultsUpdater = searchController as? UISearchResultsUpdating
-        searchController.obscuresBackgroundDuringPresentation = true
-        searchController.extendedLayoutIncludesOpaqueBars = true
-        searchController.searchBar.autocapitalizationType = .sentences
-        searchController.searchBar.isTranslucent = true
-        searchController.searchBar.searchBarStyle = .prominent
-        searchController.searchBar.sizeToFit()
-        navigationItem.hidesSearchBarWhenScrolling = true
+//        searchController.searchBar.delegate = self as? UISearchBarDelegate
+//        searchController.hidesNavigationBarDuringPresentation = true
+//        searchController.searchResultsUpdater = searchController as? UISearchResultsUpdating
+//        searchController.obscuresBackgroundDuringPresentation = true
+//        searchController.extendedLayoutIncludesOpaqueBars = true
+//        searchController.searchBar.autocapitalizationType = .sentences
+//        searchController.searchBar.isTranslucent = true
+//        searchController.searchBar.searchBarStyle = .prominent
+//        searchController.searchBar.sizeToFit()
+//        navigationItem.hidesSearchBarWhenScrolling = true
+//
+        definesPresentationContext = true
         
-        emptyLabel = CustomLabel(frame: CGRect(x: 0, y: 0, width: 300, height: 100))
-        emptyLabel.font = UIFont.systemFont(ofSize: 17)
-        emptyLabel.text = "Seu jardim está vazio. Clique na florzinha no canto superior direito para adicionar uma planta."
+        
         emptyLabel.center = self.view.center
         
-        definesPresentationContext = true
+        
         //context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
@@ -108,13 +99,13 @@ class GardenVC : UIViewController, UICollectionViewDataSource, UICollectionViewD
         collectionview.register(PlantCardCell.self, forCellWithReuseIdentifier: cellId)
         collectionview.showsVerticalScrollIndicator = true
         collectionview.backgroundColor = UIColor.white
-        //collectionView.layer.masksToBounds = true
         
         self.view.addSubview(collectionview)
         self.view.addSubview(emptyLabel)
-        
-        addEmptyLabel()
         //self.view.addSubview(searchBar)
+        
+        addingEmptyLabel()
+        
         
     }
 
@@ -167,33 +158,10 @@ class GardenVC : UIViewController, UICollectionViewDataSource, UICollectionViewD
 //        }
     }
 
-//    func showSimpleAlert(cell:PlantCardCell) {
-//        let alert = UIAlertController(title: "Apagar planta", message: "Você deseja mesmo apagar essa planta e todos seus dados?", preferredStyle: .actionSheet)
-//
-//
-//        alert.addAction(UIAlertAction(title: "Apagar", style: .destructive, handler: { (action) in
-//            self.plantsCollection.remove(at: cell.plantIndex!)
-//            self.context?.delete(cell.plant!)
-//            guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-//            appDelegate.saveContext()
-//
-//        }))
-//
-//
-//        alert.addAction(UIAlertAction(title: "Cancelar", style: UIAlertAction.Style.default, handler: { _ in }))
-//        self.present(alert, animated: true, completion: nil)
-//    }
-//
-//    @objc func longTap (_ sender: UILongPressGestureRecognizer) {
-//        if let celula = sender.view as? PlantCardCell{
-//            if sender.state == .began{
-//                showSimpleAlert(cell: celula)
-//            }
-//        }
-//
-//    }
     
-    func addEmptyLabel() {
+    
+    func addingEmptyLabel() {
+        emptyLabel.isHidden = true
 //        if (plantsCollection.count != 0) {
 //            emptyLabel.isHidden = true
 //        }else {
@@ -206,6 +174,33 @@ class GardenVC : UIViewController, UICollectionViewDataSource, UICollectionViewD
         let navController = UINavigationController(rootViewController: nextVC)
         self.present(navController, animated: true, completion: nil)
     }
+    
+    
+//        func showSimpleAlert(cell:PlantCardCell) {
+    //        let alert = UIAlertController(title: "Apagar planta", message: "Você deseja mesmo apagar essa planta e todos seus dados?", preferredStyle: .actionSheet)
+    //
+    //
+    //        alert.addAction(UIAlertAction(title: "Apagar", style: .destructive, handler: { (action) in
+    //            self.plantsCollection.remove(at: cell.plantIndex!)
+    //            self.context?.delete(cell.plant!)
+    //            guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+    //            appDelegate.saveContext()
+    //
+    //        }))
+    //
+    //
+    //        alert.addAction(UIAlertAction(title: "Cancelar", style: UIAlertAction.Style.default, handler: { _ in }))
+    //        self.present(alert, animated: true, completion: nil)
+    //    }
+    //
+    //    @objc func longTap (_ sender: UILongPressGestureRecognizer) {
+    //        if let celula = sender.view as? PlantCardCell{
+    //            if sender.state == .began{
+    //                showSimpleAlert(cell: celula)
+    //            }
+    //        }
+    //
+    //    }
     
 }
 

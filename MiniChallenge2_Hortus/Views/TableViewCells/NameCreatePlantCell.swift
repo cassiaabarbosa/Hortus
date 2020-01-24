@@ -45,7 +45,7 @@ class NameCreatePlantCell : UITableViewCell, UITextFieldDelegate {
         
         self.separatorInset = .zero
         self.layoutMargins = UIEdgeInsets.zero
-        self.selectionStyle = .none
+        self.selectionStyle = .default
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
