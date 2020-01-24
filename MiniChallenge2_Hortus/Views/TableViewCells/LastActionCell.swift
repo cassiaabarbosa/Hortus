@@ -35,7 +35,8 @@ class LastActionCell: UITableViewCell {
         
         addSubview(lastActionLabel)
 
-       lastActionLabel.anchor(top: topAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 20, paddingLeft: 10, paddingBottom: 0, paddingRight: 0, width: 0, height: 0, enableInsets: false)
+        lastActionLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: 0).isActive = true
+       lastActionLabel.anchor(top: topAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 10, paddingBottom: 0, paddingRight: 0, width: 0, height: 0, enableInsets: false)
         
         self.separatorInset = .zero
         self.selectionStyle = .default

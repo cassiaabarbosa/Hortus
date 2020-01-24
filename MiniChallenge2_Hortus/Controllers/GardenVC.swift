@@ -31,11 +31,13 @@ class GardenVC : UIViewController, UICollectionViewDataSource, UICollectionViewD
         return 10
     }
     
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionview.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! PlantCardCell
         return cell
     }
+    
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         
@@ -105,12 +107,10 @@ class GardenVC : UIViewController, UICollectionViewDataSource, UICollectionViewD
         //self.view.addSubview(searchBar)
         
         addingEmptyLabel()
-        
-        
     }
 
+    
     override func viewWillAppear(_ animated: Bool) {
-        
         
         self.create_cells()
     }
@@ -141,6 +141,7 @@ class GardenVC : UIViewController, UICollectionViewDataSource, UICollectionViewD
 //        return nil
 //    }
 
+    
     @objc func create_cells(){
 //        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Plant")
 //        request.returnsObjectsAsFaults = false
@@ -159,7 +160,6 @@ class GardenVC : UIViewController, UICollectionViewDataSource, UICollectionViewD
     }
 
     
-    
     func addingEmptyLabel() {
         emptyLabel.isHidden = true
 //        if (plantsCollection.count != 0) {
@@ -168,6 +168,7 @@ class GardenVC : UIViewController, UICollectionViewDataSource, UICollectionViewD
 //            emptyLabel.isHidden = false
 //        }
     }
+    
     
     @objc func showsCreatePlantVC(_ sender: Any) {
         let nextVC = CreatePlantVC()
