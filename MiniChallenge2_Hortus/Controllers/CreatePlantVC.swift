@@ -15,9 +15,6 @@ class CreatePlantVC : UITableViewController, UIImagePickerControllerDelegate, UI
     
     var context : NSManagedObjectContext?
     
-    var pickerDataDays: [String] = ["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31"]
-    var pickerData: [String] = ["Horas","Dias","Meses"]
-    
     let nameCellId: String = "nameCellId"
     let photoCellId: String = "photoCellid"
     let taskCellId: String = "taskCellId"
@@ -43,35 +40,44 @@ class CreatePlantVC : UITableViewController, UIImagePickerControllerDelegate, UI
     
     var floweringPicker = UIPickerView()
     var floweringDatePicker = UIDatePicker()
+    var floweringPickerVisible = false
+    var floweringDatePickerVisible = false
     
     var harvestingPicker = UIPickerView()
     var harvestingDatePicker = UIDatePicker()
+    var harvestingPickerVisible = false
+    var harvestingDatePickerVisible = false
     
     var sunExposurePicker = UIPickerView()
     var sunExposureDatePicker = UIDatePicker()
+    var sunExposurePickerVisible = false
+    var sunExposureDatePickerVisible = false
     
     var boosterPicker = UIPickerView()
     var boosterDatePicker = UIDatePicker()
-    
+    var boosterPickerVisible = false
+    var boosterDatePickerVisible = false
     
     var wateringPicker = UIPickerView()
     var wateringDatePicker = UIDatePicker()
+    var wateringPickerVisible = false
+    var wateringDatePickerVisible = false
     
     var pruningPicker = UIPickerView()
     var pruningDatePicker = UIDatePicker()
+    var pruningPickerVisible = false
+    var pruningDatePickerVisible = false
     
     var pesticidePicker = UIPickerView()
     var pesticideDatePicker = UIDatePicker()
+    var pesticidePickerVisible = false
+    var pesticideDatePickerVisible = false
     
     var tableViewCells: [UITableViewCell] = []
     
     var plantName = UITextField()
-    
     var plantImage = UIImage()
     
-    var dpShowVisible = false
-    
-    var dpShowDateVisible = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -183,10 +189,10 @@ class CreatePlantVC : UITableViewController, UIImagePickerControllerDelegate, UI
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        if section == 0 {
-            return 2
+        if section != 0{
+            return 4
         }
-        return 4
+        return 2
     }
     
     
@@ -286,6 +292,15 @@ class CreatePlantVC : UITableViewController, UIImagePickerControllerDelegate, UI
                     }
                 }
             }else if indexPath.row == 1{
+                if (secondSectionData[indexPath.row] is PickerInformation) {
+                    if let cell = tableView.dequeueReusableCell(withIdentifier: pickerCellId) as? PickerCell {
+                        if let pickerInformation = secondSectionData[indexPath.row] as? PickerInformation {
+                            cell.pickerInformation = pickerInformation
+                            return cell
+                        }
+                    }
+                }
+            }else if indexPath.row == 2{
                 if (secondSectionData[indexPath.row] is LastActionInformation) {
                     if let cell = tableView.dequeueReusableCell(withIdentifier: lastActionCellId) as? LastActionCell {
                         if let lastActionInformation = secondSectionData[indexPath.row] as? LastActionInformation {
@@ -294,6 +309,17 @@ class CreatePlantVC : UITableViewController, UIImagePickerControllerDelegate, UI
                         }
                     }
                 }
+                
+            }else if indexPath.row == 3{
+                if (secondSectionData[indexPath.row] is DatePickerInformation) {
+                    if let cell = tableView.dequeueReusableCell(withIdentifier: datePickerCellId) as? DatePickerCell {
+                        if let datePickerInformation = secondSectionData[indexPath.row] as? DatePickerInformation {
+                            cell.datePickerInformation = datePickerInformation
+                            return cell
+                        }
+                    }
+                }
+                
             }
         }else if indexPath.section == 3{
             if indexPath.row == 0 {
@@ -306,6 +332,15 @@ class CreatePlantVC : UITableViewController, UIImagePickerControllerDelegate, UI
                     }
                 }
             }else if indexPath.row == 1{
+                if (thirdSectionData[indexPath.row] is PickerInformation) {
+                    if let cell = tableView.dequeueReusableCell(withIdentifier: pickerCellId) as? PickerCell {
+                        if let pickerInformation = thirdSectionData[indexPath.row] as? PickerInformation {
+                            cell.pickerInformation = pickerInformation
+                            return cell
+                        }
+                    }
+                }
+            }else if indexPath.row == 2{
                 if (thirdSectionData[indexPath.row] is LastActionInformation) {
                     if let cell = tableView.dequeueReusableCell(withIdentifier: lastActionCellId) as? LastActionCell {
                         if let lastActionInformation = thirdSectionData[indexPath.row] as? LastActionInformation {
@@ -314,6 +349,17 @@ class CreatePlantVC : UITableViewController, UIImagePickerControllerDelegate, UI
                         }
                     }
                 }
+                
+            }else if indexPath.row == 3{
+                if (thirdSectionData[indexPath.row] is DatePickerInformation) {
+                    if let cell = tableView.dequeueReusableCell(withIdentifier: datePickerCellId) as? DatePickerCell {
+                        if let datePickerInformation = thirdSectionData[indexPath.row] as? DatePickerInformation {
+                            cell.datePickerInformation = datePickerInformation
+                            return cell
+                        }
+                    }
+                }
+                
             }
         }else if indexPath.section == 4 {
             if indexPath.row == 0 {
@@ -326,6 +372,15 @@ class CreatePlantVC : UITableViewController, UIImagePickerControllerDelegate, UI
                     }
                 }
             }else if indexPath.row == 1{
+                if (fourthSectionData[indexPath.row] is PickerInformation) {
+                    if let cell = tableView.dequeueReusableCell(withIdentifier: pickerCellId) as? PickerCell {
+                        if let pickerInformation = fourthSectionData[indexPath.row] as? PickerInformation {
+                            cell.pickerInformation = pickerInformation
+                            return cell
+                        }
+                    }
+                }
+            }else if indexPath.row == 2{
                 if (fourthSectionData[indexPath.row] is LastActionInformation) {
                     if let cell = tableView.dequeueReusableCell(withIdentifier: lastActionCellId) as? LastActionCell {
                         if let lastActionInformation = fourthSectionData[indexPath.row] as? LastActionInformation {
@@ -334,6 +389,17 @@ class CreatePlantVC : UITableViewController, UIImagePickerControllerDelegate, UI
                         }
                     }
                 }
+                
+            }else if indexPath.row == 3{
+                if (fourthSectionData[indexPath.row] is DatePickerInformation) {
+                    if let cell = tableView.dequeueReusableCell(withIdentifier: datePickerCellId) as? DatePickerCell {
+                        if let datePickerInformation = fourthSectionData[indexPath.row] as? DatePickerInformation {
+                            cell.datePickerInformation = datePickerInformation
+                            return cell
+                        }
+                    }
+                }
+                
             }
         }else if indexPath.section == 5 {
             if indexPath.row == 0 {
@@ -346,6 +412,15 @@ class CreatePlantVC : UITableViewController, UIImagePickerControllerDelegate, UI
                     }
                 }
             }else if indexPath.row == 1{
+                if (fifthSectionData[indexPath.row] is PickerInformation) {
+                    if let cell = tableView.dequeueReusableCell(withIdentifier: pickerCellId) as? PickerCell {
+                        if let pickerInformation = fifthSectionData[indexPath.row] as? PickerInformation {
+                            cell.pickerInformation = pickerInformation
+                            return cell
+                        }
+                    }
+                }
+            }else if indexPath.row == 2{
                 if (fifthSectionData[indexPath.row] is LastActionInformation) {
                     if let cell = tableView.dequeueReusableCell(withIdentifier: lastActionCellId) as? LastActionCell {
                         if let lastActionInformation = fifthSectionData[indexPath.row] as? LastActionInformation {
@@ -354,6 +429,17 @@ class CreatePlantVC : UITableViewController, UIImagePickerControllerDelegate, UI
                         }
                     }
                 }
+                
+            }else if indexPath.row == 3{
+                if (fifthSectionData[indexPath.row] is DatePickerInformation) {
+                    if let cell = tableView.dequeueReusableCell(withIdentifier: datePickerCellId) as? DatePickerCell {
+                        if let datePickerInformation = fifthSectionData[indexPath.row] as? DatePickerInformation {
+                            cell.datePickerInformation = datePickerInformation
+                            return cell
+                        }
+                    }
+                }
+                
             }
         }else if indexPath.section == 6 {
             if indexPath.row == 0 {
@@ -366,6 +452,15 @@ class CreatePlantVC : UITableViewController, UIImagePickerControllerDelegate, UI
                     }
                 }
             }else if indexPath.row == 1{
+                if (sixthSectionData[indexPath.row] is PickerInformation) {
+                    if let cell = tableView.dequeueReusableCell(withIdentifier: pickerCellId) as? PickerCell {
+                        if let pickerInformation = sixthSectionData[indexPath.row] as? PickerInformation {
+                            cell.pickerInformation = pickerInformation
+                            return cell
+                        }
+                    }
+                }
+            }else if indexPath.row == 2{
                 if (sixthSectionData[indexPath.row] is LastActionInformation) {
                     if let cell = tableView.dequeueReusableCell(withIdentifier: lastActionCellId) as? LastActionCell {
                         if let lastActionInformation = sixthSectionData[indexPath.row] as? LastActionInformation {
@@ -374,6 +469,17 @@ class CreatePlantVC : UITableViewController, UIImagePickerControllerDelegate, UI
                         }
                     }
                 }
+                
+            }else if indexPath.row == 3{
+                if (sixthSectionData[indexPath.row] is DatePickerInformation) {
+                    if let cell = tableView.dequeueReusableCell(withIdentifier: datePickerCellId) as? DatePickerCell {
+                        if let datePickerInformation = sixthSectionData[indexPath.row] as? DatePickerInformation {
+                            cell.datePickerInformation = datePickerInformation
+                            return cell
+                        }
+                    }
+                }
+                
             }
         }else if indexPath.section == 7 {
             if indexPath.row == 0 {
@@ -386,6 +492,15 @@ class CreatePlantVC : UITableViewController, UIImagePickerControllerDelegate, UI
                     }
                 }
             }else if indexPath.row == 1{
+                if (seventhSectionData[indexPath.row] is PickerInformation) {
+                    if let cell = tableView.dequeueReusableCell(withIdentifier: pickerCellId) as? PickerCell {
+                        if let pickerInformation = seventhSectionData[indexPath.row] as? PickerInformation {
+                            cell.pickerInformation = pickerInformation
+                            return cell
+                        }
+                    }
+                }
+            }else if indexPath.row == 2{
                 if (seventhSectionData[indexPath.row] is LastActionInformation) {
                     if let cell = tableView.dequeueReusableCell(withIdentifier: lastActionCellId) as? LastActionCell {
                         if let lastActionInformation = seventhSectionData[indexPath.row] as? LastActionInformation {
@@ -394,28 +509,138 @@ class CreatePlantVC : UITableViewController, UIImagePickerControllerDelegate, UI
                         }
                     }
                 }
+                
+            }else if indexPath.row == 3{
+                if (seventhSectionData[indexPath.row] is DatePickerInformation) {
+                    if let cell = tableView.dequeueReusableCell(withIdentifier: datePickerCellId) as? DatePickerCell {
+                        if let datePickerInformation = seventhSectionData[indexPath.row] as? DatePickerInformation {
+                            cell.datePickerInformation = datePickerInformation
+                            return cell
+                        }
+                    }
+                }
+                
             }
         }
         return UITableViewCell()
     }
     
-    
+//    MARK: - TableView Pickers
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         if indexPath.section == 1 && indexPath.row == 0 {
-            if dpShowDateVisible == true {
-                dpShowDateVisible = !dpShowDateVisible
+            if floweringDatePickerVisible == true {
+                floweringDatePickerVisible = !floweringDatePickerVisible
             }
             tableView.deselectRow(at: indexPath, animated: true)
-            showPicker()
+            showFloweringPicker()
         }
         
         if indexPath.section == 1 && indexPath.row == 2{
-            if dpShowVisible == true{
-                dpShowVisible = !dpShowVisible
+            if floweringPickerVisible == true{
+                floweringPickerVisible = !floweringPickerVisible
             }
-            showDatePicker()
+            showFloweringDatePicker()
+            tableView.deselectRow(at: indexPath, animated: true)
+        }
+//        MARK: - SECTION 2
+        if indexPath.section == 2 && indexPath.row == 0{
+            if harvestingDatePickerVisible == true{
+                harvestingDatePickerVisible = !harvestingDatePickerVisible
+            }
+            showHarvestingPicker()
+            tableView.deselectRow(at: indexPath, animated: true)
+        }
+
+        if indexPath.section == 2 && indexPath.row == 2{
+            if harvestingPickerVisible == true{
+                harvestingPickerVisible = !harvestingPickerVisible
+            }
+            showHarvestingDatePicker()
+            tableView.deselectRow(at: indexPath, animated: true)
+        }
+//          MARK: - SECTION 3
+        
+        if indexPath.section == 3 && indexPath.row == 0{
+            if sunExposureDatePickerVisible == true{
+                sunExposureDatePickerVisible = !sunExposureDatePickerVisible
+            }
+            showSunExposurePicker()
+            tableView.deselectRow(at: indexPath, animated: true)
+        }
+
+        if indexPath.section == 3 && indexPath.row == 2{
+            if sunExposurePickerVisible == true{
+                sunExposurePickerVisible = !sunExposurePickerVisible
+            }
+            showSunExposureDatePicker()
+            tableView.deselectRow(at: indexPath, animated: true)
+        }
+//          MARK: - SECTION 4
+        
+        if indexPath.section == 4 && indexPath.row == 0{
+            if boosterDatePickerVisible == true{
+                boosterDatePickerVisible = !boosterDatePickerVisible
+            }
+            showBoosterPicker()
+            tableView.deselectRow(at: indexPath, animated: true)
+        }
+
+        if indexPath.section == 4 && indexPath.row == 2{
+            if boosterPickerVisible == true{
+                boosterPickerVisible = !boosterPickerVisible
+            }
+            showBoosterDatePicker()
+            tableView.deselectRow(at: indexPath, animated: true)
+        }
+//          MARK: - SECTION 5
+        
+        if indexPath.section == 5 && indexPath.row == 0{
+            if wateringDatePickerVisible == true{
+                wateringDatePickerVisible = !wateringDatePickerVisible
+            }
+            showWateringPicker()
+            tableView.deselectRow(at: indexPath, animated: true)
+        }
+
+        if indexPath.section == 5 && indexPath.row == 2{
+            if wateringPickerVisible == true{
+                wateringPickerVisible = !wateringPickerVisible
+            }
+            showWateringDatePicker()
+            tableView.deselectRow(at: indexPath, animated: true)
+        }
+//          MARK: - SECTION 6
+        if indexPath.section == 6 && indexPath.row == 0{
+            if pruningDatePickerVisible == true{
+                pruningDatePickerVisible = !pruningDatePickerVisible
+            }
+            showPruningPicker()
+            tableView.deselectRow(at: indexPath, animated: true)
+        }
+
+        if indexPath.section == 6 && indexPath.row == 2{
+            if pruningPickerVisible == true{
+                pruningPickerVisible = !pruningPickerVisible
+            }
+            showPruningDatePicker()
+            tableView.deselectRow(at: indexPath, animated: true)
+        }
+//          MARK: - SECTION 7
+        if indexPath.section == 7 && indexPath.row == 0{
+            if pesticideDatePickerVisible == true{
+                pesticideDatePickerVisible = !pesticideDatePickerVisible
+            }
+            showPesticidePicker()
+            tableView.deselectRow(at: indexPath, animated: true)
+        }
+
+        if indexPath.section == 7 && indexPath.row == 2{
+            if pesticidePickerVisible == true{
+                pesticidePickerVisible = !pesticidePickerVisible
+            }
+            showPesticideDatePicker()
             tableView.deselectRow(at: indexPath, animated: true)
         }
     }
@@ -431,14 +656,104 @@ class CreatePlantVC : UITableViewController, UIImagePickerControllerDelegate, UI
             }
         }else if indexPath.section == 1{
             if indexPath.row == 1 {
-                if !dpShowVisible {
+                if !floweringPickerVisible {
                     return 0
                 }else {
                     return 100
                 }
             }
             if indexPath.row == 3 {
-                if !dpShowDateVisible {
+                if !floweringDatePickerVisible {
+                    return 0
+                }else {
+                    return 100
+                }
+            }
+        }else if indexPath.section == 2{
+            if indexPath.row == 1 {
+                if !harvestingPickerVisible {
+                    return 0
+                }else {
+                    return 100
+                }
+            }
+            if indexPath.row == 3 {
+                if !harvestingDatePickerVisible {
+                    return 0
+                }else {
+                    return 100
+                }
+            }
+        }else if indexPath.section == 3{
+            if indexPath.row == 1 {
+                if !sunExposurePickerVisible {
+                    return 0
+                }else {
+                    return 100
+                }
+            }
+            if indexPath.row == 3 {
+                if !sunExposureDatePickerVisible {
+                    return 0
+                }else {
+                    return 100
+                }
+            }
+        }else if indexPath.section == 4{
+            if indexPath.row == 1 {
+                if !boosterPickerVisible {
+                    return 0
+                }else {
+                    return 100
+                }
+            }
+            if indexPath.row == 3 {
+                if !boosterDatePickerVisible {
+                    return 0
+                }else {
+                    return 100
+                }
+            }
+        }else if indexPath.section == 5{
+            if indexPath.row == 1 {
+                if !wateringPickerVisible {
+                    return 0
+                }else {
+                    return 100
+                }
+            }
+            if indexPath.row == 3 {
+                if !wateringDatePickerVisible {
+                    return 0
+                }else {
+                    return 100
+                }
+            }
+        }else if indexPath.section == 6{
+            if indexPath.row == 1 {
+                if !pruningPickerVisible {
+                    return 0
+                }else {
+                    return 100
+                }
+            }
+            if indexPath.row == 3 {
+                if !pruningDatePickerVisible {
+                    return 0
+                }else {
+                    return 100
+                }
+            }
+        }else if indexPath.section == 7{
+            if indexPath.row == 1 {
+                if !pesticidePickerVisible {
+                    return 0
+                }else {
+                    return 100
+                }
+            }
+            if indexPath.row == 3 {
+                if !pesticideDatePickerVisible {
                     return 0
                 }else {
                     return 100
@@ -449,20 +764,114 @@ class CreatePlantVC : UITableViewController, UIImagePickerControllerDelegate, UI
     }
     
     
-    func showPicker () {
-        dpShowVisible = !dpShowVisible
+    func showFloweringPicker () {
+        floweringPickerVisible = !floweringPickerVisible
     
         tableView.beginUpdates()
         tableView.endUpdates()
     }
     
     
-    func showDatePicker () {
+    func showFloweringDatePicker () {
         
-        dpShowDateVisible = !dpShowDateVisible
+        floweringDatePickerVisible = !floweringDatePickerVisible
         tableView.beginUpdates()
         tableView.endUpdates()
     }
+    
+    func showHarvestingPicker () {
+        harvestingPickerVisible = !harvestingPickerVisible
+    
+        tableView.beginUpdates()
+        tableView.endUpdates()
+    }
+    
+    
+    func showHarvestingDatePicker () {
+        
+        harvestingDatePickerVisible = !harvestingDatePickerVisible
+        tableView.beginUpdates()
+        tableView.endUpdates()
+    }
+    
+    func showSunExposurePicker () {
+        sunExposurePickerVisible = !sunExposurePickerVisible
+    
+        tableView.beginUpdates()
+        tableView.endUpdates()
+    }
+    
+    
+    func showSunExposureDatePicker () {
+        
+        sunExposureDatePickerVisible = !sunExposureDatePickerVisible
+        tableView.beginUpdates()
+        tableView.endUpdates()
+    }
+    
+    func showBoosterPicker () {
+        boosterPickerVisible = !boosterPickerVisible
+    
+        tableView.beginUpdates()
+        tableView.endUpdates()
+    }
+    
+    
+    func showBoosterDatePicker () {
+        
+        boosterDatePickerVisible = !boosterDatePickerVisible
+        tableView.beginUpdates()
+        tableView.endUpdates()
+    }
+    
+    func showWateringPicker () {
+        wateringPickerVisible = !wateringPickerVisible
+    
+        tableView.beginUpdates()
+        tableView.endUpdates()
+    }
+    
+    
+    func showWateringDatePicker () {
+        
+        wateringDatePickerVisible = !wateringDatePickerVisible
+        tableView.beginUpdates()
+        tableView.endUpdates()
+    }
+    
+    
+    func showPruningPicker () {
+        pruningPickerVisible = !pruningPickerVisible
+    
+        tableView.beginUpdates()
+        tableView.endUpdates()
+    }
+    
+    
+    func showPruningDatePicker () {
+        
+        pruningDatePickerVisible = !pruningDatePickerVisible
+        tableView.beginUpdates()
+        tableView.endUpdates()
+    }
+    
+    
+    func showPesticidePicker () {
+        pesticidePickerVisible = !pesticidePickerVisible
+    
+        tableView.beginUpdates()
+        tableView.endUpdates()
+    }
+    
+    
+    func showPesticideDatePicker () {
+        
+        pesticideDatePickerVisible = !pesticideDatePickerVisible
+        tableView.beginUpdates()
+        tableView.endUpdates()
+    }
+    
+    
 //    MARK: - Create Table View
     func addInitailValue() {
         
@@ -481,22 +890,34 @@ class CreatePlantVC : UITableViewController, UIImagePickerControllerDelegate, UI
         firstSectionData.append(DatePickerInformation(datePicker: floweringDatePicker))
         
         secondSectionData.append(FrequencyInformation(frequencyLabel: "Intervalo:"))
+        secondSectionData.append(PickerInformation(picker: harvestingPicker))
         secondSectionData.append(LastActionInformation(lastActionLabel: "Última:"))
+        secondSectionData.append(DatePickerInformation(datePicker: harvestingDatePicker))
         
         thirdSectionData.append(FrequencyInformation(frequencyLabel: "Intervalo:"))
+        thirdSectionData.append(PickerInformation(picker: sunExposurePicker))
         thirdSectionData.append(LastActionInformation(lastActionLabel: "Última:"))
+        thirdSectionData.append(DatePickerInformation(datePicker: sunExposureDatePicker))
         
         fourthSectionData.append(FrequencyInformation(frequencyLabel: "Intervalo:"))
+        fourthSectionData.append(PickerInformation(picker: boosterPicker))
         fourthSectionData.append(LastActionInformation(lastActionLabel: "Última:"))
+        fourthSectionData.append(DatePickerInformation(datePicker: boosterDatePicker))
         
         fifthSectionData.append(FrequencyInformation(frequencyLabel: "Intervalo:"))
+        fifthSectionData.append(PickerInformation(picker: wateringPicker))
         fifthSectionData.append(LastActionInformation(lastActionLabel: "Última:"))
+        fifthSectionData.append(DatePickerInformation(datePicker: wateringDatePicker))
         
         sixthSectionData.append(FrequencyInformation(frequencyLabel: "Intervalo:"))
+        sixthSectionData.append(PickerInformation(picker: pruningPicker))
         sixthSectionData.append(LastActionInformation(lastActionLabel: "Última:"))
+        sixthSectionData.append(DatePickerInformation(datePicker: pruningDatePicker))
 
         seventhSectionData.append(FrequencyInformation(frequencyLabel: "Intervalo:"))
+        seventhSectionData.append(PickerInformation(picker: pesticidePicker))
         seventhSectionData.append(LastActionInformation(lastActionLabel: "Última:"))
+        seventhSectionData.append(DatePickerInformation(datePicker: pesticideDatePicker))
         
         tableView.reloadData()
     }

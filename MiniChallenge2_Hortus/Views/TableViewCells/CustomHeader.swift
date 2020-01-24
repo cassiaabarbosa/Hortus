@@ -32,18 +32,17 @@ class CustomHeader: UITableViewHeaderFooterView {
         contentView.addSubview(image)
         contentView.addSubview(title)
         
-        NSLayoutConstraint.activate([
-            image.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
-            image.widthAnchor.constraint(equalToConstant: 30),
-            image.heightAnchor.constraint(equalToConstant: 30),
-            image.bottomAnchor.constraint(equalTo:contentView.bottomAnchor),
+        
+        image.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10).isActive = true
+        image.widthAnchor.constraint(equalToConstant: 30).isActive = true
+        image.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        image.bottomAnchor.constraint(equalTo:contentView.bottomAnchor).isActive = true
 
-
-            title.heightAnchor.constraint(equalToConstant: 30),
-            title.leadingAnchor.constraint(equalTo: image.trailingAnchor,
-                   constant: 5),
-            title.bottomAnchor.constraint(equalTo:contentView.bottomAnchor)
-        ])
+        title.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        title.leadingAnchor.constraint(equalTo: image.trailingAnchor,
+            constant: 5).isActive = true
+        title.bottomAnchor.constraint(equalTo:contentView.bottomAnchor).isActive = true
+        
     }
     
     
