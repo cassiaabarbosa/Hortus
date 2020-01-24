@@ -533,6 +533,49 @@ class CreatePlantVC : UITableViewController, UIImagePickerControllerDelegate, UI
             if floweringDatePickerVisible == true {
                 floweringDatePickerVisible = !floweringDatePickerVisible
             }
+            
+            if harvestingDatePickerVisible == true {
+                harvestingDatePickerVisible = !harvestingDatePickerVisible
+            }
+            if harvestingPickerVisible == true {
+                harvestingPickerVisible = !harvestingPickerVisible
+            }
+            
+            if sunExposureDatePickerVisible == true{
+                sunExposureDatePickerVisible = !sunExposureDatePickerVisible
+            }
+            if sunExposurePickerVisible == true{
+                sunExposurePickerVisible = !sunExposurePickerVisible
+            }
+            
+            if boosterDatePickerVisible == true{
+                boosterDatePickerVisible = !boosterDatePickerVisible
+            }
+            if boosterPickerVisible == true{
+                boosterPickerVisible = !boosterPickerVisible
+            }
+            
+            if wateringDatePickerVisible == true{
+                wateringDatePickerVisible = !wateringDatePickerVisible
+            }
+            if wateringPickerVisible == true{
+                wateringPickerVisible = !wateringPickerVisible
+            }
+            
+            if pruningDatePickerVisible == true{
+                pruningDatePickerVisible = !pruningDatePickerVisible
+            }
+            if pruningPickerVisible == true{
+                pruningPickerVisible = !pruningPickerVisible
+            }
+            
+            if pesticideDatePickerVisible == true{
+                pesticideDatePickerVisible = !pesticideDatePickerVisible
+            }
+            if pesticidePickerVisible == true{
+                pesticidePickerVisible = !pesticidePickerVisible
+            }
+            
             tableView.deselectRow(at: indexPath, animated: true)
             showFloweringPicker()
         }
@@ -541,6 +584,49 @@ class CreatePlantVC : UITableViewController, UIImagePickerControllerDelegate, UI
             if floweringPickerVisible == true{
                 floweringPickerVisible = !floweringPickerVisible
             }
+            
+            if harvestingDatePickerVisible == true {
+                harvestingDatePickerVisible = !harvestingDatePickerVisible
+            }
+            if harvestingPickerVisible == true {
+                harvestingPickerVisible = !harvestingPickerVisible
+            }
+            
+            if sunExposureDatePickerVisible == true{
+                sunExposureDatePickerVisible = !sunExposureDatePickerVisible
+            }
+            if sunExposurePickerVisible == true{
+                sunExposurePickerVisible = !sunExposurePickerVisible
+            }
+            
+            if boosterDatePickerVisible == true{
+                boosterDatePickerVisible = !boosterDatePickerVisible
+            }
+            if boosterPickerVisible == true{
+                boosterPickerVisible = !boosterPickerVisible
+            }
+            
+            if wateringDatePickerVisible == true{
+                wateringDatePickerVisible = !wateringDatePickerVisible
+            }
+            if wateringPickerVisible == true{
+                wateringPickerVisible = !wateringPickerVisible
+            }
+            
+            if pruningDatePickerVisible == true{
+                pruningDatePickerVisible = !pruningDatePickerVisible
+            }
+            if pruningPickerVisible == true{
+                pruningPickerVisible = !pruningPickerVisible
+            }
+            
+            if pesticideDatePickerVisible == true{
+                pesticideDatePickerVisible = !pesticideDatePickerVisible
+            }
+            if pesticidePickerVisible == true{
+                pesticidePickerVisible = !pesticidePickerVisible
+            }
+            
             showFloweringDatePicker()
             tableView.deselectRow(at: indexPath, animated: true)
         }
@@ -548,6 +634,48 @@ class CreatePlantVC : UITableViewController, UIImagePickerControllerDelegate, UI
         if indexPath.section == 2 && indexPath.row == 0{
             if harvestingDatePickerVisible == true{
                 harvestingDatePickerVisible = !harvestingDatePickerVisible
+            }
+            
+            if floweringDatePickerVisible == true {
+                floweringDatePickerVisible = !floweringDatePickerVisible
+            }
+            if floweringPickerVisible == true {
+                floweringPickerVisible = !floweringPickerVisible
+            }
+            
+            if sunExposureDatePickerVisible == true{
+                sunExposureDatePickerVisible = !sunExposureDatePickerVisible
+            }
+            if sunExposurePickerVisible == true{
+                sunExposurePickerVisible = !sunExposurePickerVisible
+            }
+            
+            if boosterDatePickerVisible == true{
+                boosterDatePickerVisible = !boosterDatePickerVisible
+            }
+            if boosterPickerVisible == true{
+                boosterPickerVisible = !boosterPickerVisible
+            }
+            
+            if wateringDatePickerVisible == true{
+                wateringDatePickerVisible = !wateringDatePickerVisible
+            }
+            if wateringPickerVisible == true{
+                wateringPickerVisible = !wateringPickerVisible
+            }
+            
+            if pruningDatePickerVisible == true{
+                pruningDatePickerVisible = !pruningDatePickerVisible
+            }
+            if pruningPickerVisible == true{
+                pruningPickerVisible = !pruningPickerVisible
+            }
+            
+            if pesticideDatePickerVisible == true{
+                pesticideDatePickerVisible = !pesticideDatePickerVisible
+            }
+            if pesticidePickerVisible == true{
+                pesticidePickerVisible = !pesticidePickerVisible
             }
             showHarvestingPicker()
             tableView.deselectRow(at: indexPath, animated: true)
@@ -557,6 +685,49 @@ class CreatePlantVC : UITableViewController, UIImagePickerControllerDelegate, UI
             if harvestingPickerVisible == true{
                 harvestingPickerVisible = !harvestingPickerVisible
             }
+            
+            if floweringDatePickerVisible == true {
+                floweringDatePickerVisible = !floweringDatePickerVisible
+            }
+            if floweringPickerVisible == true {
+                floweringPickerVisible = !floweringPickerVisible
+            }
+            
+            if sunExposureDatePickerVisible == true{
+                sunExposureDatePickerVisible = !sunExposureDatePickerVisible
+            }
+            if sunExposurePickerVisible == true{
+                sunExposurePickerVisible = !sunExposurePickerVisible
+            }
+            
+            if boosterDatePickerVisible == true{
+                boosterDatePickerVisible = !boosterDatePickerVisible
+            }
+            if boosterPickerVisible == true{
+                boosterPickerVisible = !boosterPickerVisible
+            }
+            
+            if wateringDatePickerVisible == true{
+                wateringDatePickerVisible = !wateringDatePickerVisible
+            }
+            if wateringPickerVisible == true{
+                wateringPickerVisible = !wateringPickerVisible
+            }
+            
+            if pruningDatePickerVisible == true{
+                pruningDatePickerVisible = !pruningDatePickerVisible
+            }
+            if pruningPickerVisible == true{
+                pruningPickerVisible = !pruningPickerVisible
+            }
+            
+            if pesticideDatePickerVisible == true{
+                pesticideDatePickerVisible = !pesticideDatePickerVisible
+            }
+            if pesticidePickerVisible == true{
+                pesticidePickerVisible = !pesticidePickerVisible
+            }
+            
             showHarvestingDatePicker()
             tableView.deselectRow(at: indexPath, animated: true)
         }
@@ -566,6 +737,49 @@ class CreatePlantVC : UITableViewController, UIImagePickerControllerDelegate, UI
             if sunExposureDatePickerVisible == true{
                 sunExposureDatePickerVisible = !sunExposureDatePickerVisible
             }
+            
+            if floweringDatePickerVisible == true {
+                floweringDatePickerVisible = !floweringDatePickerVisible
+            }
+            if floweringPickerVisible == true {
+                floweringPickerVisible = !floweringPickerVisible
+            }
+            
+            if harvestingDatePickerVisible == true {
+                harvestingDatePickerVisible = !harvestingDatePickerVisible
+            }
+            if harvestingPickerVisible == true {
+                harvestingPickerVisible = !harvestingPickerVisible
+            }
+            
+            if boosterDatePickerVisible == true{
+                boosterDatePickerVisible = !boosterDatePickerVisible
+            }
+            if boosterPickerVisible == true{
+                boosterPickerVisible = !boosterPickerVisible
+            }
+            
+            if wateringDatePickerVisible == true{
+                wateringDatePickerVisible = !wateringDatePickerVisible
+            }
+            if wateringPickerVisible == true{
+                wateringPickerVisible = !wateringPickerVisible
+            }
+            
+            if pruningDatePickerVisible == true{
+                pruningDatePickerVisible = !pruningDatePickerVisible
+            }
+            if pruningPickerVisible == true{
+                pruningPickerVisible = !pruningPickerVisible
+            }
+            
+            if pesticideDatePickerVisible == true{
+                pesticideDatePickerVisible = !pesticideDatePickerVisible
+            }
+            if pesticidePickerVisible == true{
+                pesticidePickerVisible = !pesticidePickerVisible
+            }
+            
             showSunExposurePicker()
             tableView.deselectRow(at: indexPath, animated: true)
         }
@@ -574,6 +788,49 @@ class CreatePlantVC : UITableViewController, UIImagePickerControllerDelegate, UI
             if sunExposurePickerVisible == true{
                 sunExposurePickerVisible = !sunExposurePickerVisible
             }
+            
+            if floweringDatePickerVisible == true {
+                floweringDatePickerVisible = !floweringDatePickerVisible
+            }
+            if floweringPickerVisible == true {
+                floweringPickerVisible = !floweringPickerVisible
+            }
+            
+            if harvestingDatePickerVisible == true {
+                harvestingDatePickerVisible = !harvestingDatePickerVisible
+            }
+            if harvestingPickerVisible == true {
+                harvestingPickerVisible = !harvestingPickerVisible
+            }
+            
+            if boosterDatePickerVisible == true{
+                boosterDatePickerVisible = !boosterDatePickerVisible
+            }
+            if boosterPickerVisible == true{
+                boosterPickerVisible = !boosterPickerVisible
+            }
+            
+            if wateringDatePickerVisible == true{
+                wateringDatePickerVisible = !wateringDatePickerVisible
+            }
+            if wateringPickerVisible == true{
+                wateringPickerVisible = !wateringPickerVisible
+            }
+            
+            if pruningDatePickerVisible == true{
+                pruningDatePickerVisible = !pruningDatePickerVisible
+            }
+            if pruningPickerVisible == true{
+                pruningPickerVisible = !pruningPickerVisible
+            }
+            
+            if pesticideDatePickerVisible == true{
+                pesticideDatePickerVisible = !pesticideDatePickerVisible
+            }
+            if pesticidePickerVisible == true{
+                pesticidePickerVisible = !pesticidePickerVisible
+            }
+
             showSunExposureDatePicker()
             tableView.deselectRow(at: indexPath, animated: true)
         }
@@ -583,6 +840,49 @@ class CreatePlantVC : UITableViewController, UIImagePickerControllerDelegate, UI
             if boosterDatePickerVisible == true{
                 boosterDatePickerVisible = !boosterDatePickerVisible
             }
+            
+            if floweringDatePickerVisible == true {
+                floweringDatePickerVisible = !floweringDatePickerVisible
+            }
+            if floweringPickerVisible == true {
+                floweringPickerVisible = !floweringPickerVisible
+            }
+            
+            if harvestingDatePickerVisible == true {
+                harvestingDatePickerVisible = !harvestingDatePickerVisible
+            }
+            if harvestingPickerVisible == true {
+                harvestingPickerVisible = !harvestingPickerVisible
+            }
+            
+            if sunExposureDatePickerVisible == true{
+                sunExposureDatePickerVisible = !sunExposureDatePickerVisible
+            }
+            if sunExposurePickerVisible == true{
+                sunExposurePickerVisible = !sunExposurePickerVisible
+            }
+            
+            if wateringDatePickerVisible == true{
+                wateringDatePickerVisible = !wateringDatePickerVisible
+            }
+            if wateringPickerVisible == true{
+                wateringPickerVisible = !wateringPickerVisible
+            }
+            
+            if pruningDatePickerVisible == true{
+                pruningDatePickerVisible = !pruningDatePickerVisible
+            }
+            if pruningPickerVisible == true{
+                pruningPickerVisible = !pruningPickerVisible
+            }
+            
+            if pesticideDatePickerVisible == true{
+                pesticideDatePickerVisible = !pesticideDatePickerVisible
+            }
+            if pesticidePickerVisible == true{
+                pesticidePickerVisible = !pesticidePickerVisible
+            }
+            
             showBoosterPicker()
             tableView.deselectRow(at: indexPath, animated: true)
         }
@@ -590,6 +890,48 @@ class CreatePlantVC : UITableViewController, UIImagePickerControllerDelegate, UI
         if indexPath.section == 4 && indexPath.row == 2{
             if boosterPickerVisible == true{
                 boosterPickerVisible = !boosterPickerVisible
+            }
+            
+            if floweringDatePickerVisible == true {
+                floweringDatePickerVisible = !floweringDatePickerVisible
+            }
+            if floweringPickerVisible == true {
+                floweringPickerVisible = !floweringPickerVisible
+            }
+            
+            if harvestingDatePickerVisible == true {
+                harvestingDatePickerVisible = !harvestingDatePickerVisible
+            }
+            if harvestingPickerVisible == true {
+                harvestingPickerVisible = !harvestingPickerVisible
+            }
+            
+            if sunExposureDatePickerVisible == true{
+                sunExposureDatePickerVisible = !sunExposureDatePickerVisible
+            }
+            if sunExposurePickerVisible == true{
+                sunExposurePickerVisible = !sunExposurePickerVisible
+            }
+            
+            if wateringDatePickerVisible == true{
+                wateringDatePickerVisible = !wateringDatePickerVisible
+            }
+            if wateringPickerVisible == true{
+                wateringPickerVisible = !wateringPickerVisible
+            }
+            
+            if pruningDatePickerVisible == true{
+                pruningDatePickerVisible = !pruningDatePickerVisible
+            }
+            if pruningPickerVisible == true{
+                pruningPickerVisible = !pruningPickerVisible
+            }
+            
+            if pesticideDatePickerVisible == true{
+                pesticideDatePickerVisible = !pesticideDatePickerVisible
+            }
+            if pesticidePickerVisible == true{
+                pesticidePickerVisible = !pesticidePickerVisible
             }
             showBoosterDatePicker()
             tableView.deselectRow(at: indexPath, animated: true)
@@ -600,6 +942,48 @@ class CreatePlantVC : UITableViewController, UIImagePickerControllerDelegate, UI
             if wateringDatePickerVisible == true{
                 wateringDatePickerVisible = !wateringDatePickerVisible
             }
+            
+            if floweringDatePickerVisible == true {
+                floweringDatePickerVisible = !floweringDatePickerVisible
+            }
+            if floweringPickerVisible == true {
+                floweringPickerVisible = !floweringPickerVisible
+            }
+            
+            if harvestingDatePickerVisible == true {
+                harvestingDatePickerVisible = !harvestingDatePickerVisible
+            }
+            if harvestingPickerVisible == true {
+                harvestingPickerVisible = !harvestingPickerVisible
+            }
+            
+            if sunExposureDatePickerVisible == true{
+                sunExposureDatePickerVisible = !sunExposureDatePickerVisible
+            }
+            if sunExposurePickerVisible == true{
+                sunExposurePickerVisible = !sunExposurePickerVisible
+            }
+            
+            if boosterDatePickerVisible == true{
+                boosterDatePickerVisible = !boosterDatePickerVisible
+            }
+            if boosterPickerVisible == true{
+                boosterPickerVisible = !boosterPickerVisible
+            }
+            
+            if pruningDatePickerVisible == true{
+                pruningDatePickerVisible = !pruningDatePickerVisible
+            }
+            if pruningPickerVisible == true{
+                pruningPickerVisible = !pruningPickerVisible
+            }
+            
+            if pesticideDatePickerVisible == true{
+                pesticideDatePickerVisible = !pesticideDatePickerVisible
+            }
+            if pesticidePickerVisible == true{
+                pesticidePickerVisible = !pesticidePickerVisible
+            }
             showWateringPicker()
             tableView.deselectRow(at: indexPath, animated: true)
         }
@@ -608,6 +992,50 @@ class CreatePlantVC : UITableViewController, UIImagePickerControllerDelegate, UI
             if wateringPickerVisible == true{
                 wateringPickerVisible = !wateringPickerVisible
             }
+            
+            if floweringDatePickerVisible == true {
+                floweringDatePickerVisible = !floweringDatePickerVisible
+            }
+            if floweringPickerVisible == true {
+                floweringPickerVisible = !floweringPickerVisible
+            }
+            
+            if harvestingDatePickerVisible == true {
+                harvestingDatePickerVisible = !harvestingDatePickerVisible
+            }
+            if harvestingPickerVisible == true {
+                harvestingPickerVisible = !harvestingPickerVisible
+            }
+            
+            if sunExposureDatePickerVisible == true{
+                sunExposureDatePickerVisible = !sunExposureDatePickerVisible
+            }
+            if sunExposurePickerVisible == true{
+                sunExposurePickerVisible = !sunExposurePickerVisible
+            }
+            
+            if boosterDatePickerVisible == true{
+                boosterDatePickerVisible = !boosterDatePickerVisible
+            }
+            if boosterPickerVisible == true{
+                boosterPickerVisible = !boosterPickerVisible
+            }
+            
+            if pruningDatePickerVisible == true{
+                pruningDatePickerVisible = !pruningDatePickerVisible
+            }
+            if pruningPickerVisible == true{
+                pruningPickerVisible = !pruningPickerVisible
+            }
+            
+            if pesticideDatePickerVisible == true{
+                pesticideDatePickerVisible = !pesticideDatePickerVisible
+            }
+            if pesticidePickerVisible == true{
+                pesticidePickerVisible = !pesticidePickerVisible
+            }
+            
+            
             showWateringDatePicker()
             tableView.deselectRow(at: indexPath, animated: true)
         }
@@ -616,6 +1044,49 @@ class CreatePlantVC : UITableViewController, UIImagePickerControllerDelegate, UI
             if pruningDatePickerVisible == true{
                 pruningDatePickerVisible = !pruningDatePickerVisible
             }
+            
+            if floweringDatePickerVisible == true {
+                floweringDatePickerVisible = !floweringDatePickerVisible
+            }
+            if floweringPickerVisible == true {
+                floweringPickerVisible = !floweringPickerVisible
+            }
+            
+            if harvestingDatePickerVisible == true {
+                harvestingDatePickerVisible = !harvestingDatePickerVisible
+            }
+            if harvestingPickerVisible == true {
+                harvestingPickerVisible = !harvestingPickerVisible
+            }
+            
+            if sunExposureDatePickerVisible == true{
+                sunExposureDatePickerVisible = !sunExposureDatePickerVisible
+            }
+            if sunExposurePickerVisible == true{
+                sunExposurePickerVisible = !sunExposurePickerVisible
+            }
+            
+            if boosterDatePickerVisible == true{
+                boosterDatePickerVisible = !boosterDatePickerVisible
+            }
+            if boosterPickerVisible == true{
+                boosterPickerVisible = !boosterPickerVisible
+            }
+            
+            if wateringDatePickerVisible == true{
+                wateringDatePickerVisible = !wateringDatePickerVisible
+            }
+            if wateringPickerVisible == true{
+                wateringPickerVisible = !wateringPickerVisible
+            }
+            
+            if pesticideDatePickerVisible == true{
+                pesticideDatePickerVisible = !pesticideDatePickerVisible
+            }
+            if pesticidePickerVisible == true{
+                pesticidePickerVisible = !pesticidePickerVisible
+            }
+            
             showPruningPicker()
             tableView.deselectRow(at: indexPath, animated: true)
         }
@@ -624,6 +1095,57 @@ class CreatePlantVC : UITableViewController, UIImagePickerControllerDelegate, UI
             if pruningPickerVisible == true{
                 pruningPickerVisible = !pruningPickerVisible
             }
+            
+            if floweringDatePickerVisible == true {
+                floweringDatePickerVisible = !floweringDatePickerVisible
+            }
+            if floweringPickerVisible == true {
+                floweringPickerVisible = !floweringPickerVisible
+            }
+            
+            if harvestingDatePickerVisible == true {
+                harvestingDatePickerVisible = !harvestingDatePickerVisible
+            }
+            if harvestingPickerVisible == true {
+                harvestingPickerVisible = !harvestingPickerVisible
+            }
+            
+            if sunExposureDatePickerVisible == true{
+                sunExposureDatePickerVisible = !sunExposureDatePickerVisible
+            }
+            if sunExposurePickerVisible == true{
+                sunExposurePickerVisible = !sunExposurePickerVisible
+            }
+            
+            if boosterDatePickerVisible == true{
+                boosterDatePickerVisible = !boosterDatePickerVisible
+            }
+            if boosterPickerVisible == true{
+                boosterPickerVisible = !boosterPickerVisible
+            }
+            
+            if wateringDatePickerVisible == true{
+                wateringDatePickerVisible = !wateringDatePickerVisible
+            }
+            if wateringPickerVisible == true{
+                wateringPickerVisible = !wateringPickerVisible
+            }
+            
+            if pruningDatePickerVisible == true{
+                pruningDatePickerVisible = !pruningDatePickerVisible
+            }
+            if pruningPickerVisible == true{
+                pruningPickerVisible = !pruningPickerVisible
+            }
+            
+            if pesticideDatePickerVisible == true{
+                pesticideDatePickerVisible = !pesticideDatePickerVisible
+            }
+            if pesticidePickerVisible == true{
+                pesticidePickerVisible = !pesticidePickerVisible
+            }
+            
+            
             showPruningDatePicker()
             tableView.deselectRow(at: indexPath, animated: true)
         }
@@ -632,6 +1154,48 @@ class CreatePlantVC : UITableViewController, UIImagePickerControllerDelegate, UI
             if pesticideDatePickerVisible == true{
                 pesticideDatePickerVisible = !pesticideDatePickerVisible
             }
+            if floweringDatePickerVisible == true {
+                floweringDatePickerVisible = !floweringDatePickerVisible
+            }
+            if floweringPickerVisible == true {
+                floweringPickerVisible = !floweringPickerVisible
+            }
+            
+            if harvestingDatePickerVisible == true {
+                harvestingDatePickerVisible = !harvestingDatePickerVisible
+            }
+            if harvestingPickerVisible == true {
+                harvestingPickerVisible = !harvestingPickerVisible
+            }
+            
+            if sunExposureDatePickerVisible == true{
+                sunExposureDatePickerVisible = !sunExposureDatePickerVisible
+            }
+            if sunExposurePickerVisible == true{
+                sunExposurePickerVisible = !sunExposurePickerVisible
+            }
+            
+            if boosterDatePickerVisible == true{
+                boosterDatePickerVisible = !boosterDatePickerVisible
+            }
+            if boosterPickerVisible == true{
+                boosterPickerVisible = !boosterPickerVisible
+            }
+            
+            if wateringDatePickerVisible == true{
+                wateringDatePickerVisible = !wateringDatePickerVisible
+            }
+            if wateringPickerVisible == true{
+                wateringPickerVisible = !wateringPickerVisible
+            }
+            
+            if pruningDatePickerVisible == true{
+                pruningDatePickerVisible = !pruningDatePickerVisible
+            }
+            if pruningPickerVisible == true{
+                pruningPickerVisible = !pruningPickerVisible
+            }
+            
             showPesticidePicker()
             tableView.deselectRow(at: indexPath, animated: true)
         }
@@ -640,6 +1204,49 @@ class CreatePlantVC : UITableViewController, UIImagePickerControllerDelegate, UI
             if pesticidePickerVisible == true{
                 pesticidePickerVisible = !pesticidePickerVisible
             }
+            
+            if floweringDatePickerVisible == true {
+                floweringDatePickerVisible = !floweringDatePickerVisible
+            }
+            if floweringPickerVisible == true {
+                floweringPickerVisible = !floweringPickerVisible
+            }
+            
+            if harvestingDatePickerVisible == true {
+                harvestingDatePickerVisible = !harvestingDatePickerVisible
+            }
+            if harvestingPickerVisible == true {
+                harvestingPickerVisible = !harvestingPickerVisible
+            }
+            
+            if sunExposureDatePickerVisible == true{
+                sunExposureDatePickerVisible = !sunExposureDatePickerVisible
+            }
+            if sunExposurePickerVisible == true{
+                sunExposurePickerVisible = !sunExposurePickerVisible
+            }
+            
+            if boosterDatePickerVisible == true{
+                boosterDatePickerVisible = !boosterDatePickerVisible
+            }
+            if boosterPickerVisible == true{
+                boosterPickerVisible = !boosterPickerVisible
+            }
+            
+            if wateringDatePickerVisible == true{
+                wateringDatePickerVisible = !wateringDatePickerVisible
+            }
+            if wateringPickerVisible == true{
+                wateringPickerVisible = !wateringPickerVisible
+            }
+            
+            if pruningDatePickerVisible == true{
+                pruningDatePickerVisible = !pruningDatePickerVisible
+            }
+            if pruningPickerVisible == true{
+                pruningPickerVisible = !pruningPickerVisible
+            }
+            
             showPesticideDatePicker()
             tableView.deselectRow(at: indexPath, animated: true)
         }
