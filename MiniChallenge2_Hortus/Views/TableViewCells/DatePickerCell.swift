@@ -31,8 +31,8 @@ class DatePickerCell: UITableViewCell {
         
         addSubview(datePicker)
         
-        datePicker.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-        datePicker.anchor(top: topAnchor, left: nil, bottom: bottomAnchor, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 245, height: 0, enableInsets: true)
+//        datePicker.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+        datePicker.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0, enableInsets: true)
         
         self.separatorInset = .zero
         

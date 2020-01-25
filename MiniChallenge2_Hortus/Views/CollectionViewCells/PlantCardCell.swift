@@ -11,16 +11,25 @@ import CoreData
 
 class PlantCardCell: UICollectionViewCell {
     
+    var plantCardCellInformation: PlantCardCellInformation? {
+        
+        didSet {
+            namePlantLabel.text = plantCardCellInformation?.plantName.text
+            
+            plantImageView.image = plantCardCellInformation?.plantImage.image
+        }
+    }
+    
     let namePlantLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 17)
         label.textColor = UIColor.white
-        label.text = "Rosa Vermelha"
+        label.text = "Hortência"
         label.textAlignment = .center
         label.backgroundColor = .darkGray
         label.translatesAutoresizingMaskIntoConstraints = true
         label.layer.cornerRadius = 20
-        label.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner]
+        label.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner, .layerMaxXMinYCorner, .layerMinXMinYCorner]
         return label
     }()
     
@@ -28,7 +37,7 @@ class PlantCardCell: UICollectionViewCell {
     
     let plantImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "red rose")
+        imageView.image = UIImage(named: "hotencia")
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.layer.cornerRadius = 20
         return imageView
@@ -49,7 +58,7 @@ class PlantCardCell: UICollectionViewCell {
         backgroundColor = .none
         self.layer.masksToBounds = false
         self.layer.shadowColor = UIColor.black.cgColor
-        self.layer.shadowOffset = CGSize(width: 7.5, height: 7.5)
+        self.layer.shadowOffset = CGSize(width: 5, height: 5)
         self.layer.shadowRadius = 3.0
         self.layer.shadowOpacity = 1
         

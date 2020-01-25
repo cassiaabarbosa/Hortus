@@ -23,7 +23,8 @@ class GardenVC : UIViewController, UICollectionViewDataSource, UICollectionViewD
 //    let searchBar: UISearchBar = UISearchBar(frame: (CGRect(x: 0, y: 64, width:UIScreen.main.bounds.width, height: 100)))
 //    let searchController = UISearchController(searchResultsController: nil)
     
-    
+    var plantName = UILabel()
+    var plantImage = UIImageView()
     
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -35,6 +36,10 @@ class GardenVC : UIViewController, UICollectionViewDataSource, UICollectionViewD
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionview.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! PlantCardCell
+        
+//        let plantCardCellInformation = PlantCardCellInformation(plantName: plantName, plantImage: plantImage)
+        
+//        cell.plantCardCellInformation? = plantCardCellInformation
         return cell
     }
     
@@ -51,6 +56,7 @@ class GardenVC : UIViewController, UICollectionViewDataSource, UICollectionViewD
         return 20.0
     }
     
+    
 //    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
 //        let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: cellId, for: indexPath)
 //            header.addSubview(searchBar)
@@ -65,7 +71,14 @@ class GardenVC : UIViewController, UICollectionViewDataSource, UICollectionViewD
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.title = "Meu Jardim"
+        
+        if #available(iOS 13.0, *) {
+            overrideUserInterfaceStyle = .light
+        } else {
+            // Fallback on earlier versions
+        }
+        
+        self.title = "Jardim"
 
         navigationController?.navigationBar.barTintColor = UIColor.App.navigation
         navigationController?.navigationBar.tintColor = UIColor.App.navigationTitle
@@ -83,7 +96,7 @@ class GardenVC : UIViewController, UICollectionViewDataSource, UICollectionViewD
 //        searchController.searchBar.sizeToFit()
 //        navigationItem.hidesSearchBarWhenScrolling = true
 //
-        definesPresentationContext = true
+        definesPresentationContext = false
         
         
         emptyLabel.center = self.view.center
@@ -171,9 +184,9 @@ class GardenVC : UIViewController, UICollectionViewDataSource, UICollectionViewD
     
     
     @objc func showsCreatePlantVC(_ sender: Any) {
-        let nextVC = CreatePlantVC()
-        let navController = UINavigationController(rootViewController: nextVC)
-        self.present(navController, animated: true, completion: nil)
+        let nextVC = PlantVC()
+//        let navController = UINavigationController(rootViewController: nextVC)
+        self.present(nextVC, animated: true, completion: nil)
     }
     
     
