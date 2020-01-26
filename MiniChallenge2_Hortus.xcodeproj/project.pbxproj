@@ -22,6 +22,7 @@
 		CB37880423D27560001B2479 /* NameCreatePlantCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB37880323D27560001B2479 /* NameCreatePlantCell.swift */; };
 		CB37880623D275B9001B2479 /* NameInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB37880523D275B9001B2479 /* NameInformation.swift */; };
 		CB3F8C3023DCE64B002C281D /* PlantImageViewCollectionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3F8C2F23DCE64B002C281D /* PlantImageViewCollectionHandler.swift */; };
+		CB3F8C3223DD0B4A002C281D /* PlantVCCollectionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3F8C3123DD0B4A002C281D /* PlantVCCollectionHandler.swift */; };
 		CB7E50BB23D23F3D002DCA45 /* PhotoCreatePlantCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7E50BA23D23F3D002DCA45 /* PhotoCreatePlantCell.swift */; };
 		CB7E50BE23D23F92002DCA45 /* PhotoInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7E50BD23D23F92002DCA45 /* PhotoInformation.swift */; };
 		CBC38B4723D9D99200BCE8D5 /* CustomHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC38B4623D9D99200BCE8D5 /* CustomHeader.swift */; };
@@ -58,6 +59,7 @@
 		CB37880323D27560001B2479 /* NameCreatePlantCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameCreatePlantCell.swift; sourceTree = "<group>"; };
 		CB37880523D275B9001B2479 /* NameInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameInformation.swift; sourceTree = "<group>"; };
 		CB3F8C2F23DCE64B002C281D /* PlantImageViewCollectionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlantImageViewCollectionHandler.swift; sourceTree = "<group>"; };
+		CB3F8C3123DD0B4A002C281D /* PlantVCCollectionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlantVCCollectionHandler.swift; sourceTree = "<group>"; };
 		CB7E50BA23D23F3D002DCA45 /* PhotoCreatePlantCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCreatePlantCell.swift; sourceTree = "<group>"; };
 		CB7E50BD23D23F92002DCA45 /* PhotoInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoInformation.swift; sourceTree = "<group>"; };
 		CBC38B4623D9D99200BCE8D5 /* CustomHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomHeader.swift; sourceTree = "<group>"; };
@@ -177,9 +179,10 @@
 		CBD6924823CCF983003D9864 /* Delegates */ = {
 			isa = PBXGroup;
 			children = (
-				CBD6924923CCF9A3003D9864 /* GardenVCHandler.swift */,
+				CB3F8C3123DD0B4A002C281D /* PlantVCCollectionHandler.swift */,
 				CB3F8C2F23DCE64B002C281D /* PlantImageViewCollectionHandler.swift */,
 				CBCDB28123DC9EFE00896040 /* PlantTasksViewColllectionHandler.swift */,
+				CBD6924923CCF9A3003D9864 /* GardenVCHandler.swift */,
 			);
 			path = Delegates;
 			sourceTree = "<group>";
@@ -302,6 +305,7 @@
 				CB3F8C3023DCE64B002C281D /* PlantImageViewCollectionHandler.swift in Sources */,
 				CBD6924723CCF1A0003D9864 /* Extensions.swift in Sources */,
 				CB13A0DF23D5304100DD4778 /* LastActionInformation.swift in Sources */,
+				CB3F8C3223DD0B4A002C281D /* PlantVCCollectionHandler.swift in Sources */,
 				CBD6924A23CCF9A3003D9864 /* GardenVCHandler.swift in Sources */,
 				CB0E0E6F2284BB1900AC6566 /* AppDelegate.swift in Sources */,
 				CBCDB27E23DC99D700896040 /* PlantImageView.swift in Sources */,

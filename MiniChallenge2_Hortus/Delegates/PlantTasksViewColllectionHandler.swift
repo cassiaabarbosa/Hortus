@@ -25,6 +25,9 @@ UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, PlantTasksViewDe
     var parentVC: PlantTasksView?
     var taskCellId: String = "TaskCellId"
     
+    override init() {
+        
+    }
     
     func taskSelected(value: Int) {
 //        parentVC?.plantVCDelegate.taskSelected(value: value)

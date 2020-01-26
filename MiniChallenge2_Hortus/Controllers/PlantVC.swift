@@ -23,7 +23,7 @@ class PlantVC: UIViewController {
     
     var plantImageView: PlantImageView!
     var plantTasksView: PlantTasksView!
-//    var collectionViewHandler: PlantVCCollectionHandler!
+    var collectionViewHandler: PlantVCCollectionHandler!
     //precisa colocar uma variável para colocar o nome da planta direto na navigation 
     
     override func viewDidLoad() {
@@ -42,8 +42,8 @@ class PlantVC: UIViewController {
         
         plantImageView.backgroundColor = .cyan
         plantImageView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 0).isActive = true
-        plantImageView.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 0).isActive = true
-        plantImageView.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant:0).isActive = true
+        plantImageView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 0).isActive = true
+        plantImageView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant:0).isActive = true
         plantImageView.heightAnchor.constraint(equalToConstant: 400).isActive = true
         
         
@@ -54,10 +54,10 @@ class PlantVC: UIViewController {
         
         plantTasksView = PlantTasksView(frame: .zero)
         self.view.addSubview(plantTasksView)
-        plantTasksView.plantVCDelegate =
-//        plantTasksView.backgroundColor = .black
-        plantTasksView.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 0).isActive = true
-        plantTasksView.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant:0).isActive = true
+        plantTasksView.plantVCDelegate = collectionViewHandler
+        plantTasksView.backgroundColor = .black
+        plantTasksView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 0).isActive = true
+        plantTasksView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant:0).isActive = true
         plantTasksView.topAnchor.constraint(equalTo: plantImageView.bottomAnchor, constant: 20).isActive = true
         
         plantTasksView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: 0).isActive = true

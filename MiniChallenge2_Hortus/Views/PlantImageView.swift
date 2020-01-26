@@ -16,7 +16,7 @@ protocol PlantImageViewDelegate: class {
 
 
 @IBDesignable
-public class PlantImageView: UIView {
+class PlantImageView: UIView {
     
     var plantImage: UIImageView!
 //    weak var plantVCDelegate: PlantVCDelegate!
@@ -30,17 +30,31 @@ public class PlantImageView: UIView {
 //    }
     
     
+//    override init(frame: CGRect){
+//        super.init(frame: frame)
+//         plantImage = UIImageView()
+//         self.plantImage.image = #imageLiteral(resourceName: "AddPhotoImage") //aqui precisa colocar a imagem do CoreData
+//
+//    }
     override init(frame: CGRect){
         super.init(frame: frame)
-         plantImage = UIImageView()
-         self.plantImage.image = #imageLiteral(resourceName: "red rose") //aqui precisa colocar a imagem do CoreData
         
     }
-    
     
     required init?(coder aDecoder: NSCoder) {
        super.init(coder: aDecoder)
        
+    }
+    
+    
+    func setPlantImage(){
+        plantImage.image = #imageLiteral(resourceName: "AddPhotoImage")
+        self.addSubview(plantImage)
+        
+        plantImage.topAnchor.constraint(equalTo: self.topAnchor, constant: 0).isActive = true
+        plantImage.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 0).isActive = true
+        plantImage.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0).isActive = true
+        plantImage.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0).isActive = true 
     }
     
 }
