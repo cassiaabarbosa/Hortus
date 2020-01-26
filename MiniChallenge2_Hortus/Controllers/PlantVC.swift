@@ -55,15 +55,15 @@ class PlantVC: UIViewController {
     
     func setPlantTasksView() {
         
-//        plantTasksView = PlantTasksView(frame: .zero)
-//        plantTasksView.plantVCDelegate = collectionViewHandler
-//        
-//        self.view.addSubview(plantTasksView)
-//        
-//        plantTasksView.translatesAutoresizingMaskIntoConstraints = false
-//        plantTasksView.leftAnchor.constraint(equalTo:self.view.leftAnchor).isActive = true
-//        plantTasksView.rightAnchor.constraint(equalTo:self.view.rightAnchor).isActive = true
-//        plantTasksView.bottomAnchor.constraint(equalTo:self.view.bottomAnchor).isActive = true
-//        plantTasksView.topAnchor.constraint(equalTo: plantImageView.bottomAnchor, constant: 20).isActive = true 
+        plantTasksView = PlantTasksView(frame: .zero)
+        plantTasksView.plantVCDelegate = collectionViewHandler
+        
+        self.view.addSubview(plantTasksView)
+        
+        plantTasksView.translatesAutoresizingMaskIntoConstraints = false
+        plantTasksView.leftAnchor.constraint(equalTo:self.view.leftAnchor).isActive = true
+        plantTasksView.rightAnchor.constraint(equalTo:self.view.rightAnchor).isActive = true
+        plantTasksView.bottomAnchor.constraint(equalTo:self.view.bottomAnchor).isActive = true
+        plantTasksView.topAnchor.constraint(equalTo: plantImageView.bottomAnchor, constant: 20).isActive = true 
     }
 }
