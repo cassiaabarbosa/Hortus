@@ -111,7 +111,7 @@ class CreatePlantVC : UITableViewController, UIImagePickerControllerDelegate, UI
         
         tableView.keyboardDismissMode = .onDrag
         
-        plantImage = #imageLiteral(resourceName: "AddFotoCompleto")
+        plantImage = #imageLiteral(resourceName: "AddPhotoImage")
         
         pickerAddPhotoButton.delegate = self
         
@@ -1257,7 +1257,7 @@ class CreatePlantVC : UITableViewController, UIImagePickerControllerDelegate, UI
         
         if indexPath.section == 0{
             if indexPath.row == 0 {
-                return 400
+                return 300
             }else {
                 return 50
             }

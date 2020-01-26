@@ -18,7 +18,7 @@ class PhotoCreatePlantCell: UITableViewCell, UIImagePickerControllerDelegate {
     
     
     public var photo: UIImageView = {
-        let photo = UIImageView(image: #imageLiteral(resourceName: "AddFotoCompleto"))
+        let photo = UIImageView(image: #imageLiteral(resourceName: "AddPhotoImage"))
         photo.contentMode = .scaleAspectFill
         photo.clipsToBounds = true
         photo.translatesAutoresizingMaskIntoConstraints = false
