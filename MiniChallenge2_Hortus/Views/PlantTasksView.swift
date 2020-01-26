@@ -45,20 +45,20 @@ class PlantTasksView: UIView {
     
     func setPlantTask(){
         
-//    MARK: - Criação da Collection View 
     let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
         plantTasksCollectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        plantTasksCollectionView.backgroundColor = .clear
+        plantTasksCollectionView.backgroundColor = .red
         plantTasksCollectionView.register(TaskCollectionCell.self, forCellWithReuseIdentifier: plantTaskCollectionCellId)
         
         self.addSubview(plantTasksCollectionView)
         
-        plantTasksCollectionView.translatesAutoresizingMaskIntoConstraints = false
-        plantTasksCollectionView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0).isActive = true
-        plantTasksCollectionView.topAnchor.constraint(equalTo: self.topAnchor, constant: 0).isActive = true
-        plantTasksCollectionView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0).isActive = true
-        plantTasksCollectionView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 0).isActive = true
+        self.plantTasksCollectionView.translatesAutoresizingMaskIntoConstraints = false
+        
+        plantTasksCollectionView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
+        plantTasksCollectionView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
+        plantTasksCollectionView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
+        plantTasksCollectionView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
     }
     
 }

@@ -24,13 +24,17 @@ class PlantVC: UIViewController {
     var plantImageView: PlantImageView!
     var plantTasksView: PlantTasksView!
     var collectionViewHandler: PlantVCCollectionHandler!
+    
     //precisa colocar uma variável para colocar o nome da planta direto na navigation 
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        
         setPlantImageView()
         setPlantTasksView()
+        self.view.backgroundColor = .cyan
         
     }
     
@@ -40,28 +44,26 @@ class PlantVC: UIViewController {
         plantImageView = PlantImageView(frame: .zero)
         self.view.addSubview(plantImageView)
         
-        plantImageView.backgroundColor = .cyan
-        plantImageView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 0).isActive = true
-        plantImageView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 0).isActive = true
-        plantImageView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant:0).isActive = true
-        plantImageView.heightAnchor.constraint(equalToConstant: 400).isActive = true
+        plantImageView.translatesAutoresizingMaskIntoConstraints = false
         
-        
+        plantImageView.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
+        plantImageView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
+        plantImageView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
+        plantImageView.bottomAnchor.constraint(equalTo: self.view.topAnchor, constant: 400).isActive = true 
     }
     
     
     func setPlantTasksView() {
         
-        plantTasksView = PlantTasksView(frame: .zero)
-        self.view.addSubview(plantTasksView)
-        plantTasksView.plantVCDelegate = collectionViewHandler
-        plantTasksView.backgroundColor = .black
-        plantTasksView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 0).isActive = true
-        plantTasksView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant:0).isActive = true
-        plantTasksView.topAnchor.constraint(equalTo: plantImageView.bottomAnchor, constant: 20).isActive = true
-        
-        plantTasksView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: 0).isActive = true
-        
-        
+//        plantTasksView = PlantTasksView(frame: .zero)
+//        plantTasksView.plantVCDelegate = collectionViewHandler
+//        
+//        self.view.addSubview(plantTasksView)
+//        
+//        plantTasksView.translatesAutoresizingMaskIntoConstraints = false
+//        plantTasksView.leftAnchor.constraint(equalTo:self.view.leftAnchor).isActive = true
+//        plantTasksView.rightAnchor.constraint(equalTo:self.view.rightAnchor).isActive = true
+//        plantTasksView.bottomAnchor.constraint(equalTo:self.view.bottomAnchor).isActive = true
+//        plantTasksView.topAnchor.constraint(equalTo: plantImageView.bottomAnchor, constant: 20).isActive = true 
     }
 }

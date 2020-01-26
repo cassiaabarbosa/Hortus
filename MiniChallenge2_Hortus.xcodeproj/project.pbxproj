@@ -33,7 +33,6 @@
 		CBCDB28423DCA32700896040 /* TaskCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBCDB28323DCA32700896040 /* TaskCollectionCell.swift */; };
 		CBD3DD7D23CD1BA4009BB2A1 /* CustomLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD3DD7C23CD1BA4009BB2A1 /* CustomLabel.swift */; };
 		CBD6924723CCF1A0003D9864 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD6924623CCF19F003D9864 /* Extensions.swift */; };
-		CBD6924A23CCF9A3003D9864 /* GardenVCHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD6924923CCF9A3003D9864 /* GardenVCHandler.swift */; };
 		CBF3B0A823DA18BC0081FC2B /* PlantVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBF3B0A723DA18BC0081FC2B /* PlantVC.swift */; };
 		CBF3B0AC23DA28B60081FC2B /* PickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBF3B0AB23DA28B60081FC2B /* PickerCell.swift */; };
 		CBF3B0AE23DA28C10081FC2B /* DatePickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBF3B0AD23DA28C10081FC2B /* DatePickerCell.swift */; };
@@ -70,7 +69,6 @@
 		CBCDB28323DCA32700896040 /* TaskCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskCollectionCell.swift; sourceTree = "<group>"; };
 		CBD3DD7C23CD1BA4009BB2A1 /* CustomLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLabel.swift; sourceTree = "<group>"; };
 		CBD6924623CCF19F003D9864 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
-		CBD6924923CCF9A3003D9864 /* GardenVCHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GardenVCHandler.swift; sourceTree = "<group>"; };
 		CBF3B0A723DA18BC0081FC2B /* PlantVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlantVC.swift; sourceTree = "<group>"; };
 		CBF3B0AB23DA28B60081FC2B /* PickerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerCell.swift; sourceTree = "<group>"; };
 		CBF3B0AD23DA28C10081FC2B /* DatePickerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerCell.swift; sourceTree = "<group>"; };
@@ -182,7 +180,6 @@
 				CB3F8C3123DD0B4A002C281D /* PlantVCCollectionHandler.swift */,
 				CB3F8C2F23DCE64B002C281D /* PlantImageViewCollectionHandler.swift */,
 				CBCDB28123DC9EFE00896040 /* PlantTasksViewColllectionHandler.swift */,
-				CBD6924923CCF9A3003D9864 /* GardenVCHandler.swift */,
 			);
 			path = Delegates;
 			sourceTree = "<group>";
@@ -306,7 +303,6 @@
 				CBD6924723CCF1A0003D9864 /* Extensions.swift in Sources */,
 				CB13A0DF23D5304100DD4778 /* LastActionInformation.swift in Sources */,
 				CB3F8C3223DD0B4A002C281D /* PlantVCCollectionHandler.swift in Sources */,
-				CBD6924A23CCF9A3003D9864 /* GardenVCHandler.swift in Sources */,
 				CB0E0E6F2284BB1900AC6566 /* AppDelegate.swift in Sources */,
 				CBCDB27E23DC99D700896040 /* PlantImageView.swift in Sources */,
 				CBF3B0AE23DA28C10081FC2B /* DatePickerCell.swift in Sources */,

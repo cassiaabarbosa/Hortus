@@ -65,7 +65,7 @@ UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, PlantTasksViewDe
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
         //tamanho das células da Task
-        let size = CGSize(width: UIScreen.main.bounds.width * 0.8, height: UIScreen.main.bounds.height * 0.3)
+        let size = CGSize(width: UIScreen.main.bounds.width * 0.5, height: UIScreen.main.bounds.height * 0.1)
 
         return size
     }

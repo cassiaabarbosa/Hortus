@@ -12,7 +12,7 @@ class PlantVCCollectionHandler: NSObject, PlantVCDelegate {
     
     var parentVC: PlantVC?
     let taskCollectionCellId: String = "TaskCollectionCellId"
-    var plantNames: [String] = [] //nomes para estarem na navigation
+    var plantNames: [String] = ["cassia"] //nomes para estarem na navigation
     
     
     

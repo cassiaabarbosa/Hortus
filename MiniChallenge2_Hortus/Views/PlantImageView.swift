@@ -19,26 +19,12 @@ protocol PlantImageViewDelegate: class {
 class PlantImageView: UIView {
     
     var plantImage: UIImageView!
-//    weak var plantVCDelegate: PlantVCDelegate!
-//    var plantImageHandler: PlantImageViewCollectionHandler?
-    
-    
-//    override init(frame: CGRect) {
-//        plantImage = UIImageView()
-//
-//        super.init(frame: frame)
-//    }
-    
-    
-//    override init(frame: CGRect){
-//        super.init(frame: frame)
-//         plantImage = UIImageView()
-//         self.plantImage.image = #imageLiteral(resourceName: "AddPhotoImage") //aqui precisa colocar a imagem do CoreData
-//
-//    }
+
     override init(frame: CGRect){
         super.init(frame: frame)
-        
+        //precisa por a imagem do CoreData
+        plantImage = UIImageView()
+        setPlantImage()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -48,13 +34,14 @@ class PlantImageView: UIView {
     
     
     func setPlantImage(){
+        
         plantImage.image = #imageLiteral(resourceName: "AddPhotoImage")
         self.addSubview(plantImage)
-        
-        plantImage.topAnchor.constraint(equalTo: self.topAnchor, constant: 0).isActive = true
-        plantImage.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 0).isActive = true
-        plantImage.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0).isActive = true
-        plantImage.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0).isActive = true 
+        self.plantImage.translatesAutoresizingMaskIntoConstraints = false
+        plantImage.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
+        plantImage.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
+        plantImage.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
+        plantImage.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
     }
     
 }

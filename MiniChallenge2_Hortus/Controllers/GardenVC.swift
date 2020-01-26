@@ -185,8 +185,8 @@ class GardenVC : UIViewController, UICollectionViewDataSource, UICollectionViewD
     
     @objc func showsCreatePlantVC(_ sender: Any) {
         let nextVC = PlantVC()
-//        let navController = UINavigationController(rootViewController: nextVC)
-        self.present(nextVC, animated: true, completion: nil)
+        let navController = UINavigationController(rootViewController: nextVC)
+        self.present(navController, animated: true, completion: nil)
     }
     
     

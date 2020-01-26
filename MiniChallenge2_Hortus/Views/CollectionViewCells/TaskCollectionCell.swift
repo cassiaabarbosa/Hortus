@@ -54,6 +54,15 @@ class TaskCollectionCell: UICollectionViewCell {
         contentView.addSubview(nextLabel)
         contentView.addSubview(actionButton)
         
+        actionImage.translatesAutoresizingMaskIntoConstraints = false
+        defaultLabel.translatesAutoresizingMaskIntoConstraints = false
+        actionLabel.translatesAutoresizingMaskIntoConstraints = false
+        lastImage.translatesAutoresizingMaskIntoConstraints = false
+        actionImage.translatesAutoresizingMaskIntoConstraints = false
+        lastLabel.translatesAutoresizingMaskIntoConstraints = false
+        nextImage.translatesAutoresizingMaskIntoConstraints = false
+        nextLabel.translatesAutoresizingMaskIntoConstraints = false
+        actionButton.translatesAutoresizingMaskIntoConstraints = false
         
         actionImage.topAnchor.constraint(equalTo: self.topAnchor, constant: 10).isActive = true
         actionImage.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 0).isActive = true
