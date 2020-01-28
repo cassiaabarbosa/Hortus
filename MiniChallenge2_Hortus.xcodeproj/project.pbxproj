@@ -26,6 +26,8 @@
 		CB3C948323DE04F10010D138 /* Plant+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3C948123DE04F10010D138 /* Plant+CoreDataProperties.swift */; };
 		CB3F8C3023DCE64B002C281D /* PlantImageViewCollectionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3F8C2F23DCE64B002C281D /* PlantImageViewCollectionHandler.swift */; };
 		CB3F8C3223DD0B4A002C281D /* PlantVCCollectionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3F8C3123DD0B4A002C281D /* PlantVCCollectionHandler.swift */; };
+		CB73054623E07E190010E3C8 /* CreatePlantView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB73054523E07E190010E3C8 /* CreatePlantView.swift */; };
+		CB73054823E07EDD0010E3C8 /* CreatePlantViewTableHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB73054723E07EDD0010E3C8 /* CreatePlantViewTableHandler.swift */; };
 		CB7E50BB23D23F3D002DCA45 /* PhotoCreatePlantCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7E50BA23D23F3D002DCA45 /* PhotoCreatePlantCell.swift */; };
 		CB7E50BE23D23F92002DCA45 /* PhotoInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7E50BD23D23F92002DCA45 /* PhotoInformation.swift */; };
 		CBC38B4723D9D99200BCE8D5 /* CustomHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC38B4623D9D99200BCE8D5 /* CustomHeader.swift */; };
@@ -65,6 +67,8 @@
 		CB3C948123DE04F10010D138 /* Plant+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Plant+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		CB3F8C2F23DCE64B002C281D /* PlantImageViewCollectionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlantImageViewCollectionHandler.swift; sourceTree = "<group>"; };
 		CB3F8C3123DD0B4A002C281D /* PlantVCCollectionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlantVCCollectionHandler.swift; sourceTree = "<group>"; };
+		CB73054523E07E190010E3C8 /* CreatePlantView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePlantView.swift; sourceTree = "<group>"; };
+		CB73054723E07EDD0010E3C8 /* CreatePlantViewTableHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePlantViewTableHandler.swift; sourceTree = "<group>"; };
 		CB7E50BA23D23F3D002DCA45 /* PhotoCreatePlantCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCreatePlantCell.swift; sourceTree = "<group>"; };
 		CB7E50BD23D23F92002DCA45 /* PhotoInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoInformation.swift; sourceTree = "<group>"; };
 		CBC38B4623D9D99200BCE8D5 /* CustomHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomHeader.swift; sourceTree = "<group>"; };
@@ -162,6 +166,7 @@
 				CBCDB27D23DC99D700896040 /* PlantImageView.swift */,
 				CBCDB27F23DC9C3D00896040 /* PlantTasksView.swift */,
 				CBD3DD7C23CD1BA4009BB2A1 /* CustomLabel.swift */,
+				CB73054523E07E190010E3C8 /* CreatePlantView.swift */,
 				CBF3B0A923DA276E0081FC2B /* TableViewCells */,
 				CBF3B0AA23DA27930081FC2B /* CollectionViewCells */,
 			);
@@ -188,6 +193,7 @@
 			children = (
 				CB3F8C3123DD0B4A002C281D /* PlantVCCollectionHandler.swift */,
 				CB3F8C2F23DCE64B002C281D /* PlantImageViewCollectionHandler.swift */,
+				CB73054723E07EDD0010E3C8 /* CreatePlantViewTableHandler.swift */,
 				CBCDB28123DC9EFE00896040 /* PlantTasksViewColllectionHandler.swift */,
 			);
 			path = Delegates;
@@ -306,6 +312,7 @@
 				CBF3B0B023DA28FA0081FC2B /* DatePickerInformation.swift in Sources */,
 				CB37880623D275B9001B2479 /* NameInformation.swift in Sources */,
 				CB3C948323DE04F10010D138 /* Plant+CoreDataProperties.swift in Sources */,
+				CB73054623E07E190010E3C8 /* CreatePlantView.swift in Sources */,
 				4FA265B2228C6B2C002D233D /* CircularProgressBar.swift in Sources */,
 				CB3C947B23DE02920010D138 /* HortusModel.xcdatamodeld in Sources */,
 				CBCDB28423DCA32700896040 /* TaskCollectionCell.swift in Sources */,
@@ -313,6 +320,7 @@
 				CB3F8C3023DCE64B002C281D /* PlantImageViewCollectionHandler.swift in Sources */,
 				CBD6924723CCF1A0003D9864 /* Extensions.swift in Sources */,
 				CB13A0DF23D5304100DD4778 /* LastActionInformation.swift in Sources */,
+				CB73054823E07EDD0010E3C8 /* CreatePlantViewTableHandler.swift in Sources */,
 				CB3C948223DE04F10010D138 /* Plant+CoreDataClass.swift in Sources */,
 				CB3F8C3223DD0B4A002C281D /* PlantVCCollectionHandler.swift in Sources */,
 				CB0E0E6F2284BB1900AC6566 /* AppDelegate.swift in Sources */,

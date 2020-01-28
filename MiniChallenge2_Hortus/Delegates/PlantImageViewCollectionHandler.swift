@@ -8,16 +8,16 @@
 
 import UIKit
 
-class PlantImageViewCollectionHandler: NSObject, PlantImageViewDelegate {
+class PlantImageViewCollectionHandler: NSObject {
     
     var plantImages: [String] = [] //colocar aqui o nome das imagens das plantas do coreData
     
     var parentVC: PlantImageView?
     
     
-    func setImage(name: String) {
-        parentVC?.plantImage.image = UIImage(named: name)
-    }
+//    func setImage(name: String) {
+//        parentVC?.plantImage.image = UIImage(named: name)
+//    }
     
     
 }

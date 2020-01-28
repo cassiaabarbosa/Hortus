@@ -8,22 +8,12 @@
 
 import UIKit
 
-class PlantVCCollectionHandler: NSObject, PlantVCDelegate {
+class PlantVCCollectionHandler: NSObject{
     
     var parentVC: PlantVC?
     let taskCollectionCellId: String = "TaskCollectionCellId"
     var plantNames: [String] = ["cassia"] //nomes para estarem na navigation
     
-    
-    
-    
-func taskSelected(value: Int) {
-}
 
-func didSelect(value: Int) {
-}
-
-func delete(uuid: UUID) {
-}
 
 }

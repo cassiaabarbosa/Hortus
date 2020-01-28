@@ -10,18 +10,16 @@ import Foundation
 import UIKit
 import CoreData
 
-protocol PlantTasksViewDelegate: class {
-    func taskSelected(value: Int)
-    func didSelect(value: Int)
-}
+//protocol PlantTasksViewDelegate: class {
+//    func taskSelected(value: Int)
+//    func didSelect(value: Int)
+//}
 
-@IBDesignable
 class PlantTasksView: UIView {
     
     var plantTasksCollectionView: UICollectionView!
-    weak var plantVCDelegate: PlantVCDelegate!
     var plantTasksCollectionHandler: PlantTasksViewCollectionHandler?
-    var plantTaskCollectionCellId: String = "PlantTaskCollectionCellId"
+    var plantTaskCollectionCellId: String = "TaskCellId"
     
     
     
@@ -30,6 +28,7 @@ class PlantTasksView: UIView {
         plantTasksCollectionHandler = PlantTasksViewCollectionHandler()
         plantTasksCollectionHandler?.parentVC = self
         
+        self.backgroundColor = .none
         setPlantTask()
         
         plantTasksCollectionView.delegate = plantTasksCollectionHandler
@@ -48,7 +47,8 @@ class PlantTasksView: UIView {
     let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
         plantTasksCollectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        plantTasksCollectionView.backgroundColor = .red
+        
+        plantTasksCollectionView.backgroundColor = .none
         plantTasksCollectionView.register(TaskCollectionCell.self, forCellWithReuseIdentifier: plantTaskCollectionCellId)
         
         self.addSubview(plantTasksCollectionView)

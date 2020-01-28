@@ -10,32 +10,32 @@ import Foundation
 import UIKit
 import CoreData
 
-protocol PlantImageViewDelegate: class {
-    func setImage(name: String)
-}
+//protocol PlantImageViewDelegate: class {
+//    func setImage(name: String)
+//}
 
 
-@IBDesignable
 class PlantImageView: UIView {
     
-    var plantImage: UIImageView!
+    var plantImage: UIImageView
 
     override init(frame: CGRect){
+        self.plantImage = UIImageView()
         super.init(frame: frame)
         //precisa por a imagem do CoreData
-        plantImage = UIImageView()
         setPlantImage()
+        self.backgroundColor = .red
     }
     
     required init?(coder aDecoder: NSCoder) {
-       super.init(coder: aDecoder)
-       
+        self.plantImage = UIImageView()
+        super.init(coder: aDecoder)
+        
     }
     
     
-    func setPlantImage(){
-        
-        plantImage.image = #imageLiteral(resourceName: "AddPhotoImage")
+    func setPlantImage() {
+//        plantImage.image = #imageLiteral(resourceName: "AddPhotoImage")
         self.addSubview(plantImage)
         self.plantImage.translatesAutoresizingMaskIntoConstraints = false
         plantImage.topAnchor.constraint(equalTo: self.topAnchor).isActive = true

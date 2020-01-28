@@ -14,8 +14,8 @@ class GardenVC : UIViewController, UICollectionViewDataSource, UICollectionViewD
     
     
     var context : NSManagedObjectContext?
-    //var plant : Plant?
-    //var plantsCollection = [Plant]()
+    var plant : Plant?
+    var plantsCollection = [Plant]()
     var collectionview: UICollectionView!
     var cellId:String = "cellId"
     var emptyLabel = CustomLabel()
@@ -43,6 +43,12 @@ class GardenVC : UIViewController, UICollectionViewDataSource, UICollectionViewD
         return cell
     }
     
+    
+//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+//        let plantVC = PlantVC(plant: plantsCollection[indexPath.row])
+//        navigationController?.pushViewController(plantVC, animated: true)
+//        
+//    }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         

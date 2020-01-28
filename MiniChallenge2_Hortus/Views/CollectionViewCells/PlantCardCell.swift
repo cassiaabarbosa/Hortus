@@ -38,6 +38,7 @@ class PlantCardCell: UICollectionViewCell {
     let plantImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "hotencia")
+        imageView.contentMode = .scaleAspectFill
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.layer.cornerRadius = 20
         return imageView

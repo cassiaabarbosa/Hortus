@@ -12,39 +12,46 @@ import CoreData
 import Photos
 
 
-protocol PlantVCDelegate: class {
-    func taskSelected(value: Int)
-    func didSelect(value: Int)
-    func delete(uuid: UUID) //funcão para apagar a planta 
-}
-
-
 class PlantVC: UIViewController {
     
-    var plantImageView: PlantImageView!
-    var plantTasksView: PlantTasksView!
+    var plantImageView = PlantImageView(frame: .zero)
+    var plantTasksView =  PlantTasksView(frame: .zero)
     var collectionViewHandler: PlantVCCollectionHandler!
+    var plant = Plant()
     
-    //precisa colocar uma variável para colocar o nome da planta direto na navigation 
+    required init() {
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        
         setPlantImageView()
         setPlantTasksView()
-        self.view.backgroundColor = .cyan
+        self.view.backgroundColor = .white
+        
+//        self.title = plant.plantName
+        navigationController?.navigationBar.barTintColor = UIColor.App.navigation
+        navigationController?.navigationBar.tintColor = UIColor.App.navigationTitle
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.App.navigationTitle]
+        navigationItem.setRightBarButton(UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(deletePlant)), animated: true)
+        navigationItem.rightBarButtonItem?.tintColor = UIColor.App.delete
         
     }
     
     
+    
     func setPlantImageView() {
         
-        plantImageView = PlantImageView(frame: .zero)
         self.view.addSubview(plantImageView)
         
         plantImageView.translatesAutoresizingMaskIntoConstraints = false
+//        plantImageView.plantImage.image = loadImageFromDiskWith(fileName: plant.plantImage)
         
         plantImageView.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
         plantImageView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
@@ -53,10 +60,12 @@ class PlantVC: UIViewController {
     }
     
     
+    
     func setPlantTasksView() {
         
-        plantTasksView = PlantTasksView(frame: .zero)
-        plantTasksView.plantVCDelegate = collectionViewHandler
+//        plantTasksView = PlantTasksView(frame: .zero)
+        
+//        plantTasksView.plantVCDelegate = collectionViewHandler
         
         self.view.addSubview(plantTasksView)
         
@@ -64,6 +73,33 @@ class PlantVC: UIViewController {
         plantTasksView.leftAnchor.constraint(equalTo:self.view.leftAnchor).isActive = true
         plantTasksView.rightAnchor.constraint(equalTo:self.view.rightAnchor).isActive = true
         plantTasksView.bottomAnchor.constraint(equalTo:self.view.bottomAnchor).isActive = true
-        plantTasksView.topAnchor.constraint(equalTo: plantImageView.bottomAnchor, constant: 20).isActive = true 
+        plantTasksView.topAnchor.constraint(equalTo: plantImageView.bottomAnchor, constant: -20).isActive = true 
     }
+    
+    
+    
+    @objc func  deletePlant() {
+//        tem que deletar a planta
+    }
+    
+    
+    func loadImageFromDiskWith(fileName: String?) -> UIImage? {
+        
+        let documentDirectory = FileManager.SearchPathDirectory.documentDirectory
+        
+        let userDomainMask = FileManager.SearchPathDomainMask.userDomainMask
+        let paths = NSSearchPathForDirectoriesInDomains(documentDirectory, userDomainMask, true)
+        
+        if let dirPath = paths.first {
+            if let fileName = fileName {
+                let imageUrl = URL(fileURLWithPath: dirPath).appendingPathComponent(fileName)
+                let image = UIImage(contentsOfFile: imageUrl.path)
+                return image
+            }
+        }
+        
+        return nil
+    }
+
+    
 }
