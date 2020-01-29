@@ -14,8 +14,7 @@ class CustomHeader: UITableViewHeaderFooterView {
     let image = UIImageView()
     let title = UILabel()
     
-    let titleForSection: [String] = [" ","Floração", "Colheita","Exposição Solar", "Fertilizantes", "Rega", "Poda", "Pesticidas"]
-    let imageForSection: [UIImage] = [#imageLiteral(resourceName: "AddPhotoButton"), #imageLiteral(resourceName: "Flower"), #imageLiteral(resourceName: "Harvest"), #imageLiteral(resourceName: "Sun"), #imageLiteral(resourceName: "Booster"), #imageLiteral(resourceName: "Drop"), #imageLiteral(resourceName: "Scisor"), #imageLiteral(resourceName: "Pesticide")]
+    
     
      override init(reuseIdentifier: String?) {
             super.init(reuseIdentifier: reuseIdentifier)
@@ -45,10 +44,18 @@ class CustomHeader: UITableViewHeaderFooterView {
     }
     
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        
+    }
+    
+    func setHeaderImage(name: String) {
+        image.image = UIImage(named: name)
+    }
+    
+    func setHeaderLabel(text: String) {
+        title.text = text
     }
     
     
 }
-

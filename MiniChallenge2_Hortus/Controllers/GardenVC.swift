@@ -14,8 +14,8 @@ class GardenVC : UIViewController, UICollectionViewDataSource, UICollectionViewD
     
     
     var context : NSManagedObjectContext?
-    var plant : Plant?
-    var plantsCollection = [Plant]()
+//    var plant : Plant?
+//    var plantsCollection = [Plant]()
     var collectionview: UICollectionView!
     var cellId:String = "cellId"
     var emptyLabel = CustomLabel()
@@ -190,7 +190,7 @@ class GardenVC : UIViewController, UICollectionViewDataSource, UICollectionViewD
     
     
     @objc func showsCreatePlantVC(_ sender: Any) {
-        let nextVC = PlantVC()
+        let nextVC = CreatePlantVC()
         let navController = UINavigationController(rootViewController: nextVC)
         self.present(navController, animated: true, completion: nil)
     }

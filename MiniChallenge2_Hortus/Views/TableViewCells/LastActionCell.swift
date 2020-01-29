@@ -10,16 +10,8 @@ import UIKit
 
 class LastActionCell: UITableViewCell {
     
-    var lastActionInformation: LastActionInformation? {
-        didSet {
-            lastActionLabel.text = lastActionInformation?.lastActionLabel
-            
-        }
-    }
     
-    
-    
-    public var lastActionLabel: UILabel = {
+    let lastActionLabel: UILabel = {
         let lastActionLabel = UILabel()
         lastActionLabel.textColor = .black
         lastActionLabel.font = UIFont.systemFont(ofSize: 17)
@@ -29,15 +21,32 @@ class LastActionCell: UITableViewCell {
     }()
     
     
+    let lastAction: UILabel = {
+        let lastAction = UILabel()
+        lastAction.textColor = .black
+        lastAction.font = UIFont.systemFont(ofSize: 17)
+        lastAction.textAlignment = .left
+        lastAction.numberOfLines = 0
+        return lastAction
+    }()
+    
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
     super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        addSubview(lastActionLabel)
-
-        lastActionLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: 0).isActive = true
-       lastActionLabel.anchor(top: topAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 10, paddingBottom: 0, paddingRight: 0, width: 0, height: 0, enableInsets: false)
+        self.addSubview(lastActionLabel)
+        self.addSubview(lastAction)
         
+            lastActionLabel.translatesAutoresizingMaskIntoConstraints = false
+            lastAction.translatesAutoresizingMaskIntoConstraints = false
+            
+            lastActionLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: 0).isActive = true
+            lastActionLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10).isActive = true
+            lastActionLabel.widthAnchor.constraint(equalToConstant: 175).isActive = true
+            
+            lastAction.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: 0).isActive = true
+            lastAction.leadingAnchor.constraint(equalTo: lastActionLabel.trailingAnchor, constant: 10).isActive = true
+            lastAction.widthAnchor.constraint(equalToConstant: 175).isActive = true
         self.separatorInset = .zero
         self.selectionStyle = .default
         
@@ -47,12 +56,15 @@ class LastActionCell: UITableViewCell {
     }
     
     
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    func setDefaultLabel(text: String) {
+        lastActionLabel.text = text
     }
     
     
+  required init?(coder aDecoder: NSCoder) {
+    super.init(coder: aDecoder)
+    
+    }
     
     func currentDate(date: Date) {
 //        lastAction.text = date.convertToString(dateformat: .dateWithTime)
@@ -87,4 +99,3 @@ class LastActionCell: UITableViewCell {
 
     
 }
-

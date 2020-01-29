@@ -10,7 +10,7 @@ import UIKit
 
 class TaskCollectionCell: UICollectionViewCell {
     
-    var actionImage: UIImageView!
+    public var actionImage: UIImageView!
     var defaultLabel: UILabel!
     var actionLabel: UILabel!
     var lastImage: UIImageView!

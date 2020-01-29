@@ -12,7 +12,7 @@ class PlantTasksViewCollectionHandler: NSObject, UICollectionViewDelegate,
 UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     
-    var actionImages: [String] = ["BlackFlower", "BlackHarvest", "BlackSun", "BlackBooster", "BlackDrop", "BlackScisor", "BlackPesticide"]
+    var actionImages: [String] = ["BlackFlower", "BlackHarvest", "BlackSun", "BlackBooster", "BlackDrop", "BlackScissor", "BlackPesticide"]
     
     var actionLabels: [String] = ["30 semanas","30 semanas","30 semanas","30 semanas","30 semanas","30 semanas","30 semanas"] //aqui serão as labels atualizadas do coreData
     

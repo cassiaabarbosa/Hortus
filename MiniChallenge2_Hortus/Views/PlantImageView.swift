@@ -10,16 +10,13 @@ import Foundation
 import UIKit
 import CoreData
 
-//protocol PlantImageViewDelegate: class {
-//    func setImage(name: String)
-//}
-
 
 class PlantImageView: UIView {
     
     var plantImage: UIImageView
 
     override init(frame: CGRect){
+        
         self.plantImage = UIImageView()
         super.init(frame: frame)
         //precisa por a imagem do CoreData

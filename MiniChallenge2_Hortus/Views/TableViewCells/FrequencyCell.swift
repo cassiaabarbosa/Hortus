@@ -16,20 +16,10 @@
 
 import UIKit
 
-
 class FrequencyCell: UITableViewCell {
     
-   
-    var frequencyInformation: FrequencyInformation? {
-        didSet {
-            frequencyLabel.text = frequencyInformation?.frequencyLabel
-        }
-        
-    }
     
-    
-    
-    public var frequencyLabel: UILabel = {
+    var frequencyLabel: UILabel = {
         let frequencyLabel = UILabel()
         frequencyLabel.textColor = .black
         frequencyLabel.font = UIFont.systemFont(ofSize: 17)
@@ -38,19 +28,41 @@ class FrequencyCell: UITableViewCell {
         return frequencyLabel
     }()
     
+    var frequency: UILabel = {
+        let frequency = UILabel()
+        frequency.textColor = .black
+        frequency.font = UIFont.systemFont(ofSize: 17)
+        frequency.textAlignment = .left
+        frequency.numberOfLines = 0
+        return frequency
+    }()
+    
     
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
     super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        addSubview(frequencyLabel)
+        contentView.addSubview(frequencyLabel)
+        contentView.addSubview(frequency)
     
+        frequencyLabel.translatesAutoresizingMaskIntoConstraints = false
+        frequency.translatesAutoresizingMaskIntoConstraints = false
+        
         frequencyLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: 0).isActive = true
-        frequencyLabel.anchor(top: topAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 10, paddingBottom: 0, paddingRight: 0, width: 0, height: 0, enableInsets: false)
+        frequencyLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10).isActive = true
+        frequencyLabel.widthAnchor.constraint(equalToConstant: 175).isActive = true
+        
+        frequency.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: 0).isActive = true
+        frequency.leadingAnchor.constraint(equalTo: frequencyLabel.trailingAnchor, constant: 10).isActive = true
+        frequency.widthAnchor.constraint(equalToConstant: 175).isActive = true
         
         self.separatorInset = .zero
         self.selectionStyle = .default
         
+    }
+    
+    func setDefaultLabel(text: String) {
+        frequencyLabel.text = text
     }
     
     
@@ -62,9 +74,7 @@ class FrequencyCell: UITableViewCell {
 
     
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-        
+    required init?(coder aDecoder: NSCoder) {
+    super.init(coder: aDecoder)
     }
-    
 }
