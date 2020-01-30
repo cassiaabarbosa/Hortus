@@ -32,6 +32,7 @@ class CreatePlantVC : UIViewController, UIImagePickerControllerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        table.parentVC = self
         if #available(iOS 13.0, *) {
             overrideUserInterfaceStyle = .light
         } else {
@@ -125,5 +126,7 @@ class CreatePlantVC : UIViewController, UIImagePickerControllerDelegate {
             print("error saving file with error", error)
         }
     }
+    
+    
 }
 

@@ -8,7 +8,7 @@
 //
 import UIKit
 
-class CreatePlantViewTableHandler: NSObject, UITableViewDelegate, UITableViewDataSource {
+class CreatePlantViewTableHandler: NSObject, UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     
     let nameCellId: String = "nameCellId"
@@ -75,7 +75,6 @@ class CreatePlantViewTableHandler: NSObject, UITableViewDelegate, UITableViewDat
     let pesticidePicker: PickerCell = PickerCell()
     let pesticideDatePicker: DatePickerCell = DatePickerCell()
     
-    var pickerAddPhotoButton = UIImagePickerController()
     
     override init() {
         
@@ -86,7 +85,8 @@ class CreatePlantViewTableHandler: NSObject, UITableViewDelegate, UITableViewDat
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         if indexPath.section == 0 && indexPath.row == 0{
-            
+            guard let vcontroller = self.parentVC?.parentVC else {return}
+            alert(vc: vcontroller)
         }
         if indexPath.section == 1 && indexPath.row == 0 {
             if floweringDatePickerVisible == true {
@@ -1196,4 +1196,29 @@ class CreatePlantViewTableHandler: NSObject, UITableViewDelegate, UITableViewDat
         parentVC?.table.endUpdates()
     }
     
+    
+    func alert(vc: UIViewController) {
+        var pickerAddPhotoButton = UIImagePickerController()
+        let alert = UIAlertController(title: "Adicionar foto da Planta", message: nil, preferredStyle: .alert)
+        
+        alert.addAction(UIAlertAction(title: "Câmera", style: .default, handler: { (action) in
+            if UIImagePickerController.isSourceTypeAvailable(.camera) {
+                pickerAddPhotoButton.delegate = self
+                pickerAddPhotoButton.sourceType = .camera
+                pickerAddPhotoButton.allowsEditing = false
+                vc.present(pickerAddPhotoButton, animated: true, completion: nil)
+                
+            }}))
+        
+        alert.addAction(UIAlertAction(title: "Galeria", style: UIAlertAction.Style.default, handler: { (action) in
+            if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
+                pickerAddPhotoButton.delegate = self
+                pickerAddPhotoButton.sourceType = .photoLibrary
+                pickerAddPhotoButton.allowsEditing = false
+                vc.present(pickerAddPhotoButton, animated: true, completion: nil)
+                
+            }}))
+        
+        vc.present(alert, animated: true, completion: nil)
+    }
 }
