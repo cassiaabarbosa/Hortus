@@ -55,5 +55,4 @@ extension Date {
 
 
 //precisa pegar as referencias do CoreData
-//precisa  fazer o imagepicker
 //precisa atualizar as labels 

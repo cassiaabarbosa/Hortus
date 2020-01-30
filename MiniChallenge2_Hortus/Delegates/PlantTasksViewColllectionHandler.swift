@@ -31,14 +31,6 @@ UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
         
     }
     
-    func taskSelected(value: Int) {
-//        parentVC?.plantVCDelegate.taskSelected(value: value)
-    }
-    
-    func didSelect(value: Int) {
-//        parentVC?.plantVCDelegate?.didSelect(value: value)
-    }
-    
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 7
@@ -53,9 +45,6 @@ UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
         if let tasksCollectionCell = collectionView.cellForItem(at: indexPath) as? TaskCollectionCell {
             tasksCollectionCell.setActionButtonBorder(color: UIColor.App.borderColor.cgColor)
             tasksCollectionCell.setActionButtonSizeShadow()
-
-//            tasksCollectionCell.actionButton.widthAnchor.constraint(equalToConstant: 300).isActive = true
-//            tasksCollectionCell.actionButton.heightAnchor.constraint(equalToConstant: 300).isActive = true
             
         }
 //        TODO: começar a primeira célula já selecionada 

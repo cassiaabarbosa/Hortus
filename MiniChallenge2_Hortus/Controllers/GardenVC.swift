@@ -17,6 +17,7 @@ class GardenVC : UIViewController, UITextViewDelegate {
     var plantCardView = PlantCardView(frame: .zero)
     var emptyLabel = UILabel()
     
+    
     required init() {
         super.init(nibName: nil, bundle: nil)
     }
@@ -105,16 +106,9 @@ class GardenVC : UIViewController, UITextViewDelegate {
         
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        plantCardView.plantCardViewCollectionHandler.reloadPlants()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        plantCardView.plantCardViewCollectionHandler.reloadPlants()
-    }
 
     func setPlantCardView() {
-        
+        plantCardView.parentVC = self
         self.view.addSubview(plantCardView)
         plantCardView.translatesAutoresizingMaskIntoConstraints = false
         let margins = view.safeAreaLayoutGuide

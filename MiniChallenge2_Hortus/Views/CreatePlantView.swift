@@ -69,31 +69,31 @@ class CreatePlantView: UIView {
     func savePlant() {
         
         let floweringInterval: String = String( self.createPlantViewTableHandler.floweringPicker.picker.selectedRow(inComponent: 0))
-        let floweringPeriod: Int32 = Int32(self.createPlantViewTableHandler.floweringPicker.picker.selectedRow(inComponent: 1))
+        let floweringPeriod: Int32 = Int32(self.createPlantViewTableHandler.floweringPicker.picker.selectedRow(inComponent: 1) + 1)
         let floweringLastDate: Date = self.createPlantViewTableHandler.floweringDatePicker.datePicker.date
 
         let harvestingInterval: String = String(self.createPlantViewTableHandler.harvestingPicker.picker.selectedRow(inComponent: 0))
-        let harvestingPeriod: Int32 = Int32(self.createPlantViewTableHandler.harvestingPicker.picker.selectedRow(inComponent: 1))
+        let harvestingPeriod: Int32 = Int32(self.createPlantViewTableHandler.harvestingPicker.picker.selectedRow(inComponent: 1) + 1)
         let harvestingLastDate: Date = self.createPlantViewTableHandler.harvestingDatePicker.datePicker.date
         
         let sunExposureInterval: String = String(self.createPlantViewTableHandler.sunExposurePicker.picker.selectedRow(inComponent: 0))
-        let sunExposurePeriod: Int32 = Int32(self.createPlantViewTableHandler.sunExposurePicker.picker.selectedRow(inComponent: 1))
+        let sunExposurePeriod: Int32 = Int32(self.createPlantViewTableHandler.sunExposurePicker.picker.selectedRow(inComponent: 1) + 1)
         let sunExposureLastDate: Date = self.createPlantViewTableHandler.sunExposureDatePicker.datePicker.date
         
         let boosterInterval: String = String(self.createPlantViewTableHandler.boosterPicker.picker.selectedRow(inComponent: 0))
-        let boosterPeriod: Int32 = Int32(self.createPlantViewTableHandler.boosterPicker.picker.selectedRow(inComponent: 1))
+        let boosterPeriod: Int32 = Int32(self.createPlantViewTableHandler.boosterPicker.picker.selectedRow(inComponent: 1) + 1)
         let boosterLastDate: Date = self.createPlantViewTableHandler.boosterDatePicker.datePicker.date
         
         let wateringInterval: String = String(self.createPlantViewTableHandler.wateringPicker.picker.selectedRow(inComponent: 0))
-        let wateringPeriod: Int32 = Int32(self.createPlantViewTableHandler.wateringPicker.picker.selectedRow(inComponent: 1))
+        let wateringPeriod: Int32 = Int32(self.createPlantViewTableHandler.wateringPicker.picker.selectedRow(inComponent: 1) + 1)
         let wateringLastDate: Date = self.createPlantViewTableHandler.wateringDatePicker.datePicker.date
         
         let pruningInterval: String = String(self.createPlantViewTableHandler.pruningPicker.picker.selectedRow(inComponent: 0))
-        let pruningPeriod: Int32 = Int32(self.createPlantViewTableHandler.pruningPicker.picker.selectedRow(inComponent: 1))
+        let pruningPeriod: Int32 = Int32(self.createPlantViewTableHandler.pruningPicker.picker.selectedRow(inComponent: 1) + 1)
         let pruningLastDate: Date = self.createPlantViewTableHandler.pruningDatePicker.datePicker.date
         
         let pesticideInterval: String = String(self.createPlantViewTableHandler.pesticidePicker.picker.selectedRow(inComponent: 0))
-        let pesticidePeriod: Int32 = Int32(self.createPlantViewTableHandler.pesticidePicker.picker.selectedRow(inComponent: 1))
+        let pesticidePeriod: Int32 = Int32(self.createPlantViewTableHandler.pesticidePicker.picker.selectedRow(inComponent: 1) + 1)
         let pesticideLastDate: Date = self.createPlantViewTableHandler.pesticideDatePicker.datePicker.date
        
         let plantName: String = String(self.createPlantViewTableHandler.plantName.name.text ?? "Planta")

@@ -50,7 +50,6 @@ class CreatePlantViewTableHandler: NSObject, UITableViewDelegate, UITableViewDat
     
     let imageForSection: [String] = ["","BlackFlower", "BlackHarvest", "BlackSun", "BlackBooster", "BlackDrop", "BlackScissor", "BlackPesticide"]
     
-    //Campos do formulário
     let plantName: NameCreatePlantCell = NameCreatePlantCell()
     let plantPhoto: PhotoCreatePlantCell = PhotoCreatePlantCell()
     
@@ -975,7 +974,7 @@ class CreatePlantViewTableHandler: NSObject, UITableViewDelegate, UITableViewDat
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 0{
             if indexPath.row == 0 {
-                return 400
+                return 500
             }else {
                 return 50
             }
@@ -1198,7 +1197,7 @@ class CreatePlantViewTableHandler: NSObject, UITableViewDelegate, UITableViewDat
     
     
     func alert(vc: UIViewController) {
-        var pickerAddPhotoButton = UIImagePickerController()
+        let pickerAddPhotoButton = UIImagePickerController()
         let alert = UIAlertController(title: "Adicionar foto da Planta", message: nil, preferredStyle: .alert)
         
         alert.addAction(UIAlertAction(title: "Câmera", style: .default, handler: { (action) in
@@ -1221,4 +1220,17 @@ class CreatePlantViewTableHandler: NSObject, UITableViewDelegate, UITableViewDat
         
         vc.present(alert, animated: true, completion: nil)
     }
+    
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        picker.dismiss(animated: true, completion: nil)
+        guard let image = info[.originalImage] as? UIImage else {
+            return print("Error")
+        }
+        
+        guard let cell = parentVC?.table.cellForRow(at: IndexPath(row: 0, section: 0)) as? PhotoCreatePlantCell else { return }
+        
+        cell.photo.image = image
+    }
+    
 }

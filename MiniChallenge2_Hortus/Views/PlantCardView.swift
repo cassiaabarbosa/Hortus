@@ -17,6 +17,7 @@ class PlantCardView: UIView {
     let plantCardCellId: String = "plantCardCellId"
     var context : NSManagedObjectContext?
     var plantCollection = [Plant]()
+    var parentVC: GardenVC?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -69,18 +70,6 @@ class PlantCardView: UIView {
         
         return nil
     }
-    
-//    
-//    func createPlant() {
-//        
-//    }
-    
-    
-//    func makeCell(cell: PlantCardCell, indexPath:IndexPath) -> PlantCardCell {
-////        cell.plant = plantCollection[indexPath.row]
-////        cell.plantImageView
-//    
-//    }
     
     
 }

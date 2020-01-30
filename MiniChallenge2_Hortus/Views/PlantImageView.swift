@@ -19,7 +19,6 @@ class PlantImageView: UIView {
         
         self.plantImage = UIImageView()
         super.init(frame: frame)
-        //precisa por a imagem do CoreData
         setPlantImage()
         self.backgroundColor = .red
     }
@@ -32,7 +31,6 @@ class PlantImageView: UIView {
     
     
     func setPlantImage() {
-//        plantImage.image = #imageLiteral(resourceName: "AddPhotoImage")
         self.addSubview(plantImage)
         self.plantImage.translatesAutoresizingMaskIntoConstraints = false
         plantImage.topAnchor.constraint(equalTo: self.topAnchor).isActive = true

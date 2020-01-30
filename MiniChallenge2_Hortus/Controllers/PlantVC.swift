@@ -17,7 +17,7 @@ class PlantVC: UIViewController {
     var plantImageView = PlantImageView(frame: .zero)
     var plantTasksView =  PlantTasksView(frame: .zero)
     var parentVC = GardenVC()
-//    var plant:Plant?
+    var plant: Plant?
     
     required init() {
         super.init(nibName: nil, bundle: nil)
@@ -35,7 +35,7 @@ class PlantVC: UIViewController {
         setPlantTasksView()
         self.view.backgroundColor = .white
         
-//        self.title = plant.plantName
+        self.title = plant?.plantName
         navigationController?.navigationBar.barTintColor = UIColor.App.navigation
         navigationController?.navigationBar.tintColor = UIColor.App.navigationTitle
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.App.navigationTitle]
@@ -51,7 +51,7 @@ class PlantVC: UIViewController {
         self.view.addSubview(plantImageView)
         
         plantImageView.translatesAutoresizingMaskIntoConstraints = false
-//        plantImageView.plantImage.image = loadImageFromDiskWith(fileName: plant.plantImage)
+        plantImageView.plantImage.image = loadImageFromDiskWith(fileName: plant?.plantImage ?? " ")
         
         plantImageView.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
         plantImageView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
@@ -98,5 +98,6 @@ class PlantVC: UIViewController {
         return nil
     }
 
+    
     
 }

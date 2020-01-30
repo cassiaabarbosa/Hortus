@@ -51,8 +51,9 @@ class PlantCardViewCollectionHandler: NSObject, UICollectionViewDelegate, UIColl
             let plant = plants[indexPath.row]
             
             plantCardCell.namePlantLabel.text = plant.plantName
-//            plantCardCell.plantImageView.image()
-            // TODO - carregar os outros dados
+            plantCardCell.plantImageView.image = loadImageFromDiskWith(fileName: plant.plantImage ?? " ")
+            plantCardCell.plant = plant
+            
             
             return plantCardCell
         }
@@ -72,9 +73,15 @@ class PlantCardViewCollectionHandler: NSObject, UICollectionViewDelegate, UIColl
     
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        //obter a celula que foi selecionada
-        // pegar a planta que esta armazenada nela
-        // chamar a proxima view passando essa planta como parametro
+        
+        guard let cell = collectionView.cellForItem(at: indexPath) as? PlantCardCell else {return}
+        
+//        pegando o gardenVC
+        guard let vcontroller = self.parentVC?.parentVC else {return}
+        let plantVC = PlantVC()
+        plantVC.plant = cell.plant
+        vcontroller.present(plantVC, animated: true, completion: nil)
+        
     }
     
     
@@ -82,6 +89,21 @@ class PlantCardViewCollectionHandler: NSObject, UICollectionViewDelegate, UIColl
         return 20
     }
     
-    
+    func loadImageFromDiskWith(fileName: String) -> UIImage? {
+        
+        let documentDirectory = FileManager.SearchPathDirectory.documentDirectory
+        
+        let userDomainMask = FileManager.SearchPathDomainMask.userDomainMask
+        let paths = NSSearchPathForDirectoriesInDomains(documentDirectory, userDomainMask, true)
+        
+        if let dirPath = paths.first {
+            let imageUrl = URL(fileURLWithPath: dirPath).appendingPathComponent(fileName)
+            let image = UIImage(contentsOfFile: imageUrl.path)
+            return image
+            
+        }
+        
+        return nil
+    }
     
 }

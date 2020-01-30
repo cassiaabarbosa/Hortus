@@ -18,7 +18,6 @@ class PhotoCreatePlantCell: UITableViewCell, UIImagePickerControllerDelegate, UI
     }()
     
     
-    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
@@ -27,15 +26,14 @@ class PhotoCreatePlantCell: UITableViewCell, UIImagePickerControllerDelegate, UI
         contentView.addSubview(photo)
         
         photo.translatesAutoresizingMaskIntoConstraints = false
-        
-        photo.topAnchor.constraint(equalTo: self.topAnchor, constant: 0).isActive = true
-        photo.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 0).isActive = true
-        photo.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0).isActive = true
-        photo.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0).isActive = true
+        photo.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
+        photo.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
+        photo.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
+        photo.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
 
         
-        self.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: UIScreen.main.bounds.width)
-        self.selectionStyle = .none
+        self.separatorInset = .zero
+        self.selectionStyle = .default
         
     }
     
