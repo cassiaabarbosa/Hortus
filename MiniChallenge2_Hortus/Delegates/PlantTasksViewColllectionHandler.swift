@@ -11,6 +11,8 @@ import UIKit
 class PlantTasksViewCollectionHandler: NSObject, UICollectionViewDelegate,
 UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
+//    var plant = Plant()
+    
     
     var actionImages: [String] = ["BlackFlower", "BlackHarvest", "BlackSun", "BlackBooster", "BlackDrop", "BlackScissor", "BlackPesticide"]
     
@@ -20,7 +22,7 @@ UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     var nextLabels: [String] = ["00/00/00","00/00/00","00/00/00","00/00/00","00/00/00","00/00/00","00/00/00"] //aqui serão as labels atualizadas do coreData
     
-    var actionButtonImages: [String] = ["FloweringButton","HarvestingButton","SunExposureButton","BoosterButton","WateringButton","PruningButton"," PesticideButton"]
+    var actionButtonTexts: [String] = ["Florescer","Colher","Expor à luz","Fertilizar","Regar","Podar","Dedetizar"]
     
     var parentVC: PlantTasksView?
     var taskCellId: String = "TaskCellId"
@@ -49,7 +51,7 @@ UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
         collectionView.deselectItem(at: indexPath, animated: true)
         
         if let tasksCollectionCell = collectionView.cellForItem(at: indexPath) as? TaskCollectionCell {
-            tasksCollectionCell.setActionButtonImage(name: actionButtonImages[indexPath.row])
+            tasksCollectionCell.setActionButtonBorder(color: UIColor.App.borderColor.cgColor)
             tasksCollectionCell.setActionButtonSizeShadow()
 
 //            tasksCollectionCell.actionButton.widthAnchor.constraint(equalToConstant: 300).isActive = true
@@ -64,10 +66,11 @@ UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
         
         if let tasksCollectionCell = collectionView.dequeueReusableCell(withReuseIdentifier: taskCellId, for: indexPath) as? TaskCollectionCell {
             tasksCollectionCell.setActionImage(name: self.actionImages[indexPath.row])
-            tasksCollectionCell.setActionButtonImage(name: self.actionImages[indexPath.row])
+            tasksCollectionCell.setActionButtonText(text: actionButtonTexts[indexPath.row])
             tasksCollectionCell.setLastLabel(string: lastLabels[indexPath.row])
-            tasksCollectionCell.setNextLabel(string: nextLabels[indexPath.row])
+//            tasksCollectionCell.setNextLabel(string: plant.)
             tasksCollectionCell.setActionLabel(string: actionLabels[indexPath.row])
+            
             
             
             return tasksCollectionCell
@@ -87,6 +90,9 @@ UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
         return size
     }
     
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 20
+    }
     
     
 }

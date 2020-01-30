@@ -16,9 +16,7 @@ class DatePickerCell: UITableViewCell {
         datePicker.datePickerMode = .date
         return datePicker
     }()
-    
-    
-    
+     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         

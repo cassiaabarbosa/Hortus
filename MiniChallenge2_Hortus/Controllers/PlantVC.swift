@@ -16,8 +16,8 @@ class PlantVC: UIViewController {
     
     var plantImageView = PlantImageView(frame: .zero)
     var plantTasksView =  PlantTasksView(frame: .zero)
-//    var parentVC = GardenVC()
-//    var plant = Plant()
+    var parentVC = GardenVC()
+//    var plant:Plant?
     
     required init() {
         super.init(nibName: nil, bundle: nil)
@@ -40,7 +40,7 @@ class PlantVC: UIViewController {
         navigationController?.navigationBar.tintColor = UIColor.App.navigationTitle
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.App.navigationTitle]
         navigationItem.setRightBarButton(UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(deletePlant)), animated: true)
-        navigationItem.rightBarButtonItem?.tintColor = UIColor.App.delete
+        navigationItem.rightBarButtonItem?.tintColor = UIColor.App.navigationTitle
         
     }
     

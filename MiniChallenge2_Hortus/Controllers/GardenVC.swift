@@ -10,38 +10,25 @@ import Foundation
 import UIKit
 import CoreData
 
-class GardenVC : UIViewController, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UITextViewDelegate {
+class GardenVC : UIViewController, UITextViewDelegate {
     
     
     var context : NSManagedObjectContext?
-//    var plant : Plant?
-//    var plantsCollection = [Plant]()
-    var collectionview: UICollectionView!
-    var cellId:String = "cellId"
-    var emptyLabel = CustomLabel()
-    let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+    var plantCardView = PlantCardView(frame: .zero)
+    var emptyLabel = UILabel()
+    
+    required init() {
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
 //    let searchBar: UISearchBar = UISearchBar(frame: (CGRect(x: 0, y: 64, width:UIScreen.main.bounds.width, height: 100)))
 //    let searchController = UISearchController(searchResultsController: nil)
     
-    var plantName = UILabel()
-    var plantImage = UIImageView()
     
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
-        return 10
-    }
-    
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
-        let cell = collectionview.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! PlantCardCell
-        
-//        let plantCardCellInformation = PlantCardCellInformation(plantName: plantName, plantImage: plantImage)
-        
-//        cell.plantCardCellInformation? = plantCardCellInformation
-        return cell
-    }
     
     
 //    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -50,17 +37,10 @@ class GardenVC : UIViewController, UICollectionViewDataSource, UICollectionViewD
 //        
 //    }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        
-        return CGSize(width: view.frame.width, height: 20)
-    }
-    
-    
-    func collectionView(_ collectionView: UICollectionView, layout
-        collectionViewLayout: UICollectionViewLayout,
-                        minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 20.0
-    }
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+//
+//        return CGSize(width: view.frame.width, height: 20)
+//    }
     
     
 //    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
@@ -77,7 +57,8 @@ class GardenVC : UIViewController, UICollectionViewDataSource, UICollectionViewD
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        
+        self.plantCardView.plantCardCollectionView.reloadData()
+        print(HortusSingleton.shared.photo)
         if #available(iOS 13.0, *) {
             overrideUserInterfaceStyle = .light
         } else {
@@ -101,38 +82,49 @@ class GardenVC : UIViewController, UICollectionViewDataSource, UICollectionViewD
 //        searchController.searchBar.searchBarStyle = .prominent
 //        searchController.searchBar.sizeToFit()
 //        navigationItem.hidesSearchBarWhenScrolling = true
-//
-        definesPresentationContext = false
         
+        self.view.backgroundColor = .white
         
-        emptyLabel.center = self.view.center
-        
-        
-        //context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-        
-        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-        layout.sectionInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
-        layout.itemSize = CGSize(width: view.frame.width/2.2, height: 300)
-
-        collectionview = UICollectionView(frame: self.view.frame, collectionViewLayout: layout)
-        collectionview.dataSource = self
-        collectionview.delegate = self
-        collectionview.register(PlantCardCell.self, forCellWithReuseIdentifier: cellId)
-        collectionview.showsVerticalScrollIndicator = true
-        collectionview.backgroundColor = UIColor.white
-        
-        self.view.addSubview(collectionview)
+        setPlantCardView()
         self.view.addSubview(emptyLabel)
-        //self.view.addSubview(searchBar)
+            
+        emptyLabel.translatesAutoresizingMaskIntoConstraints = false
+        emptyLabel.centerYAnchor.constraint(equalTo: plantCardView.centerYAnchor).isActive = true
+        emptyLabel.centerXAnchor.constraint(equalTo: plantCardView.centerXAnchor).isActive = true
+        emptyLabel.widthAnchor.constraint(equalToConstant: 300).isActive = true
+        emptyLabel.adjustsFontForContentSizeCategory = true
+        emptyLabel.sizeToFit()
+        emptyLabel.numberOfLines = 0
+        emptyLabel.text = "Seu jardim está vazio. Clique na florzinha do canto direito superior para cadastrar uma planta."
+        emptyLabel.textAlignment = .center
+        emptyLabel.textColor = .lightGray
+        emptyLabel.font = UIFont.systemFont(ofSize: 17)
         
         addingEmptyLabel()
+        
+        
     }
-
     
     override func viewWillAppear(_ animated: Bool) {
-        
-        self.create_cells()
+        plantCardView.plantCardViewCollectionHandler.reloadPlants()
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        plantCardView.plantCardViewCollectionHandler.reloadPlants()
+    }
+
+    func setPlantCardView() {
+        
+        self.view.addSubview(plantCardView)
+        plantCardView.translatesAutoresizingMaskIntoConstraints = false
+        let margins = view.safeAreaLayoutGuide
+        plantCardView.topAnchor.constraint(equalToSystemSpacingBelow: margins.topAnchor, multiplier: 2.5).isActive = true
+        plantCardView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 20).isActive = true
+        plantCardView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -20).isActive = true
+        plantCardView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
+        
+    }
+    
     
 //    func scrollViewDidScroll(_ scrollView: UIScrollView) {
 //
@@ -161,66 +153,25 @@ class GardenVC : UIViewController, UICollectionViewDataSource, UICollectionViewD
 //    }
 
     
-    @objc func create_cells(){
-//        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Plant")
-//        request.returnsObjectsAsFaults = false
-//        if let context = context{
-//            do{
-//                let result = try context.fetch(request)
-//                plantsCollection = []
-//                for data in result as! [NSManagedObject]{
-//                    plantsCollection.append(data as! Plant)
-//                    print(data.value(forKey: "name") as! String)
-//                }
-//            }catch{
-//                fatalError("404 - Non Entity")
-//            }
-//        }
-    }
 
     
     func addingEmptyLabel() {
-        emptyLabel.isHidden = true
-//        if (plantsCollection.count != 0) {
-//            emptyLabel.isHidden = true
-//        }else {
-//            emptyLabel.isHidden = false
-//        }
+        if plantCardView.plantCardViewCollectionHandler.plants.count == 0 {
+            emptyLabel.isHidden = false
+        }else {
+            emptyLabel.isHidden = true
+        }
     }
     
     
     @objc func showsCreatePlantVC(_ sender: Any) {
         let nextVC = CreatePlantVC()
+        nextVC.onDoneBlock = {
+            self.plantCardView.plantCardViewCollectionHandler.reloadPlants()
+        }
         let navController = UINavigationController(rootViewController: nextVC)
         self.present(navController, animated: true, completion: nil)
     }
-    
-    
-//        func showSimpleAlert(cell:PlantCardCell) {
-    //        let alert = UIAlertController(title: "Apagar planta", message: "Você deseja mesmo apagar essa planta e todos seus dados?", preferredStyle: .actionSheet)
-    //
-    //
-    //        alert.addAction(UIAlertAction(title: "Apagar", style: .destructive, handler: { (action) in
-    //            self.plantsCollection.remove(at: cell.plantIndex!)
-    //            self.context?.delete(cell.plant!)
-    //            guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-    //            appDelegate.saveContext()
-    //
-    //        }))
-    //
-    //
-    //        alert.addAction(UIAlertAction(title: "Cancelar", style: UIAlertAction.Style.default, handler: { _ in }))
-    //        self.present(alert, animated: true, completion: nil)
-    //    }
-    //
-    //    @objc func longTap (_ sender: UILongPressGestureRecognizer) {
-    //        if let celula = sender.view as? PlantCardCell{
-    //            if sender.state == .began{
-    //                showSimpleAlert(cell: celula)
-    //            }
-    //        }
-    //
-    //    }
     
 }
 

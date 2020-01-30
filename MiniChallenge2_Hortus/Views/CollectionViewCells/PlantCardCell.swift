@@ -11,77 +11,78 @@ import CoreData
 
 class PlantCardCell: UICollectionViewCell {
     
-//    var plantCardCellInformation: PlantCardCellInformation? {
-//        
-//        didSet {
-//            namePlantLabel.text = plantCardCellInformation?.plantName.text
-//            
-//            plantImageView.image = plantCardCellInformation?.plantImage.image
-//        }
+    
+    var namePlantLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 17)
+        label.textColor = #colorLiteral(red: 0.5336075425, green: 0.7177075744, blue: 0.4416005611, alpha: 1)
+        label.text = "Hortência"
+        label.textAlignment = .center
+        label.backgroundColor = UIColor.white
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.layer.cornerRadius = 20
+        label.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner]
+        return label
+    }()
+    
+    
+    
+    let plantImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "hotencia")
+        imageView.contentMode = .scaleAspectFill
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.layer.cornerRadius = 20
+        return imageView
+    }()
+    
+    
+//    var plant = Plant()
+//    {
+////        didSet {
+////            self.namePlantLabel.text = self.plant?.plantName
+////            self.plantImageView.image = self.plant?.
+////            //configura o resto
+////        }
 //    }
-//    
-//    let namePlantLabel: UILabel = {
-//        let label = UILabel()
-//        label.font = UIFont.systemFont(ofSize: 17)
-//        label.textColor = UIColor.white
-//        label.text = "Hortência"
-//        label.textAlignment = .center
-//        label.backgroundColor = .darkGray
-//        label.translatesAutoresizingMaskIntoConstraints = true
-//        label.layer.cornerRadius = 20
-//        label.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner, .layerMaxXMinYCorner, .layerMinXMinYCorner]
-//        return label
-//    }()
-//    
-//    
-//    
-//    let plantImageView: UIImageView = {
-//        let imageView = UIImageView()
-//        imageView.image = UIImage(named: "hotencia")
-//        imageView.contentMode = .scaleAspectFill
-//        imageView.translatesAutoresizingMaskIntoConstraints = false
-//        imageView.layer.cornerRadius = 20
-//        return imageView
-//    }()
-//    
-//    
-//    
-//    override init(frame: CGRect) {
-//        super.init(frame: frame)
-//
-//        
-//        addSubview(plantImageView)
-//        addSubview(namePlantLabel)
-//        
-//        plantImageView.layer.masksToBounds = true
-//        namePlantLabel.layer.masksToBounds = true
-//        
-//        backgroundColor = .none
-//        self.layer.masksToBounds = false
-//        self.layer.shadowColor = UIColor.black.cgColor
-//        self.layer.shadowOffset = CGSize(width: 5, height: 5)
-//        self.layer.shadowRadius = 3.0
-//        self.layer.shadowOpacity = 1
-//        
-//        
-////        plantImageView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
-////        plantImageView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
-////        plantImageView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
-////        plantImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
-////        
-////        namePlantLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
-////        namePlantLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
-////        namePlantLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
-//////        namePlantLabel.heightAnchor.constraint(equalToConstant: 50).isActive = true
-//        
-//    }
-//    
-//    
-//    
-//    required init?(coder: NSCoder) {
-//        fatalError("init(coder:) has not been implemented")
-//    }
-    //    var plant:Plant?
+    
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+
+        
+        addSubview(plantImageView)
+        addSubview(namePlantLabel)
+        
+        plantImageView.layer.masksToBounds = true
+        namePlantLabel.layer.masksToBounds = true
+        
+        backgroundColor = .none
+        self.layer.masksToBounds = false
+        self.layer.shadowColor = UIColor.lightGray.cgColor
+        self.layer.shadowOffset = CGSize(width: 4, height: 4)
+        self.layer.shadowRadius = 3.0
+        self.layer.shadowOpacity = 1
+        
+        
+        plantImageView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
+        plantImageView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
+        plantImageView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
+        plantImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
+
+        namePlantLabel.bottomAnchor.constraint(equalTo: self.plantImageView.bottomAnchor).isActive = true
+        namePlantLabel.leadingAnchor.constraint(equalTo: self.plantImageView.leadingAnchor).isActive = true
+        namePlantLabel.trailingAnchor.constraint(equalTo: self.plantImageView.trailingAnchor).isActive = true
+        namePlantLabel.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        
+    }
+    
+    
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+//        var plant:Plant?
 //    var plantIndex:Int?
 //    var parentVC:GardenVC?
 //    var collectionView: UICollectionView?
@@ -100,7 +101,7 @@ class PlantCardCell: UICollectionViewCell {
 //
 //
 //    @IBOutlet weak var lastWater: UILabel!
-//
+
 //    @IBAction func waterPlant(_ sender: Any) {
 //        context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
 //        guard let plant = plant else { return }
@@ -132,8 +133,8 @@ class PlantCardCell: UICollectionViewCell {
 //        alert.addAction(UIAlertAction(title: "Cancelar", style: .destructive, handler: { _ in }))
 //        self.parentVC!.present(alert, animated: true, completion: nil)
 //    }
-//
-//
+
+
 //    @IBAction func deleteButton(_ sender: UIButton) {
 //        context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
 //        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
@@ -150,7 +151,7 @@ class PlantCardCell: UICollectionViewCell {
 //            let objectToDelete = test[0] as! NSManagedObject
 //            context?.delete(objectToDelete)
 //        }
-    //}
+//    }
     
     
 //    func createCell(plant:Plant) -> UICollectionViewCell{
@@ -158,6 +159,6 @@ class PlantCardCell: UICollectionViewCell {
 ////        wateringPeriod.text = String(plant.wateringPeriod) + " horas"
 ////        plantImage.image = plant.image?.image
 //        return self
-//        
+//
 //    }
 }

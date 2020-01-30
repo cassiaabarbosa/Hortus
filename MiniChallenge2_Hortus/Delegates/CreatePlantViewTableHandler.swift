@@ -19,6 +19,7 @@ class CreatePlantViewTableHandler: NSObject, UITableViewDelegate, UITableViewDat
     let customHeaderCellId: String = "customHeaderCellId"
     let pickerCellId: String = "pickerCellId"
     let datePickerCellId: String = "datePickerCellId"
+    var controllerVC: GardenVC?
     var parentVC: CreatePlantView?
     
     var floweringPickerVisible = false
@@ -49,7 +50,32 @@ class CreatePlantViewTableHandler: NSObject, UITableViewDelegate, UITableViewDat
     
     let imageForSection: [String] = ["","BlackFlower", "BlackHarvest", "BlackSun", "BlackBooster", "BlackDrop", "BlackScissor", "BlackPesticide"]
     
+    //Campos do formulário
+    let plantName: NameCreatePlantCell = NameCreatePlantCell()
+    let plantPhoto: PhotoCreatePlantCell = PhotoCreatePlantCell()
     
+    let floweringPicker: PickerCell = PickerCell()
+    let floweringDatePicker: DatePickerCell = DatePickerCell()
+    
+    let harvestingPicker: PickerCell = PickerCell()
+    let harvestingDatePicker: DatePickerCell = DatePickerCell()
+    
+    let sunExposurePicker: PickerCell = PickerCell()
+    let sunExposureDatePicker: DatePickerCell = DatePickerCell()
+    
+    let boosterPicker: PickerCell = PickerCell()
+    let boosterDatePicker: DatePickerCell = DatePickerCell()
+    
+    let wateringPicker: PickerCell = PickerCell()
+    let wateringDatePicker: DatePickerCell = DatePickerCell()
+    
+    let pruningPicker: PickerCell = PickerCell()
+    let pruningDatePicker: DatePickerCell = DatePickerCell()
+    
+    let pesticidePicker: PickerCell = PickerCell()
+    let pesticideDatePicker: DatePickerCell = DatePickerCell()
+    
+    var pickerAddPhotoButton = UIImagePickerController()
     
     override init() {
         
@@ -59,6 +85,9 @@ class CreatePlantViewTableHandler: NSObject, UITableViewDelegate, UITableViewDat
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
+        if indexPath.section == 0 && indexPath.row == 0{
+            
+        }
         if indexPath.section == 1 && indexPath.row == 0 {
             if floweringDatePickerVisible == true {
                 floweringDatePickerVisible = !floweringDatePickerVisible
@@ -793,7 +822,7 @@ class CreatePlantViewTableHandler: NSObject, UITableViewDelegate, UITableViewDat
     
     
     func numberOfSections(in tableView: UITableView) -> Int {
-    
+        
         return 8
     }
     
@@ -808,53 +837,24 @@ class CreatePlantViewTableHandler: NSObject, UITableViewDelegate, UITableViewDat
     
     
     func tableView(_ tableView: UITableView,
-            viewForHeaderInSection section: Int) -> UIView? {
-
+                   viewForHeaderInSection section: Int) -> UIView? {
+        
         let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: customHeaderCellId) as! CustomHeader
         header.setHeaderImage(name: imageForSection[section])
         header.setHeaderLabel(text: titleForSection[section])
-            return header
-
+        return header
+        
     }
     
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         if indexPath.section == 0 {
             if indexPath.row == 0{
-                    if let cell = tableView.dequeueReusableCell(withIdentifier: photoCellId) as? PhotoCreatePlantCell {
-//                            cell.addPhotoButtonClickedClosure = {[self] in
-//                                let alert = UIAlertController(title: "Adicionar foto da Planta", message: nil, preferredStyle: .alert)
-//
-//                                alert.addAction(UIAlertAction(title: "Câmera", style: .default, handler: { (action) in
-//                                    if UIImagePickerController.isSourceTypeAvailable(.camera) {
-//                                        cell.pickerAddPhotoButton.delegate = self
-//                                        cell.pickerAddPhotoButton.sourceType = .camera
-//                                        cell.pickerAddPhotoButton.allowsEditing = false
-//                                        self.present(self.pickerAddPhotoButton, animated: true, completion: nil)
-//
-//                                    }}))
-//
-//                                alert.addAction(UIAlertAction(title: "Galeria", style: UIAlertAction.Style.default, handler: { (action) in
-//                                    if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
-//                                        self.pickerAddPhotoButton.delegate = self
-//                                        self.pickerAddPhotoButton.sourceType = .photoLibrary
-//                                        self.pickerAddPhotoButton.allowsEditing = false
-//                                        self.present(self.pickerAddPhotoButton, animated: true, completion: nil)
-//
-//                                    }}))
-//
-//                                self.present(alert, animated: true) {
-//                                    let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.dismissAlertController))
-//                                    alert.view.superview?.subviews[0].addGestureRecognizer(tapGesture)
-//                                }
-//                            }
-                            return cell
-                    }
+                    return plantPhoto
             }else if indexPath.row == 1 {
-                if let cell = tableView.dequeueReusableCell(withIdentifier: nameCellId) as? NameCreatePlantCell {
-                    return cell
-                }
+                return plantName
             }
         }else if indexPath.section == 1 {
             if indexPath.row == 0 {
@@ -863,18 +863,14 @@ class CreatePlantViewTableHandler: NSObject, UITableViewDelegate, UITableViewDat
                     return cell
                 }
             }else if indexPath.row == 1{
-                if let cell = tableView.dequeueReusableCell(withIdentifier: pickerCellId) as? PickerCell {
-                    return cell
-                }
+                return self.floweringPicker
             }else if indexPath.row == 2{
                 if let cell = tableView.dequeueReusableCell(withIdentifier: lastActionCellId) as? LastActionCell {
                     cell.setDefaultLabel(text: self.dafaultLabels[indexPath.row - 1])
                     return cell
                 }
             }else if indexPath.row == 3{
-                if let cell = tableView.dequeueReusableCell(withIdentifier: datePickerCellId) as? DatePickerCell {
-                    return cell
-                }
+                return floweringDatePicker
             }
         }else if indexPath.section == 2 {
             if indexPath.row == 0 {
@@ -883,18 +879,14 @@ class CreatePlantViewTableHandler: NSObject, UITableViewDelegate, UITableViewDat
                     return cell
                 }
             }else if indexPath.row == 1{
-                if let cell = tableView.dequeueReusableCell(withIdentifier: pickerCellId) as? PickerCell {
-                    return cell
-                }
+                return harvestingPicker
             }else if indexPath.row == 2{
                 if let cell = tableView.dequeueReusableCell(withIdentifier: lastActionCellId) as? LastActionCell {
                     cell.setDefaultLabel(text: self.dafaultLabels[indexPath.row - 1])
                     return cell
                 }
             }else if indexPath.row == 3{
-                if let cell = tableView.dequeueReusableCell(withIdentifier: datePickerCellId) as? DatePickerCell {
-                    return cell
-                }
+                return harvestingDatePicker
             }
         }else if indexPath.section == 3{
             if indexPath.row == 0 {
@@ -903,18 +895,14 @@ class CreatePlantViewTableHandler: NSObject, UITableViewDelegate, UITableViewDat
                     return cell
                 }
             }else if indexPath.row == 1{
-                if let cell = tableView.dequeueReusableCell(withIdentifier: pickerCellId) as? PickerCell {
-                    return cell
-                }
+                return sunExposurePicker
             }else if indexPath.row == 2{
                 if let cell = tableView.dequeueReusableCell(withIdentifier: lastActionCellId) as? LastActionCell {
                     cell.setDefaultLabel(text: self.dafaultLabels[indexPath.row - 1])
                     return cell
                 }
             }else if indexPath.row == 3{
-                if let cell = tableView.dequeueReusableCell(withIdentifier: datePickerCellId) as? DatePickerCell {
-                    return cell
-                }
+                return sunExposureDatePicker
             }
         }else if indexPath.section == 4{
             if indexPath.row == 0 {
@@ -923,18 +911,14 @@ class CreatePlantViewTableHandler: NSObject, UITableViewDelegate, UITableViewDat
                     return cell
                 }
             }else if indexPath.row == 1{
-                if let cell = tableView.dequeueReusableCell(withIdentifier: pickerCellId) as? PickerCell {
-                    return cell
-                }
+                return boosterPicker
             }else if indexPath.row == 2{
                 if let cell = tableView.dequeueReusableCell(withIdentifier: lastActionCellId) as? LastActionCell {
                     cell.setDefaultLabel(text: self.dafaultLabels[indexPath.row - 1])
                     return cell
                 }
             }else if indexPath.row == 3{
-                if let cell = tableView.dequeueReusableCell(withIdentifier: datePickerCellId) as? DatePickerCell {
-                    return cell
-                }
+                return boosterDatePicker
             }
         }else if indexPath.section == 5{
             if indexPath.row == 0 {
@@ -943,18 +927,14 @@ class CreatePlantViewTableHandler: NSObject, UITableViewDelegate, UITableViewDat
                     return cell
                 }
             }else if indexPath.row == 1{
-                if let cell = tableView.dequeueReusableCell(withIdentifier: pickerCellId) as? PickerCell {
-                    return cell
-                }
+                return wateringPicker
             }else if indexPath.row == 2{
                 if let cell = tableView.dequeueReusableCell(withIdentifier: lastActionCellId) as? LastActionCell {
                     cell.setDefaultLabel(text: self.dafaultLabels[indexPath.row - 1])
                     return cell
                 }
             }else if indexPath.row == 3{
-                if let cell = tableView.dequeueReusableCell(withIdentifier: datePickerCellId) as? DatePickerCell {
-                    return cell
-                }
+                return wateringDatePicker
             }
         }else if indexPath.section == 6{
             if indexPath.row == 0 {
@@ -963,18 +943,14 @@ class CreatePlantViewTableHandler: NSObject, UITableViewDelegate, UITableViewDat
                     return cell
                 }
             }else if indexPath.row == 1{
-                if let cell = tableView.dequeueReusableCell(withIdentifier: pickerCellId) as? PickerCell {
-                    return cell
-                }
+                return pruningPicker
             }else if indexPath.row == 2{
                 if let cell = tableView.dequeueReusableCell(withIdentifier: lastActionCellId) as? LastActionCell {
                     cell.setDefaultLabel(text: self.dafaultLabels[indexPath.row - 1])
                     return cell
                 }
             }else if indexPath.row == 3{
-                if let cell = tableView.dequeueReusableCell(withIdentifier: datePickerCellId) as? DatePickerCell {
-                    return cell
-                }
+                return pruningDatePicker
             }
         }else if indexPath.section == 7{
             if indexPath.row == 0 {
@@ -983,18 +959,14 @@ class CreatePlantViewTableHandler: NSObject, UITableViewDelegate, UITableViewDat
                     return cell
                 }
             }else if indexPath.row == 1{
-                if let cell = tableView.dequeueReusableCell(withIdentifier: pickerCellId) as? PickerCell {
-                    return cell
-                }
+                return pesticidePicker
             }else if indexPath.row == 2{
                 if let cell = tableView.dequeueReusableCell(withIdentifier: lastActionCellId) as? LastActionCell {
                     cell.setDefaultLabel(text: self.dafaultLabels[indexPath.row - 1])
                     return cell
                 }
             }else if indexPath.row == 3{
-                if let cell = tableView.dequeueReusableCell(withIdentifier: datePickerCellId) as? DatePickerCell {
-                    return cell
-                }
+               return pesticideDatePicker
             }
         }
         return UITableViewCell()
@@ -1119,7 +1091,7 @@ class CreatePlantViewTableHandler: NSObject, UITableViewDelegate, UITableViewDat
     
     func showFloweringPicker () {
         floweringPickerVisible = !floweringPickerVisible
-    
+        
         parentVC?.table.beginUpdates()
         parentVC?.table.endUpdates()
     }
@@ -1134,7 +1106,7 @@ class CreatePlantViewTableHandler: NSObject, UITableViewDelegate, UITableViewDat
     
     func showHarvestingPicker () {
         harvestingPickerVisible = !harvestingPickerVisible
-    
+        
         parentVC?.table.beginUpdates()
         parentVC?.table.endUpdates()
     }
@@ -1149,7 +1121,7 @@ class CreatePlantViewTableHandler: NSObject, UITableViewDelegate, UITableViewDat
     
     func showSunExposurePicker () {
         sunExposurePickerVisible = !sunExposurePickerVisible
-    
+        
         parentVC?.table.beginUpdates()
         parentVC?.table.endUpdates()
     }
@@ -1164,7 +1136,7 @@ class CreatePlantViewTableHandler: NSObject, UITableViewDelegate, UITableViewDat
     
     func showBoosterPicker () {
         boosterPickerVisible = !boosterPickerVisible
-    
+        
         parentVC?.table.beginUpdates()
         parentVC?.table.endUpdates()
     }
@@ -1179,7 +1151,7 @@ class CreatePlantViewTableHandler: NSObject, UITableViewDelegate, UITableViewDat
     
     func showWateringPicker () {
         wateringPickerVisible = !wateringPickerVisible
-    
+        
         parentVC?.table.beginUpdates()
         parentVC?.table.endUpdates()
     }
@@ -1195,7 +1167,7 @@ class CreatePlantViewTableHandler: NSObject, UITableViewDelegate, UITableViewDat
     
     func showPruningPicker () {
         pruningPickerVisible = !pruningPickerVisible
-    
+        
         parentVC?.table.beginUpdates()
         parentVC?.table.endUpdates()
     }
@@ -1211,7 +1183,7 @@ class CreatePlantViewTableHandler: NSObject, UITableViewDelegate, UITableViewDat
     
     func showPesticidePicker () {
         pesticidePickerVisible = !pesticidePickerVisible
-    
+        
         parentVC?.table.beginUpdates()
         parentVC?.table.endUpdates()
     }

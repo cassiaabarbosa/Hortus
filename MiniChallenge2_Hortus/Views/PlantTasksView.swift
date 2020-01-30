@@ -48,6 +48,7 @@ class PlantTasksView: UIView {
         layout.scrollDirection = .vertical
         plantTasksCollectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         
+        plantTasksCollectionView.clipsToBounds = false
         plantTasksCollectionView.backgroundColor = .none
         plantTasksCollectionView.register(TaskCollectionCell.self, forCellWithReuseIdentifier: plantTaskCollectionCellId)
         

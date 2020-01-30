@@ -28,11 +28,6 @@ class PhotoCreatePlantCell: UITableViewCell {
     
     
     
-    
-    var addPhotoButtonClickedClosure : (()->Void)?
-    
-    
-    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
@@ -67,9 +62,39 @@ class PhotoCreatePlantCell: UITableViewCell {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder) }
     
+//    @objc func addPhotoButtonClicked(_ sender: UIButton) {
+//
+//        let alert = UIAlertController(title: "Adicionar foto da Planta", message: nil, preferredStyle: .alert)
+//
+//        alert.addAction(UIAlertAction(title: "Câmera", style: .default, handler: { (action) in
+//            if UIImagePickerController.isSourceTypeAvailable(.camera) {
+//                cell.pickerAddPhotoButton.delegate = self
+//                cell.pickerAddPhotoButton.sourceType = .camera
+//                cell.pickerAddPhotoButton.allowsEditing = false
+//                self.present(self.pickerAddPhotoButton, animated: true, completion: nil)
+//
+//            }}))
+//
+//        alert.addAction(UIAlertAction(title: "Galeria", style: UIAlertAction.Style.default, handler: { (action) in
+//            if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
+//                self.pickerAddPhotoButton.delegate = self
+//                self.pickerAddPhotoButton.sourceType = .photoLibrary
+//                self.pickerAddPhotoButton.allowsEditing = false
+//                self.present(self.pickerAddPhotoButton, animated: true, completion: nil)
+//
+//            }}))
+//
+//        self.present(alert, animated: true) {
+//            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.dismissAlertController))
+//            alert.view.superview?.subviews[0].addGestureRecognizer(tapGesture)
+//        }
+//
+//    }
+//    @objc addPhotoButtonClickedClosure() -> (()->Void)?
+    
     @objc func addPhotoButtonClicked(_ sender: UIButton) {
-        addPhotoButtonClickedClosure?()
         
     }
+    
     
 }
