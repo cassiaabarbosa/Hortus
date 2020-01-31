@@ -10,9 +10,10 @@ import UIKit
 
 class TaskCollectionCell: UICollectionViewCell {
     
-    public var actionImage = UIImageView()
+    var actionImage = UIImageView()
     var defaultLabel = UILabel()
-    var actionLabel = UILabel()
+    var actionPeriod = UILabel()
+    var actionInterval = UILabel()
     var lastImage = UIImageView()
     var lastLabel = UILabel()
     var nextImage = UIImageView()
@@ -43,7 +44,8 @@ class TaskCollectionCell: UICollectionViewCell {
         defaultLabel.text = "A cada"
         defaultLabel.textColor = .black
 
-        actionLabel.textColor = .black
+        actionPeriod.textColor = .black
+        actionInterval.textColor = .black
     
         lastImage.image = #imageLiteral(resourceName: "HISTORICO")
         
@@ -64,7 +66,8 @@ class TaskCollectionCell: UICollectionViewCell {
     
         contentView.addSubview(actionImage)
         contentView.addSubview(defaultLabel)
-        contentView.addSubview(actionLabel)
+        contentView.addSubview(actionInterval)
+        contentView.addSubview(actionPeriod)
         contentView.addSubview(lastImage)
         contentView.addSubview(lastLabel)
         contentView.addSubview(nextImage)
@@ -73,7 +76,8 @@ class TaskCollectionCell: UICollectionViewCell {
         
         actionImage.translatesAutoresizingMaskIntoConstraints = false
         defaultLabel.translatesAutoresizingMaskIntoConstraints = false
-        actionLabel.translatesAutoresizingMaskIntoConstraints = false
+        actionPeriod.translatesAutoresizingMaskIntoConstraints = false
+        actionInterval.translatesAutoresizingMaskIntoConstraints = false
         lastImage.translatesAutoresizingMaskIntoConstraints = false
         actionImage.translatesAutoresizingMaskIntoConstraints = false
         lastLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -93,10 +97,15 @@ class TaskCollectionCell: UICollectionViewCell {
         defaultLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 10).isActive = true
         
         
-        actionLabel.leftAnchor.constraint(equalTo: defaultLabel.rightAnchor, constant: 0).isActive = true
-        actionLabel.widthAnchor.constraint(equalToConstant: 200).isActive = true
-        actionLabel.heightAnchor.constraint(equalToConstant: 30).isActive = true
-        actionLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 10).isActive = true
+        actionPeriod.leftAnchor.constraint(equalTo: defaultLabel.rightAnchor, constant: 10).isActive = true
+        actionPeriod.widthAnchor.constraint(equalToConstant: 25).isActive = true
+        actionPeriod.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        actionPeriod.topAnchor.constraint(equalTo: self.topAnchor, constant: 10).isActive = true
+        
+        actionInterval.leftAnchor.constraint(equalTo: actionPeriod.rightAnchor, constant: 0).isActive = true
+        actionInterval.widthAnchor.constraint(equalToConstant: 100).isActive = true
+        actionInterval.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        actionInterval.topAnchor.constraint(equalTo: self.topAnchor, constant: 10).isActive = true
         
         
         lastImage.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
@@ -147,10 +156,14 @@ class TaskCollectionCell: UICollectionViewCell {
     
     
     
-    func setActionLabel(string: String) {
-        self.actionLabel.text = string
+    func setActionPeriod(string: String) {
+        self.actionPeriod.text = string
     }
     
+    
+    func setActionInterval(string: String) {
+        self.actionInterval.text = string
+    }
     
     
     func setLastLabel(string: String) {

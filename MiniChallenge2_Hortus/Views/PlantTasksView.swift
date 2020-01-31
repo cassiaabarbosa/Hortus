@@ -20,14 +20,14 @@ class PlantTasksView: UIView {
     var plantTasksCollectionView: UICollectionView!
     var plantTasksCollectionHandler: PlantTasksViewCollectionHandler?
     var plantTaskCollectionCellId: String = "TaskCellId"
-    
+    var plant: Plant?
     
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         plantTasksCollectionHandler = PlantTasksViewCollectionHandler()
         plantTasksCollectionHandler?.parentVC = self
-        
+        plantTasksCollectionHandler?.plant = plant
         self.backgroundColor = .none
         setPlantTask()
         

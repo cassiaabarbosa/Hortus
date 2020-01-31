@@ -62,7 +62,7 @@ class PlantVC: UIViewController {
     
     
     func setPlantTasksView() {
-        
+        plantTasksView.plant = self.plant
         self.view.addSubview(plantTasksView)
         
         plantTasksView.translatesAutoresizingMaskIntoConstraints = false
@@ -76,7 +76,12 @@ class PlantVC: UIViewController {
     
     
     @objc func  deletePlant() {
-//        tem que deletar a planta
+        
+//        if let result = try? context.fetch(fetchRequest) {
+//            for object in result {
+//                context.delete(object)
+//            }
+//        }
     }
     
     

@@ -54,5 +54,3 @@ extension Date {
 }
 
 
-//precisa pegar as referencias do CoreData
-//precisa atualizar as labels 
