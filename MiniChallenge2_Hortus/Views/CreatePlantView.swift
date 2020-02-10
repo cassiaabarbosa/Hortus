@@ -100,9 +100,9 @@ class CreatePlantView: UIView {
         
         let temp:String = UUID().uuidString
         
-        guard let imageName = temp as? String else { fatalError("Invalid Message Name!") }
-        
-        guard let image = self.createPlantViewTableHandler.plantPhoto.photo.image else { fatalError("Invalid Image") }
+        let imageName = temp 
+         
+        guard let image = self.createPlantViewTableHandler.plantPhoto.photo.image else { fatalError("Invalid Image")}
         
         saveImage(imageName: imageName, image: image)
         

@@ -55,7 +55,6 @@ class CreatePlantVC : UIViewController, UIImagePickerControllerDelegate {
        
        setTable()
        
-        print(HortusSingleton.shared.photo)
        table.table.keyboardDismissMode = .onDrag
     
 

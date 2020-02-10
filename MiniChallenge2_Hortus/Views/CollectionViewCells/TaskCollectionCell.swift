@@ -32,7 +32,7 @@ class TaskCollectionCell: UICollectionViewCell {
         self.layer.shadowOffset = CGSize(width: 4, height: 4)
         self.layer.shadowRadius = 3.0
         self.layer.shadowOpacity = 1
-        actionButton.addTarget(self, action: #selector(plantAction(_:)), for: .touchUpInside)
+//        actionButton.addTarget(self, action: #selector(plantAction(_:)), for: .touchUpInside)
 
     }
     
@@ -109,9 +109,9 @@ class TaskCollectionCell: UICollectionViewCell {
         
         
         lastImage.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
-        lastImage.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 20).isActive = true
-        lastImage.widthAnchor.constraint(equalToConstant: 25).isActive = true
-        lastImage.heightAnchor.constraint(equalToConstant: 25).isActive = true
+        lastImage.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 10).isActive = true
+        lastImage.widthAnchor.constraint(equalToConstant: 44).isActive = true
+        lastImage.heightAnchor.constraint(equalToConstant: 44).isActive = true
         
         
         lastLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
@@ -136,7 +136,6 @@ class TaskCollectionCell: UICollectionViewCell {
         actionButton.heightAnchor.constraint(equalToConstant:50).isActive = true
         actionButton.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -20).isActive = true
         actionButton.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: 0).isActive = true
-        actionButton.isUserInteractionEnabled = false
     }
 
     
@@ -177,20 +176,11 @@ class TaskCollectionCell: UICollectionViewCell {
     }
 
     
-    func setActionButtonSizeShadow(){
-//        actionButton.widthAnchor.constraint(equalToConstant: 50).isActive = false
-//        actionButton.heightAnchor.constraint(equalToConstant: 50).isActive = false
-//        actionButton.widthAnchor.constraint(equalToConstant: 100).isActive = true
-//        actionButton.heightAnchor.constraint(equalToConstant: 100).isActive = true
-        
-//        TODO: não muda o tamanho maior e da erro de constraint
-
-    }
     
     
-    
-    @objc func plantAction(_ sender: UIButton){
-//        TODO: cria uma action para atualizar as labels com as informações do CoreData
-//        creio que tem que implementar essa função com protocol 
-    }
+//    @objc func plantAction(_ sender: UIButton){
+//        print("fds")
+////        TODO: cria uma action para atualizar as labels com as informações do CoreData
+//
+//    }
 }

@@ -33,8 +33,11 @@ UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     var taskCellId: String = "TaskCellId"
     
+    let formatter = DateFormatter()
+    
+    
     override init() {
-        
+       formatter.dateFormat = "dd/MM/yyyy"
     }
     
     
@@ -43,20 +46,6 @@ UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     }
     
     
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        collectionView.cellForItem(at: indexPath)?.backgroundColor = UIColor.App.selectedCell
-        collectionView.deselectItem(at: indexPath, animated: true)
-        
-        if let tasksCollectionCell = collectionView.cellForItem(at: indexPath) as? TaskCollectionCell {
-            tasksCollectionCell.setActionButtonBorder(color: UIColor.App.borderColor.cgColor)
-            tasksCollectionCell.setActionButtonSizeShadow()
-            
-        }
-        //        TODO: começar a primeira célula já selecionada
-        //        TODO: fazer tudo voltar ao normal quando clicar outra célula
-    }
-    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         self.plant = parentVC?.plant
@@ -64,11 +53,14 @@ UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
         if let tasksCollectionCell = collectionView.dequeueReusableCell(withReuseIdentifier: taskCellId, for: indexPath) as? TaskCollectionCell {
             tasksCollectionCell.setActionImage(name: self.actionImages[indexPath.row])
             tasksCollectionCell.setActionButtonText(text: actionButtonTexts[indexPath.row])
+            tasksCollectionCell.actionButton.tag = indexPath.row
             tasksCollectionCell.setActionPeriod(string: period[indexPath.row] )
             tasksCollectionCell.setActionInterval(string: returnIntervalString(numero: interval[indexPath.row]) )
             tasksCollectionCell.setLastLabel(string: lastDate[indexPath.row] )
             tasksCollectionCell.setNextLabel(string: nextDate[indexPath.row] )
-            
+            tasksCollectionCell.actionButton.backgroundColor = #colorLiteral(red: 0.2745098174, green: 0.4862745106, blue: 0.1411764771, alpha: 1)
+            tasksCollectionCell.actionButton.isUserInteractionEnabled = true
+            tasksCollectionCell.actionButton.addTarget(self, action: #selector(self.plantAction(_:)), for: .touchUpInside)
             
             
             return tasksCollectionCell
@@ -105,8 +97,6 @@ UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
         }
         
     func setTasks() {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "dd/MM/yyyy"
         period.append(String(plant?.floweringPeriod ?? 0))
         period.append(String(plant?.harvestingPeriod ?? 0))
         period.append(String(plant?.sunExposurePeriod ?? 0))
@@ -139,6 +129,83 @@ UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
         nextDate.append(formatter.string(for: plant?.wateringNextDate ?? "-") ?? "-")
         nextDate.append(formatter.string(for: plant?.pruningNextDate ?? "-") ?? "-")
         nextDate.append(formatter.string(for: plant?.pesticideNextDate ?? "-") ?? "-")
+        
+    }
+    
+    @objc func plantAction(_ sender: UIButton){
+        switch sender.tag {
+        case 0:
+            updateFlowering()
+        case 1:
+            updateHarvesting()
+        case 2:
+            updateSunExposure()
+        case 3:
+            updateBooster()
+        case 4:
+            updateWatering()
+        case 5:
+            updatePruning()
+        default:
+            updatePesticide()
+        }
+        
+    }
+    
+    
+    func updateFlowering(){
+        plant?.floweringLastDate = Date()
+        CoreDataManager.shared.saveContext()
+        lastDate[0] = (formatter.string(for: plant?.floweringLastDate ?? "-") ?? "-")
+        self.parentVC?.plantTasksCollectionView.reloadData()
+        
+    }
+    
+    func updateHarvesting(){
+        plant?.harvestingLastDate = Date()
+        CoreDataManager.shared.saveContext()
+        lastDate[1] = (formatter.string(for: plant?.harvestingLastDate ?? "-") ?? "-")
+        self.parentVC?.plantTasksCollectionView.reloadData()
+        
+    }
+    
+    func updateSunExposure(){
+        plant?.sunExposureLastDate = Date()
+        CoreDataManager.shared.saveContext()
+        lastDate[2] = (formatter.string(for: plant?.sunExposureLastDate ?? "-") ?? "-")
+        self.parentVC?.plantTasksCollectionView.reloadData()
+        
+    }
+    
+    func updateBooster(){
+        plant?.boosterLastDate = Date()
+        CoreDataManager.shared.saveContext()
+        lastDate[3] = (formatter.string(for: plant?.boosterLastDate ?? "-") ?? "-")
+        self.parentVC?.plantTasksCollectionView.reloadData()
+        
+    }
+    
+    func updateWatering(){
+        plant?.wateringLastDate = Date()
+        CoreDataManager.shared.saveContext()
+        lastDate[4] = (formatter.string(for: plant?.wateringLastDate ?? "-") ?? "-")
+        self.parentVC?.plantTasksCollectionView.reloadData()
+        
+    }
+    
+    func updatePruning(){
+        plant?.pruningLastDate = Date()
+        CoreDataManager.shared.saveContext()
+        lastDate[5] = (formatter.string(for: plant?.pruningLastDate ?? "-") ?? "-")
+        self.parentVC?.plantTasksCollectionView.reloadData()
+        
+    }
+    
+    func updatePesticide(){
+        plant?.pesticideLastDate = Date()
+        CoreDataManager.shared.saveContext()
+        lastDate[6] = (formatter.string(for: plant?.pesticideLastDate ?? "-") ?? "-")
+        self.parentVC?.plantTasksCollectionView.reloadData()
         
     }
         

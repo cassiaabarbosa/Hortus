@@ -10,10 +10,6 @@ import Foundation
 import UIKit
 import CoreData
 
-//protocol PlantTasksViewDelegate: class {
-//    func taskSelected(value: Int)
-//    func didSelect(value: Int)
-//}
 
 class PlantTasksView: UIView {
     
@@ -34,6 +30,7 @@ class PlantTasksView: UIView {
         plantTasksCollectionView.delegate = plantTasksCollectionHandler
         plantTasksCollectionView.dataSource = plantTasksCollectionHandler
         
+        plantTasksCollectionView.delaysContentTouches = false
         
     }
 

@@ -31,19 +31,6 @@ class GardenVC : UIViewController, UITextViewDelegate {
     
     
     
-    
-//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        let plantVC = PlantVC(plant: plantsCollection[indexPath.row])
-//        navigationController?.pushViewController(plantVC, animated: true)
-//        
-//    }
-    
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-//
-//        return CGSize(width: view.frame.width, height: 20)
-//    }
-    
-    
 //    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
 //        let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: cellId, for: indexPath)
 //            header.addSubview(searchBar)
@@ -59,7 +46,6 @@ class GardenVC : UIViewController, UITextViewDelegate {
         super.viewDidLoad()
 
         self.plantCardView.plantCardCollectionView.reloadData()
-        print(HortusSingleton.shared.photo)
         if #available(iOS 13.0, *) {
             overrideUserInterfaceStyle = .light
         } else {

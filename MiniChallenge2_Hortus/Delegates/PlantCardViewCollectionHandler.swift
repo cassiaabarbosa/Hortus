@@ -79,8 +79,9 @@ class PlantCardViewCollectionHandler: NSObject, UICollectionViewDelegate, UIColl
 //        pegando o gardenVC
         guard let vcontroller = self.parentVC?.parentVC else {return}
         let plantVC = PlantVC()
+        let navController = UINavigationController(rootViewController: plantVC)
         plantVC.plant = cell.plant
-        vcontroller.present(plantVC, animated: true, completion: nil)
+        vcontroller.present(navController, animated: true, completion: nil)
         
     }
     
