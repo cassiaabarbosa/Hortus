@@ -172,11 +172,11 @@ UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
         case "Dias":
             dateComponent = .day
         case "Semanas":
-            dateComponent = .weekday
+            dateComponent = .weekdayOrdinal
         case "Meses":
             dateComponent = .month
         default:
-            print("DD")
+            print("Não há intervalo")
         }
         
         plant.floweringNextDate = Calendar.current.date(byAdding: dateComponent, value: Int(plant.floweringPeriod), to: Date())
@@ -198,11 +198,11 @@ UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
         case "Dias":
             dateComponent = .day
         case "Semanas":
-        dateComponent = .weekday
+        dateComponent = .weekdayOrdinal
         case "Meses":
             dateComponent = .month
         default:
-            print("DD")
+            print("Não há intervalo")
         }
         
         plant.harvestingNextDate = Calendar.current.date(byAdding: dateComponent, value: Int(plant.floweringPeriod), to: Date())
@@ -225,11 +225,11 @@ UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
         case "Dias":
             dateComponent = .day
         case "Semanas":
-        dateComponent = .weekday
+        dateComponent = .weekdayOrdinal
         case "Meses":
             dateComponent = .month
         default:
-            print("DD")
+          print("Não há intervalo")
         }
         
         plant.sunExposureNextDate = Calendar.current.date(byAdding: dateComponent, value: Int(plant.sunExposurePeriod), to: Date())
@@ -252,11 +252,11 @@ UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
         case "Dias":
             dateComponent = .day
         case "Semanas":
-        dateComponent = .weekday
+        dateComponent = .weekdayOrdinal
         case "Meses":
             dateComponent = .month
         default:
-            print("DD")
+            print("Não há intervalo")
         }
         
         plant.boosterNextDate = Calendar.current.date(byAdding: dateComponent, value: Int(plant.boosterPeriod), to: Date())
@@ -278,11 +278,11 @@ UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
         case "Dias":
             dateComponent = .day
         case "Semanas":
-        dateComponent = .weekday
+        dateComponent = .weekdayOrdinal
         case "Meses":
             dateComponent = .month
         default:
-            print("DD")
+            print("Não há intervalo")
         }
         
         plant.wateringNextDate = Calendar.current.date(byAdding: dateComponent, value: Int(plant.wateringPeriod), to: Date())
@@ -304,11 +304,11 @@ UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
         case "Dias":
             dateComponent = .day
         case "Semanas":
-        dateComponent = .weekday
+        dateComponent = .weekdayOrdinal
         case "Meses":
             dateComponent = .month
         default:
-            print("DD")
+           print("Não há intervalo")
         }
         
         plant.pruningNextDate = Calendar.current.date(byAdding: dateComponent, value: Int(plant.wateringPeriod), to: Date())
@@ -330,11 +330,11 @@ UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
         case "Dias":
             dateComponent = .day
         case "Semanas":
-        dateComponent = .weekday
+        dateComponent = .weekdayOrdinal
         case "Meses":
             dateComponent = .month
         default:
-            print("DD")
+            print("Não há intervalo")
         }
         
         plant.pesticideNextDate = Calendar.current.date(byAdding: dateComponent, value: Int(plant.pesticidePeriod), to: Date())

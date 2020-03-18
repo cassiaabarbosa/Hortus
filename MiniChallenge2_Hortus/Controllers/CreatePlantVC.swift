@@ -66,8 +66,6 @@ class CreatePlantVC : UIViewController, UIImagePickerControllerDelegate {
         
     }
     
-    
-    
     func setTable() {
         
         table.translatesAutoresizingMaskIntoConstraints = false
@@ -76,8 +74,6 @@ class CreatePlantVC : UIViewController, UIImagePickerControllerDelegate {
         table.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
         table.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
     }
-
-    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -116,7 +112,6 @@ class CreatePlantVC : UIViewController, UIImagePickerControllerDelegate {
             } catch let removeError {
                 print("couldn't remove file at path", removeError)
             }
-            
         }
         
         do {

@@ -48,7 +48,7 @@ class CreatePlantViewTableHandler: NSObject, UITableViewDelegate, UITableViewDat
     
     let titleForSection: [String] = ["","Floração", "Colheita","Exposição Solar", "Fertilizantes", "Rega", "Poda", "Pesticidas"]
     
-    let imageForSection: [String] = ["","BlackFlower", "BlackHarvest", "BlackSun", "BlackBooster", "BlackDrop", "BlackScissor", "BlackPesticide"]
+    let imageForSection: [String] = ["vazio","BlackFlower", "BlackHarvest", "BlackSun", "BlackBooster", "BlackDrop", "BlackScissor", "BlackPesticide"]
     
     let plantName: NameCreatePlantCell = NameCreatePlantCell()
     let plantPhoto: PhotoCreatePlantCell = PhotoCreatePlantCell()

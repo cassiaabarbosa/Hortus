@@ -6,14 +6,6 @@
 //  Copyright ©️ 2020 Hortus. All rights reserved.
 //
 
-//
-//  FrequencyCell.swift
-//  MiniChallenge2_Hortus
-//
-//  Created by Cassia Aparecida Barbosa on 19/01/20.
-//  Copyright ©️ 2020 Hortus. All rights reserved.
-//
-
 import UIKit
 
 class FrequencyCell: UITableViewCell {

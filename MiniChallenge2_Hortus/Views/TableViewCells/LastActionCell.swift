@@ -49,9 +49,6 @@ class LastActionCell: UITableViewCell {
             lastAction.widthAnchor.constraint(equalToConstant: 175).isActive = true
         self.separatorInset = .zero
         self.selectionStyle = .default
-        
-        initView()
-        didChangeDate()
    
     }
     
@@ -60,42 +57,15 @@ class LastActionCell: UITableViewCell {
         lastActionLabel.text = text
     }
     
-    
   required init?(coder aDecoder: NSCoder) {
     super.init(coder: aDecoder)
     
     }
     
-    func currentDate(date: Date) {
-//        lastAction.text = date.convertToString(dateformat: .dateWithTime)
-        
-    }
-    
-    
-    
-    func initView() {
-//        picker.addTarget(self, action: #selector(datePickerChanged), for: .valueChanged)
-        
-    }
-    
-    
-    
     @objc func datePickerChanged(sender: UIDatePicker) {
         let formatter: DateFormatter = DateFormatter()
         formatter.dateStyle = .medium
         formatter.timeStyle = .short
-        
-//        let selectedDate = formatter.string(from: sender.date)
-        //lastAction.text = selectedDate
-
     }
-    
-    
-    
-    public func didChangeDate() {
-//        lastAction.text = DateFormatter.localizedString(from: picker.date, dateStyle: .medium, timeStyle: .short)
-        
-    }
-
     
 }

@@ -37,16 +37,12 @@ class GardenVC : UIViewController, UITextViewDelegate {
         } else {
             // Fallback on earlier versions
         }
-        
-//        self.navigationItem.titleView = plantCardView.searchController?.searchBar
 
         navigationController?.navigationBar.barTintColor = UIColor.App.navigation
         navigationController?.navigationBar.tintColor = UIColor.App.navigationTitle
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.App.navigationTitle]
         navigationItem.setRightBarButton(UIBarButtonItem(image: #imageLiteral(resourceName: "Add button"), style: .done, target: self, action: #selector(showsCreatePlantVC)), animated: true)
-        
-//        navigationItem.hidesSearchBarWhenScrolling = true
-        
+
         self.view.backgroundColor = .white
         
         setPlantCardView()

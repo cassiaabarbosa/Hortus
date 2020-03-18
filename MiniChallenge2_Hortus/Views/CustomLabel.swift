@@ -30,7 +30,6 @@ class CustomLabel: UILabel {
 
     }
     
-    
     func setProperities(text: String, textAlignment: NSTextAlignment, color: UIColor, numberOfLines: Int) {
         self.numberOfLines = numberOfLines
         self.textAlignment = textAlignment

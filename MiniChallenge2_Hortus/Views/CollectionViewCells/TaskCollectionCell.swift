@@ -162,7 +162,6 @@ class TaskCollectionCell: UICollectionViewCell {
     }
     
     
-    
     func setNextLabel(string: String) {
         self.nextLabel.text = string
     }

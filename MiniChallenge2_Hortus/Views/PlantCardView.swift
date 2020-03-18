@@ -25,17 +25,11 @@ class PlantCardView: UIView {
         plantCardViewCollectionHandler.parentVC = self
         setPlantCard()
         self.backgroundColor = .white
-        self.searchController = UISearchController(searchResultsController: nil)
-        self.searchController?.hidesNavigationBarDuringPresentation = false
-        self.searchController?.obscuresBackgroundDuringPresentation = false
-        self.searchController?.searchBar.becomeFirstResponder()
-
         parentVC?.navigationItem.searchController = searchController
         plantCardCollectionView.delegate = plantCardViewCollectionHandler
         plantCardCollectionView.dataSource = plantCardViewCollectionHandler
-        
-        
     }
+    
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -75,10 +69,7 @@ class PlantCardView: UIView {
             return image
             
         }
-        
         return nil
     }
-    
-    
-    
+
 }

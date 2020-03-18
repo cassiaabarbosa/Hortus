@@ -78,7 +78,6 @@ public class CoreDataManager {
 
             do {
                 try moc.save()
-                print("saved!")
             } catch let error as NSError  {
                 print("Could not save \(error), \(error.userInfo)")
             } catch {
