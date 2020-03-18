@@ -16,7 +16,6 @@ class PlantCardView: UIView {
     var plantCardViewCollectionHandler = PlantCardViewCollectionHandler()
     let plantCardCellId: String = "plantCardCellId"
     var context : NSManagedObjectContext?
-//    var plantCollection = [Plant]()
     var parentVC: GardenVC?
     var searchController: UISearchController?
     
@@ -27,9 +26,6 @@ class PlantCardView: UIView {
         setPlantCard()
         self.backgroundColor = .white
         self.searchController = UISearchController(searchResultsController: nil)
-//        self.searchController?.searchResultsUpdater = plantCardViewCollectionHandler
-//        self.searchController?.delegate = plantCardViewCollectionHandler
-//        self.searchController?.searchBar.delegate = plantCardViewCollectionHandler
         self.searchController?.hidesNavigationBarDuringPresentation = false
         self.searchController?.obscuresBackgroundDuringPresentation = false
         self.searchController?.searchBar.becomeFirstResponder()

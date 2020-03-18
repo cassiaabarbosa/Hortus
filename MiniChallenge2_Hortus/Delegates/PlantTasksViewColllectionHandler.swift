@@ -56,8 +56,14 @@ UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
             tasksCollectionCell.actionButton.tag = indexPath.row
             tasksCollectionCell.setActionPeriod(string: period[indexPath.row] )
             tasksCollectionCell.setActionInterval(string: returnIntervalString(numero: interval[indexPath.row]) )
-            tasksCollectionCell.setLastLabel(string: lastDate[indexPath.row] )
-            tasksCollectionCell.setNextLabel(string: nextDate[indexPath.row] )
+            if tasksCollectionCell.actionPeriod.text == "0"  {
+                tasksCollectionCell.setLastLabel(string:  "-")
+                tasksCollectionCell.setNextLabel(string: "-")
+            }else {
+                tasksCollectionCell.setLastLabel(string: lastDate[indexPath.row] )
+                tasksCollectionCell.setNextLabel(string: nextDate[indexPath.row] )
+            }
+           
             tasksCollectionCell.actionButton.addTarget(self, action: #selector(self.plantAction(_:)), for: .touchUpInside)
             
             
@@ -70,11 +76,11 @@ UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func returnIntervalString(numero: String) -> String {
         switch numero {
-        case "0":
-            return "dias"
         case "1":
-            return "semanas"
+            return "dias"
         case "2":
+            return "semanas"
+        case "3":
             return "meses"
         default:
             return "-"
