@@ -10,31 +10,26 @@ import Foundation
 import UIKit
 import CoreData
 
-protocol PlantTasksViewDelegate: class {
-    func taskSelected(value: Int)
-    func didSelect(value: Int)
-}
 
-@IBDesignable
 class PlantTasksView: UIView {
     
     var plantTasksCollectionView: UICollectionView!
-    weak var plantVCDelegate: PlantVCDelegate!
     var plantTasksCollectionHandler: PlantTasksViewCollectionHandler?
-    var plantTaskCollectionCellId: String = "PlantTaskCollectionCellId"
-    
-    
+    var plantTaskCollectionCellId: String = "TaskCellId"
+    var plant: Plant?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         plantTasksCollectionHandler = PlantTasksViewCollectionHandler()
         plantTasksCollectionHandler?.parentVC = self
-        
+        plantTasksCollectionHandler?.plant = plant
+        self.backgroundColor = .none
         setPlantTask()
         
         plantTasksCollectionView.delegate = plantTasksCollectionHandler
         plantTasksCollectionView.dataSource = plantTasksCollectionHandler
         
+        plantTasksCollectionView.delaysContentTouches = false
         
     }
 
@@ -48,7 +43,9 @@ class PlantTasksView: UIView {
     let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
         plantTasksCollectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        plantTasksCollectionView.backgroundColor = .red
+        
+        plantTasksCollectionView.clipsToBounds = false
+        plantTasksCollectionView.backgroundColor = .none
         plantTasksCollectionView.register(TaskCollectionCell.self, forCellWithReuseIdentifier: plantTaskCollectionCellId)
         
         self.addSubview(plantTasksCollectionView)

@@ -10,42 +10,32 @@ import UIKit
 
 class DatePickerCell: UITableViewCell {
     
-    var datePickerInformation: DatePickerInformation? {
-        didSet {
-            datePicker = datePickerInformation!.datePicker
-        }
-    }
     
-    
-    
-    public var datePicker: UIDatePicker = {
-        let picker = UIDatePicker()
-        picker.datePickerMode = .date
-        return picker
+    let datePicker: UIDatePicker = {
+        let datePicker = UIDatePicker()
+        datePicker.datePickerMode = .date
+        return datePicker
     }()
-    
-    
-    
+     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        addSubview(datePicker)
+        contentView.addSubview(datePicker)
         
-//        datePicker.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-        datePicker.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0, enableInsets: true)
+        datePicker.translatesAutoresizingMaskIntoConstraints = false
+        datePicker.topAnchor.constraint(equalTo: self.topAnchor, constant: 0).isActive = true
+        datePicker.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 0).isActive = true
+        datePicker.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0).isActive = true
+        datePicker.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0).isActive = true
         
         self.separatorInset = .zero
-        
         self.layoutMargins = UIEdgeInsets.zero
-        
         self.selectionStyle = .none
         
     }
     
-    
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    required init?(coder aDecoder: NSCoder) {
+    super.init(coder: aDecoder)
     }
     
 }

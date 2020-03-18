@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15702" systemVersion="19C57" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Plant" representedClassName="Plant" syncable="YES">
+        <attribute name="boosterInterval" optional="YES" attributeType="String"/>
+        <attribute name="boosterLastDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="boosterNextDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="boosterPeriod" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="floweringInterval" optional="YES" attributeType="String"/>
+        <attribute name="floweringLastDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="floweringNextDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="floweringPeriod" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="harvestingInterval" optional="YES" attributeType="String"/>
+        <attribute name="harvestingLastDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="harvestingNextDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="harvestingPeriod" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="pesticideInterval" optional="YES" attributeType="String"/>
+        <attribute name="pesticideLastDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="pesticideNextDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="pesticidePeriod" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="plantImage" optional="YES" attributeType="String"/>
+        <attribute name="plantName" optional="YES" attributeType="String"/>
+        <attribute name="pruningInterval" optional="YES" attributeType="String"/>
+        <attribute name="pruningLastDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="pruningNextDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="pruningPeriod" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="sunExposureInterval" optional="YES" attributeType="String"/>
+        <attribute name="sunExposureLastDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="sunExposureNextDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="sunExposurePeriod" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="wateringInterval" optional="YES" attributeType="String"/>
+        <attribute name="wateringLastDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="wateringNextDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="wateringPeriod" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+    </entity>
+    <elements>
+        <element name="Plant" positionX="-63" positionY="-18" width="128" height="508"/>
+    </elements>
+</model>

@@ -24,9 +24,11 @@ class CustomLabel: UILabel {
     
     func setLayout() {
         
-        self.anchor(top: self.topAnchor, left: self.leftAnchor, bottom: self.bottomAnchor, right: self.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0, enableInsets: false)
+        self.translatesAutoresizingMaskIntoConstraints = false
+        self.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
+        self.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+
     }
-    
     
     func setProperities(text: String, textAlignment: NSTextAlignment, color: UIColor, numberOfLines: Int) {
         self.numberOfLines = numberOfLines
