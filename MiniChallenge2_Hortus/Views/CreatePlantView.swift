@@ -120,39 +120,46 @@ class CreatePlantView: UIView {
             plant.floweringPeriod = floweringPeriod
             plant.floweringLastDate = floweringLastDate
             switch floweringInterval {
-                
-            case "0":
-                let nextFloweringDate = self.createPlantViewTableHandler.floweringDatePicker.datePicker.calendar.date(byAdding: .hour, value: Int(floweringPeriod), to: floweringLastDate)
-                plant.floweringNextDate = nextFloweringDate
-                
             case "1":
                 let nextFloweringDate = self.createPlantViewTableHandler.floweringDatePicker.datePicker.calendar.date(byAdding: .hour, value: Int(floweringPeriod), to: floweringLastDate)
                 plant.floweringNextDate = nextFloweringDate
                 
             case "2":
-                let nextFloweringDate = self.createPlantViewTableHandler.floweringDatePicker.datePicker.calendar.date(byAdding: .month, value: Int(floweringPeriod), to: floweringLastDate)
+                let nextFloweringDate = self.createPlantViewTableHandler.floweringDatePicker.datePicker.calendar.date(byAdding: .day, value: Int(floweringPeriod), to: floweringLastDate)
                 plant.floweringNextDate = nextFloweringDate
+                
+            case "3":
+                let nextFloweringDate = self.createPlantViewTableHandler.floweringDatePicker.datePicker.calendar.date(byAdding: .weekdayOrdinal, value: Int(floweringPeriod), to: floweringLastDate)
+                print()
+                plant.floweringNextDate = nextFloweringDate
+                
+            case "4":
+            let nextFloweringDate = self.createPlantViewTableHandler.floweringDatePicker.datePicker.calendar.date(byAdding: .month, value: Int(floweringPeriod), to: floweringLastDate)
+            plant.floweringNextDate = nextFloweringDate
             default:
-                fatalError("404 - Interval")
+                print("Não há Intervalo")
             }
             
             plant.harvestingInterval = harvestingInterval
             plant.harvestingPeriod = harvestingPeriod
             plant.harvestingLastDate = harvestingLastDate
             switch harvestingInterval {
-            case "0" :
+            case "1" :
                 let nextHarvestingDate = self.createPlantViewTableHandler.harvestingDatePicker.datePicker.calendar.date(byAdding: .hour, value: Int(harvestingPeriod), to: harvestingLastDate)
                     plant.harvestingNextDate = nextHarvestingDate
             
-            case "1" :
+            case "2" :
                 let nextHarvestingDate = self.createPlantViewTableHandler.harvestingDatePicker.datePicker.calendar.date(byAdding: .day, value: Int(harvestingPeriod), to: harvestingLastDate)
                 plant.harvestingNextDate = nextHarvestingDate
             
-            case "2" :
+            case "3" :
+                let nextHarvestingDate = self.createPlantViewTableHandler.harvestingDatePicker.datePicker.calendar.date(byAdding: .weekdayOrdinal, value: Int(harvestingPeriod), to: harvestingLastDate)
+                plant.harvestingNextDate = nextHarvestingDate
+            case "4":
                 let nextHarvestingDate = self.createPlantViewTableHandler.harvestingDatePicker.datePicker.calendar.date(byAdding: .month, value: Int(harvestingPeriod), to: harvestingLastDate)
                 plant.harvestingNextDate = nextHarvestingDate
             default:
-                fatalError("404 - Interval")
+                print("Não há Intervalo")
             }
             
             
@@ -160,19 +167,22 @@ class CreatePlantView: UIView {
             plant.sunExposurePeriod = sunExposurePeriod
             plant.sunExposureLastDate = sunExposureLastDate
             switch sunExposureInterval {
-            case "0" :
+            case "1" :
                 let nextSunExposureDate = self.createPlantViewTableHandler.sunExposureDatePicker.datePicker.calendar.date(byAdding: .hour, value: Int(sunExposurePeriod), to: sunExposureLastDate)
                     plant.sunExposureNextDate = nextSunExposureDate
             
-            case "1" :
+            case "2" :
                 let nextSunExposureDate = self.createPlantViewTableHandler.sunExposureDatePicker.datePicker.calendar.date(byAdding: .day, value: Int(sunExposurePeriod), to: sunExposureLastDate)
                 plant.sunExposureNextDate = nextSunExposureDate
                 
-            case "2" :
-                let nextSunExposureDate = self.createPlantViewTableHandler.sunExposureDatePicker.datePicker.calendar.date(byAdding: .month, value: Int(sunExposurePeriod), to: sunExposureLastDate)
+            case "3" :
+                let nextSunExposureDate = self.createPlantViewTableHandler.sunExposureDatePicker.datePicker.calendar.date(byAdding: .weekdayOrdinal, value: Int(sunExposurePeriod), to: sunExposureLastDate)
                 plant.sunExposureNextDate = nextSunExposureDate
+            case "4" :
+            let nextSunExposureDate = self.createPlantViewTableHandler.sunExposureDatePicker.datePicker.calendar.date(byAdding: .weekdayOrdinal, value: Int(sunExposurePeriod), to: sunExposureLastDate)
+            plant.sunExposureNextDate = nextSunExposureDate
             default:
-                fatalError("404 - Interval")
+                print("Não há Intervalo")
             }
             
             
@@ -180,19 +190,24 @@ class CreatePlantView: UIView {
             plant.boosterPeriod = boosterPeriod
             plant.boosterLastDate = boosterLastDate
             switch boosterInterval {
-            case "0" :
+            case "1" :
                 let nextBoosterDate = self.createPlantViewTableHandler.boosterDatePicker.datePicker.calendar.date(byAdding: .hour, value: Int(boosterPeriod), to: boosterLastDate)
                     plant.boosterNextDate = nextBoosterDate
                 
-            case "1" :
+            case "2" :
                 let nextBoosterDate = self.createPlantViewTableHandler.boosterDatePicker.datePicker.calendar.date(byAdding: .day, value: Int(boosterPeriod), to: boosterLastDate)
                 plant.boosterNextDate = nextBoosterDate
                 
-            case "2" :
-                let nextBoosterDate = self.createPlantViewTableHandler.boosterDatePicker.datePicker.calendar.date(byAdding: .month, value: Int(boosterPeriod), to: boosterLastDate)
+            case "3" :
+                let nextBoosterDate = self.createPlantViewTableHandler.boosterDatePicker.datePicker.calendar.date(byAdding: .weekdayOrdinal, value: Int(boosterPeriod), to: boosterLastDate)
                 plant.boosterNextDate = nextBoosterDate
+                
+           case "4" :
+            let nextBoosterDate = self.createPlantViewTableHandler.boosterDatePicker.datePicker.calendar.date(byAdding: .month, value: Int(sunExposurePeriod), to: sunExposureLastDate)
+            plant.sunExposureNextDate = nextBoosterDate
+                
             default:
-                fatalError("404 - Interval")
+                print("Não há Intervalo")
             }
             
             
@@ -200,19 +215,24 @@ class CreatePlantView: UIView {
             plant.wateringPeriod = wateringPeriod
             plant.wateringLastDate = wateringLastDate
             switch wateringInterval {
-            case "0" :
+            case "1" :
                 let nextWateringDate = self.createPlantViewTableHandler.wateringDatePicker.datePicker.calendar.date(byAdding: .hour, value: Int(wateringPeriod), to: wateringLastDate)
                     plant.wateringNextDate = nextWateringDate
                 
-            case "1" :
+            case "2" :
                 let nextWateringDate = self.createPlantViewTableHandler.wateringDatePicker.datePicker.calendar.date(byAdding: .day, value: Int(wateringPeriod), to: wateringLastDate)
                 plant.wateringNextDate = nextWateringDate
                 
-            case "2" :
-                let nextWateringDate = self.createPlantViewTableHandler.wateringDatePicker.datePicker.calendar.date(byAdding: .month, value: Int(wateringPeriod), to: wateringLastDate)
+            case "3" :
+                let nextWateringDate = self.createPlantViewTableHandler.wateringDatePicker.datePicker.calendar.date(byAdding: .weekdayOrdinal, value: Int(wateringPeriod), to: wateringLastDate)
                 plant.wateringNextDate = nextWateringDate
+                
+            case "4" :
+            let nextWateringDate = self.createPlantViewTableHandler.wateringDatePicker.datePicker.calendar.date(byAdding: .month, value: Int(wateringPeriod), to: wateringLastDate)
+            plant.wateringNextDate = nextWateringDate
+            
             default:
-                fatalError("404 - Interval")
+                print("Não há Intervalo")
             }
             
             
@@ -220,19 +240,22 @@ class CreatePlantView: UIView {
             plant.pruningPeriod = pruningPeriod
             plant.pruningLastDate = pruningLastDate
             switch pruningInterval {
-            case "0" :
+            case "1" :
                 let nextPruningDate = self.createPlantViewTableHandler.pruningDatePicker.datePicker.calendar.date(byAdding: .hour, value: Int(pruningPeriod), to: pruningLastDate)
                     plant.pruningNextDate = nextPruningDate
                 
-            case "1" :
+            case "2" :
                 let nextPruningDate = self.createPlantViewTableHandler.pruningDatePicker.datePicker.calendar.date(byAdding: .day, value: Int(pruningPeriod), to: pruningLastDate)
                 plant.pruningNextDate = nextPruningDate
                 
-            case "2" :
-                let nextPruningDate = self.createPlantViewTableHandler.pruningDatePicker.datePicker.calendar.date(byAdding: .month, value: Int(pruningPeriod), to: pruningLastDate)
+            case "3" :
+                let nextPruningDate = self.createPlantViewTableHandler.pruningDatePicker.datePicker.calendar.date(byAdding: .weekdayOrdinal, value: Int(pruningPeriod), to: pruningLastDate)
                 plant.pruningNextDate = nextPruningDate
+            case "4" :
+            let nextPruningDate = self.createPlantViewTableHandler.pruningDatePicker.datePicker.calendar.date(byAdding: .month, value: Int(pruningPeriod), to: pruningLastDate)
+            plant.pruningNextDate = nextPruningDate
             default:
-                fatalError("404 - Interval")
+                print("Não há intervalo")
             }
             
             
@@ -240,21 +263,25 @@ class CreatePlantView: UIView {
             plant.pesticidePeriod = pesticidePeriod
             plant.pesticideLastDate = pesticideLastDate
             switch pesticideInterval {
-            case "0" :
+            case "1" :
                 let nextPesticideDate = self.createPlantViewTableHandler.pesticideDatePicker.datePicker.calendar.date(byAdding: .hour, value: Int(pesticidePeriod), to: pesticideLastDate)
                     plant.pesticideNextDate = nextPesticideDate
                 
-            case "1" :
+            case "2" :
                 let nextPesticideDate = self.createPlantViewTableHandler.pesticideDatePicker.datePicker.calendar.date(byAdding: .day, value: Int(pesticidePeriod), to: pesticideLastDate)
                 plant.pesticideNextDate = nextPesticideDate
                 
-            case "2" :
-                let nextPesticideDate = self.createPlantViewTableHandler.pesticideDatePicker.datePicker.calendar.date(byAdding: .month, value: Int(pesticidePeriod), to: pesticideLastDate)
+            case "3" :
+                let nextPesticideDate = self.createPlantViewTableHandler.pesticideDatePicker.datePicker.calendar.date(byAdding: .weekdayOrdinal, value: Int(pesticidePeriod), to: pesticideLastDate)
                 plant.pesticideNextDate = nextPesticideDate
-            default:
-                fatalError("404 - Interval")
-            }
+                
+            case "4" :
+            let nextPesticideDate = self.createPlantViewTableHandler.pesticideDatePicker.datePicker.calendar.date(byAdding: .month, value: Int(pesticidePeriod), to: pesticideLastDate)
+            plant.pesticideNextDate = nextPesticideDate
             
+            default:
+                print("Não há intervalo")
+            }
             
             do {
                 try context.save()

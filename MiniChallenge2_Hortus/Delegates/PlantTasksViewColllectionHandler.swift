@@ -56,14 +56,14 @@ UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
             tasksCollectionCell.actionButton.tag = indexPath.row
             tasksCollectionCell.setActionPeriod(string: period[indexPath.row] )
             tasksCollectionCell.setActionInterval(string: returnIntervalString(numero: interval[indexPath.row]) )
-            if tasksCollectionCell.actionPeriod.text == "0"  {
+            if tasksCollectionCell.actionPeriod.text == "0"  || tasksCollectionCell.actionInterval.text == "-" {
                 tasksCollectionCell.setLastLabel(string:  "-")
                 tasksCollectionCell.setNextLabel(string: "-")
             }else {
                 tasksCollectionCell.setLastLabel(string: lastDate[indexPath.row] )
                 tasksCollectionCell.setNextLabel(string: nextDate[indexPath.row] )
             }
-           
+            
             tasksCollectionCell.actionButton.addTarget(self, action: #selector(self.plantAction(_:)), for: .touchUpInside)
             
             
@@ -77,10 +77,12 @@ UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func returnIntervalString(numero: String) -> String {
         switch numero {
         case "1":
-            return "dias"
+            return "horas"
         case "2":
-            return "semanas"
+            return "dias"
         case "3":
+            return "semanas"
+        case "4":
             return "meses"
         default:
             return "-"
@@ -169,7 +171,8 @@ UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
             dateComponent = .hour
         case "Dias":
             dateComponent = .day
-        
+        case "Semanas":
+            dateComponent = .weekday
         case "Meses":
             dateComponent = .month
         default:
@@ -194,7 +197,8 @@ UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
             dateComponent = .hour
         case "Dias":
             dateComponent = .day
-        
+        case "Semanas":
+        dateComponent = .weekday
         case "Meses":
             dateComponent = .month
         default:
@@ -220,7 +224,8 @@ UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
             dateComponent = .hour
         case "Dias":
             dateComponent = .day
-        
+        case "Semanas":
+        dateComponent = .weekday
         case "Meses":
             dateComponent = .month
         default:
@@ -246,7 +251,8 @@ UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
             dateComponent = .hour
         case "Dias":
             dateComponent = .day
-        
+        case "Semanas":
+        dateComponent = .weekday
         case "Meses":
             dateComponent = .month
         default:
@@ -271,7 +277,8 @@ UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
             dateComponent = .hour
         case "Dias":
             dateComponent = .day
-        
+        case "Semanas":
+        dateComponent = .weekday
         case "Meses":
             dateComponent = .month
         default:
@@ -296,7 +303,8 @@ UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
             dateComponent = .hour
         case "Dias":
             dateComponent = .day
-        
+        case "Semanas":
+        dateComponent = .weekday
         case "Meses":
             dateComponent = .month
         default:
@@ -321,7 +329,8 @@ UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
             dateComponent = .hour
         case "Dias":
             dateComponent = .day
-        
+        case "Semanas":
+        dateComponent = .weekday
         case "Meses":
             dateComponent = .month
         default:

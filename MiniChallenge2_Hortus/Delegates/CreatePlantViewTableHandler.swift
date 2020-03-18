@@ -73,13 +73,7 @@ class CreatePlantViewTableHandler: NSObject, UITableViewDelegate, UITableViewDat
     
     let pesticidePicker: PickerCell = PickerCell()
     let pesticideDatePicker: DatePickerCell = DatePickerCell()
-    
-    
-    override init() {
-        
-        
-    }
-    
+
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         

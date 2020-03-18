@@ -69,7 +69,7 @@ public class CoreDataManager {
          let result = try? moc.fetch(fetchRequest)
             let resultData = result as! [Plant]
 
-            for i in resultData {
+        for _ in resultData {
                 if let result = plant {
                     moc.delete(result)
                 }
