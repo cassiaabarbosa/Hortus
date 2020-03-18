@@ -56,4 +56,35 @@ public class CoreDataManager {
             }
         }
     }
+    
+    func context () -> NSManagedObjectContext {
+        let context = persistentContainer.viewContext
+        return context
+    }
+    
+    func delete(plant: Plant?) -> Void {
+        let moc = context()
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Plant")
+
+         let result = try? moc.fetch(fetchRequest)
+            let resultData = result as! [Plant]
+
+            for i in resultData {
+                if let result = plant {
+                    moc.delete(result)
+                }
+                
+            }
+
+            do {
+                try moc.save()
+                print("saved!")
+            } catch let error as NSError  {
+                print("Could not save \(error), \(error.userInfo)")
+            } catch {
+
+            }
+
+    }
+
 }

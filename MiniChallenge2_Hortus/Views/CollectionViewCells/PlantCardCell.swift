@@ -11,6 +11,7 @@ import CoreData
 
 class PlantCardCell: UICollectionViewCell {
     
+    var plantIndex:Int?
     
     var namePlantLabel: UILabel = {
         let label = UILabel()

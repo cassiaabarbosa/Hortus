@@ -10,9 +10,7 @@
 		4FA265AC228B8CFF002D233D /* CreatePlantVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA265AB228B8CFF002D233D /* CreatePlantVC.swift */; };
 		4FA265AF228C6B13002D233D /* GardenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA265AD228C6B13002D233D /* GardenVC.swift */; };
 		4FA265B0228C6B13002D233D /* PlantCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA265AE228C6B13002D233D /* PlantCardCell.swift */; };
-		4FA265B2228C6B2C002D233D /* CircularProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA265B1228C6B2C002D233D /* CircularProgressBar.swift */; };
 		4FC6A28F229710A10056CD30 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4FC6A28E229710A10056CD30 /* Assets.xcassets */; };
-		4FC6A29822988D5D0056CD30 /* RoundedImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC6A29722988D5D0056CD30 /* RoundedImageView.swift */; };
 		CB0E0E6F2284BB1900AC6566 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB0E0E6E2284BB1900AC6566 /* AppDelegate.swift */; };
 		CB0E0E7C2284BB1A00AC6566 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CB0E0E7A2284BB1A00AC6566 /* LaunchScreen.storyboard */; };
 		CB13A0E123D5325200DD4778 /* FrequencyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB13A0E023D5325200DD4778 /* FrequencyCell.swift */; };
@@ -44,9 +42,7 @@
 		4FA265AB228B8CFF002D233D /* CreatePlantVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePlantVC.swift; sourceTree = "<group>"; };
 		4FA265AD228C6B13002D233D /* GardenVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GardenVC.swift; sourceTree = "<group>"; };
 		4FA265AE228C6B13002D233D /* PlantCardCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlantCardCell.swift; sourceTree = "<group>"; };
-		4FA265B1228C6B2C002D233D /* CircularProgressBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircularProgressBar.swift; sourceTree = "<group>"; };
 		4FC6A28E229710A10056CD30 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		4FC6A29722988D5D0056CD30 /* RoundedImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedImageView.swift; sourceTree = "<group>"; };
 		CB0E0E6B2284BB1900AC6566 /* MiniChallenge2_Hortus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MiniChallenge2_Hortus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB0E0E6E2284BB1900AC6566 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CB0E0E7B2284BB1A00AC6566 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -135,20 +131,10 @@
 				4FA265A6228B616B002D233D /* Controllers */,
 				CBD3DD7E23CD1C84009BB2A1 /* Views */,
 				CB0E0E6C2284BB1900AC6566 /* Products */,
-				CB7E50B323D1F7E1002DCA45 /* UI Elements */,
 				CB0E0E7A2284BB1A00AC6566 /* LaunchScreen.storyboard */,
 				CB0E0E7D2284BB1A00AC6566 /* Info.plist */,
 			);
 			path = MiniChallenge2_Hortus;
-			sourceTree = "<group>";
-		};
-		CB7E50B323D1F7E1002DCA45 /* UI Elements */ = {
-			isa = PBXGroup;
-			children = (
-				4FA265B1228C6B2C002D233D /* CircularProgressBar.swift */,
-				4FC6A29722988D5D0056CD30 /* RoundedImageView.swift */,
-			);
-			path = "UI Elements";
 			sourceTree = "<group>";
 		};
 		CBD3DD7E23CD1C84009BB2A1 /* Views */ = {
@@ -277,7 +263,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4FC6A29822988D5D0056CD30 /* RoundedImageView.swift in Sources */,
 				CB37880423D27560001B2479 /* NameCreatePlantCell.swift in Sources */,
 				CBD3DD7D23CD1BA4009BB2A1 /* CustomLabel.swift in Sources */,
 				4FA265AF228C6B13002D233D /* GardenVC.swift in Sources */,
@@ -294,7 +279,6 @@
 				CBF3B0A823DA18BC0081FC2B /* PlantVC.swift in Sources */,
 				CB3C948323DE04F10010D138 /* Plant+CoreDataProperties.swift in Sources */,
 				CB73054623E07E190010E3C8 /* CreatePlantView.swift in Sources */,
-				4FA265B2228C6B2C002D233D /* CircularProgressBar.swift in Sources */,
 				CB25C9EE23E1FC9D00ED77D7 /* CoreDataManager.swift in Sources */,
 				CB3C947B23DE02920010D138 /* HortusModel.xcdatamodeld in Sources */,
 				CBCDB28423DCA32700896040 /* TaskCollectionCell.swift in Sources */,

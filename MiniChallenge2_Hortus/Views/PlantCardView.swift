@@ -16,16 +16,28 @@ class PlantCardView: UIView {
     var plantCardViewCollectionHandler = PlantCardViewCollectionHandler()
     let plantCardCellId: String = "plantCardCellId"
     var context : NSManagedObjectContext?
-    var plantCollection = [Plant]()
+//    var plantCollection = [Plant]()
     var parentVC: GardenVC?
+    var searchController: UISearchController?
+    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         plantCardViewCollectionHandler.parentVC = self
         setPlantCard()
         self.backgroundColor = .white
+        self.searchController = UISearchController(searchResultsController: nil)
+//        self.searchController?.searchResultsUpdater = plantCardViewCollectionHandler
+//        self.searchController?.delegate = plantCardViewCollectionHandler
+//        self.searchController?.searchBar.delegate = plantCardViewCollectionHandler
+        self.searchController?.hidesNavigationBarDuringPresentation = false
+        self.searchController?.obscuresBackgroundDuringPresentation = false
+        self.searchController?.searchBar.becomeFirstResponder()
+
+        parentVC?.navigationItem.searchController = searchController
         plantCardCollectionView.delegate = plantCardViewCollectionHandler
         plantCardCollectionView.dataSource = plantCardViewCollectionHandler
+        
         
     }
     
@@ -70,6 +82,7 @@ class PlantCardView: UIView {
         
         return nil
     }
+    
     
     
 }

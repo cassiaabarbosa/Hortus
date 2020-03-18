@@ -837,14 +837,11 @@ class CreatePlantViewTableHandler: NSObject, UITableViewDelegate, UITableViewDat
     
     func tableView(_ tableView: UITableView,
                    viewForHeaderInSection section: Int) -> UIView? {
-        
         let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: customHeaderCellId) as! CustomHeader
         header.setHeaderImage(name: imageForSection[section])
         header.setHeaderLabel(text: titleForSection[section])
         return header
-        
     }
-    
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

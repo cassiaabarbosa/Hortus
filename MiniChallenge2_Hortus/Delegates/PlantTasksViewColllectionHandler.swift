@@ -37,7 +37,7 @@ UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     
     override init() {
-       formatter.dateFormat = "dd/MM/yyyy"
+        formatter.dateFormat = "dd/MM/yyyy"
     }
     
     
@@ -58,8 +58,6 @@ UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
             tasksCollectionCell.setActionInterval(string: returnIntervalString(numero: interval[indexPath.row]) )
             tasksCollectionCell.setLastLabel(string: lastDate[indexPath.row] )
             tasksCollectionCell.setNextLabel(string: nextDate[indexPath.row] )
-            tasksCollectionCell.actionButton.backgroundColor = #colorLiteral(red: 0.2745098174, green: 0.4862745106, blue: 0.1411764771, alpha: 1)
-            tasksCollectionCell.actionButton.isUserInteractionEnabled = true
             tasksCollectionCell.actionButton.addTarget(self, action: #selector(self.plantAction(_:)), for: .touchUpInside)
             
             
@@ -82,20 +80,22 @@ UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
             return "-"
         }
     }
+    
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let size = CGSize(width: UIScreen.main.bounds.width * 0.9, height: UIScreen.main.bounds.height * 0.2)
         
-        func collectionView(_ collectionView: UICollectionView,
-                            layout collectionViewLayout: UICollectionViewLayout,
-                            sizeForItemAt indexPath: IndexPath) -> CGSize {
-            //tamanho das células da Task
-            let size = CGSize(width: UIScreen.main.bounds.width * 0.9, height: UIScreen.main.bounds.height * 0.2)
-            
-            return size
-        }
-        
-        func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-            return 20
-        }
-        
+        return size
+    }
+    
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 20
+    }
+    
+    
     func setTasks() {
         period.append(String(plant?.floweringPeriod ?? 0))
         period.append(String(plant?.harvestingPeriod ?? 0))
@@ -112,7 +112,6 @@ UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
         interval.append(plant?.wateringInterval ?? "-")
         interval.append(plant?.pruningInterval ?? "-")
         interval.append(plant?.pesticideInterval ?? "-")
-        
         
         lastDate.append(formatter.string(for: plant?.floweringLastDate ?? "-") ?? "-")
         lastDate.append(formatter.string(for: plant?.harvestingLastDate ?? "-") ?? "-")
@@ -153,60 +152,181 @@ UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     }
     
     
-    func updateFlowering(){
-        plant?.floweringLastDate = Date()
-        CoreDataManager.shared.saveContext()
-        lastDate[0] = (formatter.string(for: plant?.floweringLastDate ?? "-") ?? "-")
-        self.parentVC?.plantTasksCollectionView.reloadData()
+    func updateFlowering() {
         
+        guard let plant = plant else { return }
+        var dateComponent: Calendar.Component = .day
+        plant.floweringLastDate = Date()
+        
+        switch plant.floweringInterval {
+        case "Horas":
+            dateComponent = .hour
+        case "Dias":
+            dateComponent = .day
+        
+        case "Meses":
+            dateComponent = .month
+        default:
+            print("DD")
+        }
+        
+        plant.floweringNextDate = Calendar.current.date(byAdding: dateComponent, value: Int(plant.floweringPeriod), to: Date())
+        CoreDataManager.shared.saveContext()
+        lastDate[0] = (formatter.string(for: plant.floweringLastDate ?? "-") ?? "-")
+        nextDate[0] = (formatter.string(for: plant.floweringNextDate ?? "-") ?? "-")
+        self.parentVC?.plantTasksCollectionView.reloadData()
     }
     
-    func updateHarvesting(){
-        plant?.harvestingLastDate = Date()
-        CoreDataManager.shared.saveContext()
-        lastDate[1] = (formatter.string(for: plant?.harvestingLastDate ?? "-") ?? "-")
-        self.parentVC?.plantTasksCollectionView.reloadData()
+    
+    func updateHarvesting() {
+        guard let plant = plant else { return }
+        var dateComponent: Calendar.Component = .day
+        plant.harvestingLastDate = Date()
         
+        switch plant.harvestingInterval {
+        case "Horas":
+            dateComponent = .hour
+        case "Dias":
+            dateComponent = .day
+        
+        case "Meses":
+            dateComponent = .month
+        default:
+            print("DD")
+        }
+        
+        plant.harvestingNextDate = Calendar.current.date(byAdding: dateComponent, value: Int(plant.floweringPeriod), to: Date())
+        CoreDataManager.shared.saveContext()
+        lastDate[0] = (formatter.string(for: plant.harvestingLastDate ?? "-") ?? "-")
+        nextDate[0] = (formatter.string(for: plant.harvestingNextDate ?? "-") ?? "-")
+        self.parentVC?.plantTasksCollectionView.reloadData()
+
     }
+    
     
     func updateSunExposure(){
-        plant?.sunExposureLastDate = Date()
-        CoreDataManager.shared.saveContext()
-        lastDate[2] = (formatter.string(for: plant?.sunExposureLastDate ?? "-") ?? "-")
-        self.parentVC?.plantTasksCollectionView.reloadData()
+        guard let plant = plant else { return }
+        var dateComponent: Calendar.Component = .day
+        plant.sunExposureLastDate = Date()
         
+        switch plant.sunExposureInterval {
+        case "Horas":
+            dateComponent = .hour
+        case "Dias":
+            dateComponent = .day
+        
+        case "Meses":
+            dateComponent = .month
+        default:
+            print("DD")
+        }
+        
+        plant.sunExposureNextDate = Calendar.current.date(byAdding: dateComponent, value: Int(plant.sunExposurePeriod), to: Date())
+        CoreDataManager.shared.saveContext()
+        lastDate[0] = (formatter.string(for: plant.sunExposureLastDate ?? "-") ?? "-")
+        nextDate[0] = (formatter.string(for: plant.sunExposureNextDate ?? "-") ?? "-")
+        self.parentVC?.plantTasksCollectionView.reloadData()
+
     }
+    
     
     func updateBooster(){
-        plant?.boosterLastDate = Date()
-        CoreDataManager.shared.saveContext()
-        lastDate[3] = (formatter.string(for: plant?.boosterLastDate ?? "-") ?? "-")
-        self.parentVC?.plantTasksCollectionView.reloadData()
+        guard let plant = plant else { return }
+        var dateComponent: Calendar.Component = .day
+        plant.boosterLastDate = Date()
         
+        switch plant.boosterInterval {
+        case "Horas":
+            dateComponent = .hour
+        case "Dias":
+            dateComponent = .day
+        
+        case "Meses":
+            dateComponent = .month
+        default:
+            print("DD")
+        }
+        
+        plant.boosterNextDate = Calendar.current.date(byAdding: dateComponent, value: Int(plant.boosterPeriod), to: Date())
+        CoreDataManager.shared.saveContext()
+        lastDate[0] = (formatter.string(for: plant.boosterLastDate ?? "-") ?? "-")
+        nextDate[0] = (formatter.string(for: plant.boosterNextDate ?? "-") ?? "-")
+        self.parentVC?.plantTasksCollectionView.reloadData()
     }
+    
     
     func updateWatering(){
-        plant?.wateringLastDate = Date()
-        CoreDataManager.shared.saveContext()
-        lastDate[4] = (formatter.string(for: plant?.wateringLastDate ?? "-") ?? "-")
-        self.parentVC?.plantTasksCollectionView.reloadData()
+        guard let plant = plant else { return }
+        var dateComponent: Calendar.Component = .day
+        plant.wateringLastDate = Date()
         
+        switch plant.wateringInterval {
+        case "Horas":
+            dateComponent = .hour
+        case "Dias":
+            dateComponent = .day
+        
+        case "Meses":
+            dateComponent = .month
+        default:
+            print("DD")
+        }
+        
+        plant.wateringNextDate = Calendar.current.date(byAdding: dateComponent, value: Int(plant.wateringPeriod), to: Date())
+        CoreDataManager.shared.saveContext()
+        lastDate[0] = (formatter.string(for: plant.wateringLastDate ?? "-") ?? "-")
+        nextDate[0] = (formatter.string(for: plant.wateringNextDate ?? "-") ?? "-")
+        self.parentVC?.plantTasksCollectionView.reloadData()
     }
+    
     
     func updatePruning(){
-        plant?.pruningLastDate = Date()
-        CoreDataManager.shared.saveContext()
-        lastDate[5] = (formatter.string(for: plant?.pruningLastDate ?? "-") ?? "-")
-        self.parentVC?.plantTasksCollectionView.reloadData()
+        guard let plant = plant else { return }
+        var dateComponent: Calendar.Component = .day
+        plant.pruningLastDate = Date()
         
+        switch plant.pruningInterval {
+        case "Horas":
+            dateComponent = .hour
+        case "Dias":
+            dateComponent = .day
+        
+        case "Meses":
+            dateComponent = .month
+        default:
+            print("DD")
+        }
+        
+        plant.pruningNextDate = Calendar.current.date(byAdding: dateComponent, value: Int(plant.wateringPeriod), to: Date())
+        CoreDataManager.shared.saveContext()
+        lastDate[0] = (formatter.string(for: plant.pruningLastDate ?? "-") ?? "-")
+        nextDate[0] = (formatter.string(for: plant.pruningNextDate ?? "-") ?? "-")
+        self.parentVC?.plantTasksCollectionView.reloadData()
     }
     
+    
     func updatePesticide(){
-        plant?.pesticideLastDate = Date()
+        guard let plant = plant else { return }
+        var dateComponent: Calendar.Component = .day
+        plant.pesticideLastDate = Date()
+        
+        switch plant.pesticideInterval {
+        case "Horas":
+            dateComponent = .hour
+        case "Dias":
+            dateComponent = .day
+        
+        case "Meses":
+            dateComponent = .month
+        default:
+            print("DD")
+        }
+        
+        plant.pesticideNextDate = Calendar.current.date(byAdding: dateComponent, value: Int(plant.pesticidePeriod), to: Date())
         CoreDataManager.shared.saveContext()
-        lastDate[6] = (formatter.string(for: plant?.pesticideLastDate ?? "-") ?? "-")
+        lastDate[0] = (formatter.string(for: plant.pesticideLastDate ?? "-") ?? "-")
+        nextDate[0] = (formatter.string(for: plant.pesticideNextDate ?? "-") ?? "-")
         self.parentVC?.plantTasksCollectionView.reloadData()
-        
     }
-        
+    
 }

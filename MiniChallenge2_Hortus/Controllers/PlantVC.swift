@@ -16,8 +16,9 @@ class PlantVC: UIViewController {
     
     var plantImageView = PlantImageView(frame: .zero)
     var plantTasksView =  PlantTasksView(frame: .zero)
-    var parentVC = GardenVC()
+    var parentVC: GardenVC?
     var plant: Plant?
+    var onDoneBlock:(()->Void)?
     
     required init() {
         super.init(nibName: nil, bundle: nil)
@@ -70,18 +71,32 @@ class PlantVC: UIViewController {
         plantTasksView.rightAnchor.constraint(equalTo:self.view.rightAnchor).isActive = true
         plantTasksView.bottomAnchor.constraint(equalTo:self.view.bottomAnchor).isActive = true
         plantTasksView.topAnchor.constraint(equalTo: plantImageView.bottomAnchor, constant: -20).isActive = true
-//        plantTasksView.plantTasksCollectionView.cellForItem(at: IndexPath(index: 0)).actionLabel
     }
     
     
     
     @objc func  deletePlant() {
         
-//        if let result = try? context.fetch(fetchRequest) {
-//            for object in result {
-//                context.delete(object)
-//            }
-//        }
+            CoreDataManager.shared.delete(plant: self.plant)
+            let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Plant")
+            request.returnsObjectsAsFaults = false
+            let  context = CoreDataManager.shared.persistentContainer.viewContext
+            do{
+                let result = try context.fetch(request)
+                self.parentVC?.plantCardView.plantCardViewCollectionHandler.plants = []
+                for data in result as! [NSManagedObject]{
+                    self.parentVC?.plantCardView.plantCardViewCollectionHandler.plants.append(data as! Plant)
+                }
+            }catch{
+                fatalError("404 - Non Entity")
+            }
+        DispatchQueue.global(qos: .userInteractive).sync {
+            self.parentVC?.plantCardView.plantCardCollectionView.reloadData()
+            self.parentVC?.plantCardView.plantCardViewCollectionHandler.reloadPlants()
+            
+        }
+        
+        self.dismiss(animated: true)
     }
     
     
@@ -103,6 +118,5 @@ class PlantVC: UIViewController {
         return nil
     }
 
-    
     
 }

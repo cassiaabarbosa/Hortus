@@ -9,18 +9,23 @@
 import UIKit
 import CoreData
 
-class PlantCardViewCollectionHandler: NSObject, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-    
+class PlantCardViewCollectionHandler: NSObject, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UISearchControllerDelegate, UISearchBarDelegate, UISearchResultsUpdating {
+
     
     var parentVC: PlantCardView?
     let plantCardCellId: String = "plantCardCellId"
     
     let plantCard: PlantCardCell = PlantCardCell()
-    var plants:[Plant] = []
+    var plants: [Plant] = []
+    var plantsName: [String] = []
+    
+    var filtered:[String] = []
+    var searchActive : Bool = false
     
     override init() {
         super.init()
         self.reloadPlants()
+        plantNames()
     }
     
     func reloadPlants() {
@@ -40,9 +45,70 @@ class PlantCardViewCollectionHandler: NSObject, UICollectionViewDelegate, UIColl
         self.parentVC?.plantCardCollectionView.reloadData()
     }
     
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        if searchActive{
+            return filtered.count
+        }
+        
         return plants.count
     }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchActive = false
+        parentVC?.parentVC?.dismiss(animated: true, completion: nil)
+    }
+    
+//    func updateSearchResults(for searchController: UISearchController) {
+//        let searchString = searchController.searchBar.text
+//
+//        for i in 0...plants.count {
+//            filtered = plants[i].plantName?.filter({ (item) -> Bool in
+//            }
+////
+//            let countryText: NSString = item as NSString
+//
+//            return (countryText.range(of: searchString!, options: NSString.CompareOptions.caseInsensitive).location) != NSNotFound
+//        })
+//        collectionView.reloadData()
+//
+//    }
+    
+       
+       func updateSearchResults(for searchController: UISearchController){
+           let searchString = searchController.searchBar.text
+    
+                filtered = plantsName.filter({ (item) -> Bool in
+                    let countryText: NSString = item as NSString
+                    
+                    return (countryText.range(of: searchString!, options: NSString.CompareOptions.caseInsensitive).location) != NSNotFound
+                })
+                
+                parentVC?.plantCardCollectionView.reloadData()
+           
+
+       }
+    
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        searchActive = true
+        parentVC?.plantCardCollectionView.reloadData()
+    }
+    
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchActive = false
+        parentVC?.plantCardCollectionView.reloadData()
+    }
+    
+    func searchBarBookmarkButtonClicked(_ searchBar: UISearchBar) {
+        if !searchActive {
+            searchActive = true
+            parentVC?.plantCardCollectionView.reloadData()
+        }
+        
+        parentVC?.searchController?.searchBar.resignFirstResponder()
+    }
+
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
@@ -50,6 +116,7 @@ class PlantCardViewCollectionHandler: NSObject, UICollectionViewDelegate, UIColl
             
             let plant = plants[indexPath.row]
             
+            plantCardCell.plantIndex = indexPath.row
             plantCardCell.namePlantLabel.text = plant.plantName
             plantCardCell.plantImageView.image = loadImageFromDiskWith(fileName: plant.plantImage ?? " ")
             plantCardCell.plant = plant
@@ -90,6 +157,7 @@ class PlantCardViewCollectionHandler: NSObject, UICollectionViewDelegate, UIColl
         return 20
     }
     
+    
     func loadImageFromDiskWith(fileName: String) -> UIImage? {
         
         let documentDirectory = FileManager.SearchPathDirectory.documentDirectory
@@ -107,4 +175,10 @@ class PlantCardViewCollectionHandler: NSObject, UICollectionViewDelegate, UIColl
         return nil
     }
     
+    func plantNames() {
+        for i in 0..<plants.count{
+            plantsName.append(plants[i].plantName ?? "_")
+        }
+    }
+
 }

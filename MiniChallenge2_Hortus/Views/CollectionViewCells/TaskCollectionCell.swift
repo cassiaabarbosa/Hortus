@@ -32,13 +32,13 @@ class TaskCollectionCell: UICollectionViewCell {
         self.layer.shadowOffset = CGSize(width: 4, height: 4)
         self.layer.shadowRadius = 3.0
         self.layer.shadowOpacity = 1
-//        actionButton.addTarget(self, action: #selector(plantAction(_:)), for: .touchUpInside)
 
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
+    
     
     func setLayout() {
         defaultLabel.text = "A cada"
@@ -55,11 +55,10 @@ class TaskCollectionCell: UICollectionViewCell {
         
         nextLabel.textColor = .black
         
+        actionButton.isUserInteractionEnabled = true
         actionButton.setTitleColor(.black, for: .normal)
-        actionButton.backgroundColor = UIColor.App.deselectedCell
+        actionButton.backgroundColor = UIColor.App.selectedCell
         actionButton.layer.cornerRadius = 20
-        actionButton.layer.borderWidth = 1
-        actionButton.layer.borderColor = UIColor.black.cgColor
         
         
         self.backgroundColor = #colorLiteral(red: 0.8941176471, green: 0.8980392157, blue: 0.9019607843, alpha: 1)
@@ -109,9 +108,9 @@ class TaskCollectionCell: UICollectionViewCell {
         
         
         lastImage.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
-        lastImage.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 10).isActive = true
-        lastImage.widthAnchor.constraint(equalToConstant: 44).isActive = true
-        lastImage.heightAnchor.constraint(equalToConstant: 44).isActive = true
+        lastImage.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 20).isActive = true
+        lastImage.widthAnchor.constraint(equalToConstant: 25).isActive = true
+        lastImage.heightAnchor.constraint(equalToConstant: 25).isActive = true
         
         
         lastLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
@@ -137,12 +136,6 @@ class TaskCollectionCell: UICollectionViewCell {
         actionButton.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -20).isActive = true
         actionButton.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: 0).isActive = true
     }
-
-    
-    
-    func setActionButtonBorder(color: CGColor ) {
-        self.actionButton.layer.borderColor = color
-    }
     
     
     func setActionButtonText(text: String){
@@ -152,7 +145,6 @@ class TaskCollectionCell: UICollectionViewCell {
     func setActionImage(name: String){
         self.actionImage.image = UIImage(named: name)
     }
-    
     
     
     func setActionPeriod(string: String) {
@@ -174,13 +166,5 @@ class TaskCollectionCell: UICollectionViewCell {
     func setNextLabel(string: String) {
         self.nextLabel.text = string
     }
-
     
-    
-    
-//    @objc func plantAction(_ sender: UIButton){
-//        print("fds")
-////        TODO: cria uma action para atualizar as labels com as informações do CoreData
-//
-//    }
 }

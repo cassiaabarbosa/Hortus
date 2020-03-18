@@ -120,6 +120,7 @@ class CreatePlantView: UIView {
             plant.floweringPeriod = floweringPeriod
             plant.floweringLastDate = floweringLastDate
             switch floweringInterval {
+                
             case "0":
                 let nextFloweringDate = self.createPlantViewTableHandler.floweringDatePicker.datePicker.calendar.date(byAdding: .hour, value: Int(floweringPeriod), to: floweringLastDate)
                 plant.floweringNextDate = nextFloweringDate

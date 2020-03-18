@@ -16,7 +16,8 @@ class GardenVC : UIViewController, UITextViewDelegate {
     var context : NSManagedObjectContext?
     var plantCardView = PlantCardView(frame: .zero)
     var emptyLabel = UILabel()
-    
+    var cellId: String = "ff"
+    var onDoneBlock:(()->Void)?
     
     required init() {
         super.init(nibName: nil, bundle: nil)
@@ -26,21 +27,6 @@ class GardenVC : UIViewController, UITextViewDelegate {
         fatalError("init(coder:) has not been implemented")
     }
     
-//    let searchBar: UISearchBar = UISearchBar(frame: (CGRect(x: 0, y: 64, width:UIScreen.main.bounds.width, height: 100)))
-//    let searchController = UISearchController(searchResultsController: nil)
-    
-    
-    
-//    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-//        let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: cellId, for: indexPath)
-//            header.addSubview(searchBar)
-//            searchBar.translatesAutoresizingMaskIntoConstraints = false
-//            searchBar.leftAnchor.constraint(equalTo: header.leftAnchor).isActive = true
-//            searchBar.rightAnchor.constraint(equalTo: header.rightAnchor).isActive = true
-//            searchBar.topAnchor.constraint(equalTo: header.topAnchor).isActive = true
-//            searchBar.bottomAnchor.constraint(equalTo: header.bottomAnchor).isActive = true
-//        return header
-//    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,22 +38,13 @@ class GardenVC : UIViewController, UITextViewDelegate {
             // Fallback on earlier versions
         }
         
-        self.title = "Jardim"
+//        self.navigationItem.titleView = plantCardView.searchController?.searchBar
 
         navigationController?.navigationBar.barTintColor = UIColor.App.navigation
         navigationController?.navigationBar.tintColor = UIColor.App.navigationTitle
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.App.navigationTitle]
         navigationItem.setRightBarButton(UIBarButtonItem(image: #imageLiteral(resourceName: "Add button"), style: .done, target: self, action: #selector(showsCreatePlantVC)), animated: true)
         
-//        searchController.searchBar.delegate = self as? UISearchBarDelegate
-//        searchController.hidesNavigationBarDuringPresentation = true
-//        searchController.searchResultsUpdater = searchController as? UISearchResultsUpdating
-//        searchController.obscuresBackgroundDuringPresentation = true
-//        searchController.extendedLayoutIncludesOpaqueBars = true
-//        searchController.searchBar.autocapitalizationType = .sentences
-//        searchController.searchBar.isTranslucent = true
-//        searchController.searchBar.searchBarStyle = .prominent
-//        searchController.searchBar.sizeToFit()
 //        navigationItem.hidesSearchBarWhenScrolling = true
         
         self.view.backgroundColor = .white
@@ -89,10 +66,10 @@ class GardenVC : UIViewController, UITextViewDelegate {
         
         addingEmptyLabel()
         
-        
     }
     
 
+    
     func setPlantCardView() {
         plantCardView.parentVC = self
         self.view.addSubview(plantCardView)
@@ -105,37 +82,8 @@ class GardenVC : UIViewController, UITextViewDelegate {
         
     }
     
-    
-//    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-//
-//    }
-//
-//    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-//        navigationItem.searchController = searchController
-//    }
-
-
-//    func loadImageFromDiskWith(fileName: String) -> UIImage? {
-//
-//        let documentDirectory = FileManager.SearchPathDirectory.documentDirectory
-//
-//        let userDomainMask = FileManager.SearchPathDomainMask.userDomainMask
-//        let paths = NSSearchPathForDirectoriesInDomains(documentDirectory, userDomainMask, true)
-//
-//        if let dirPath = paths.first {
-//            let imageUrl = URL(fileURLWithPath: dirPath).appendingPathComponent(fileName)
-//            let image = UIImage(contentsOfFile: imageUrl.path)
-//            return image
-//
-//        }
-//
-//        return nil
-//    }
-
-    
-
-    
     func addingEmptyLabel() {
+        self.onDoneBlock?()
         if plantCardView.plantCardViewCollectionHandler.plants.count == 0 {
             emptyLabel.isHidden = false
         }else {
@@ -148,6 +96,7 @@ class GardenVC : UIViewController, UITextViewDelegate {
         let nextVC = CreatePlantVC()
         nextVC.onDoneBlock = {
             self.plantCardView.plantCardViewCollectionHandler.reloadPlants()
+            self.emptyLabel.isHidden = true
         }
         let navController = UINavigationController(rootViewController: nextVC)
         self.present(navController, animated: true, completion: nil)

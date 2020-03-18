@@ -18,7 +18,6 @@ class PlantTasksView: UIView {
     var plantTaskCollectionCellId: String = "TaskCellId"
     var plant: Plant?
     
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         plantTasksCollectionHandler = PlantTasksViewCollectionHandler()
