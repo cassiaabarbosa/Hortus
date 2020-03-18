@@ -20,9 +20,11 @@ class PlantVC: UIViewController {
     var plant: Plant?
     var onDoneBlock:(()->Void)?
     
-    required init() {
+    required init(parent: GardenVC) {
         super.init(nibName: nil, bundle: nil)
+        parentVC = parent
     }
+    
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -76,26 +78,25 @@ class PlantVC: UIViewController {
     
     
     @objc func  deletePlant() {
+        CoreDataManager.shared.delete(plant: plant)
         
-            CoreDataManager.shared.delete(plant: self.plant)
-            let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Plant")
-            request.returnsObjectsAsFaults = false
-            let  context = CoreDataManager.shared.persistentContainer.viewContext
-            do{
-                let result = try context.fetch(request)
-                self.parentVC?.plantCardView.plantCardViewCollectionHandler.plants = []
-                for data in result as! [NSManagedObject]{
-                    self.parentVC?.plantCardView.plantCardViewCollectionHandler.plants.append(data as! Plant)
-                }
-            }catch{
-                fatalError("404 - Non Entity")
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Plant")
+        request.returnsObjectsAsFaults = false
+        let  context = CoreDataManager.shared.persistentContainer.viewContext
+        do{
+            let result = try context.fetch(request)
+            parentVC?.plantCardView.plantCardViewCollectionHandler.plants = []
+            for data in result as! [NSManagedObject]{
+                parentVC?.plantCardView.plantCardViewCollectionHandler.plants.append(data as! Plant)
             }
-        DispatchQueue.global(qos: .userInteractive).sync {
-            self.parentVC?.plantCardView.plantCardCollectionView.reloadData()
-            self.parentVC?.plantCardView.plantCardViewCollectionHandler.reloadPlants()
-            
+        }catch{
+            fatalError("404 - Non Entity")
         }
+        self.parentVC?.plantCardView.plantCardViewCollectionHandler.reloadPlants()
         
+        if self.parentVC?.plantCardView.plantCardViewCollectionHandler.plants.count == 0{
+            parentVC?.emptyLabel.isHidden = false
+        }
         self.dismiss(animated: true)
     }
     
