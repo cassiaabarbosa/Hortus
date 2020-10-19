@@ -12,14 +12,15 @@ import CoreData
 
 class GardenVC : UIViewController, UITextViewDelegate {
     
-    
-    var context : NSManagedObjectContext?
     var plantCardView = PlantCardView(frame: .zero)
     var emptyLabel = UILabel()
     var cellId: String = "ff"
     var onDoneBlock:(()->Void)?
     
-    required init() {
+	private let viewModel: CreatePlantViewModel
+	
+    required init(viewModel: CreatePlantViewModel) {
+		self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -63,7 +64,6 @@ class GardenVC : UIViewController, UITextViewDelegate {
         addingEmptyLabel()
         
     }
-    
 
     
     func setPlantCardView() {
@@ -78,6 +78,7 @@ class GardenVC : UIViewController, UITextViewDelegate {
         
     }
     
+    
     func addingEmptyLabel() {
         self.onDoneBlock?()
         if plantCardView.plantCardViewCollectionHandler.plants.count == 0 {
@@ -89,14 +90,51 @@ class GardenVC : UIViewController, UITextViewDelegate {
     
     
     @objc func showsCreatePlantVC(_ sender: Any) {
-        let nextVC = CreatePlantVC()
-        nextVC.onDoneBlock = {
-            self.plantCardView.plantCardViewCollectionHandler.reloadPlants()
-            self.emptyLabel.isHidden = true
-        }
-        let navController = UINavigationController(rootViewController: nextVC)
-        self.present(navController, animated: true, completion: nil)
+//        let nextVC = CreatePlantVC(viewModel: <#T##CreatePlantViewModel#>)
+//        nextVC.onDoneBlock = {
+//            self.plantCardView.plantCardViewCollectionHandler.reloadPlants()
+//            self.emptyLabel.isHidden = true
+//        }
+//        let navController = UINavigationController(rootViewController: nextVC)
+//        self.present(navController, animated: true, completion: nil)
     }
     
 }
 
+//MARK: CollectionViewDataSource
+extension CreatePlantVC: UICollectionViewDataSource {
+	func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+		return 1
+	}
+	
+	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+		if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PlantCardCell.id, for: indexPath) as? PlantCardCell {
+			return cell
+		}
+		return UICollectionViewCell()
+	}
+}
+
+//MARK: CollectionViewDelegateFlowLayout
+extension CreatePlantVC: UICollectionViewDelegateFlowLayout {
+	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+		return CGSize(width: ((self.view.frame.width) * 0.5) - 10, height: (self.view.frame.height) * 0.3)
+	}
+	
+	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+		return 20
+	}
+}
+
+//MARK: CollectionViewDelegate
+extension CreatePlantVC: UICollectionViewDelegate {
+	func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+//		guard let cell = collectionView.cellForItem(at: indexPath) as? PlantCardCell else {return}
+//		guard let vcontroller = self.parentVC?.parentVC else {return}
+//		
+//		let plantVC = PlantVC(parent: parentVC!.parentVC!)
+//		let navController = UINavigationController(rootViewController: plantVC)
+//		plantVC.plant = cell.plant
+//		vcontroller.present(navController, animated: true, completion: nil)
+	}
+}

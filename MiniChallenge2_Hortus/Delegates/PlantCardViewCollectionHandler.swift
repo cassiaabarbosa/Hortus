@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class PlantCardViewCollectionHandler: NSObject, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UISearchControllerDelegate, UISearchBarDelegate, UISearchResultsUpdating {
+class PlantCardViewCollectionHandler: NSObject, UISearchControllerDelegate, UISearchBarDelegate, UISearchResultsUpdating {
 
     
     var parentVC: PlantCardView?
@@ -110,52 +110,32 @@ class PlantCardViewCollectionHandler: NSObject, UICollectionViewDelegate, UIColl
     }
 
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
-        if let plantCardCell = collectionView.dequeueReusableCell(withReuseIdentifier: plantCardCellId, for: indexPath) as? PlantCardCell {
-            
-            let plant = plants[indexPath.row]
-            
-            plantCardCell.plantIndex = indexPath.row
-            plantCardCell.namePlantLabel.text = plant.plantName
-            plantCardCell.plantImageView.image = loadImageFromDiskWith(fileName: plant.plantImage ?? " ")
-            plantCardCell.plant = plant
-            
-            
-            return plantCardCell
-        }
-        
-        return UICollectionViewCell()
-    }
+//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+//        if let plantCardCell = collectionView.dequeueReusableCell(withReuseIdentifier: plantCardCellId, for: indexPath) as? PlantCardCell {
+//            let plant = plants[indexPath.row]
+//            plantCardCell.plantIndex = indexPath.row
+//			plantCardCell.namePlant.text = plant.plantName
+//            plantCardCell.plantImage.image = loadImageFromDiskWith(fileName: plant.plantImage ?? " ")
+//            plantCardCell.plant = plant
+//            return plantCardCell
+//        }
+//        
+//        return UICollectionViewCell()
+//    }
     
     
-    func collectionView(_ collectionView: UICollectionView,
-                        layout collectionViewLayout: UICollectionViewLayout,
-                        sizeForItemAt indexPath: IndexPath) -> CGSize {
-        //tamanho das células
-        let size = CGSize(width: ((parentVC?.frame.width)! * 0.5) - 10, height: (parentVC?.frame.height)! * 0.3)
-
-        return size
-    }
-    
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
-        guard let cell = collectionView.cellForItem(at: indexPath) as? PlantCardCell else {return}
-        
-//        pegando o gardenVC
-        guard let vcontroller = self.parentVC?.parentVC else {return}
-        let plantVC = PlantVC(parent: parentVC!.parentVC!)
-        let navController = UINavigationController(rootViewController: plantVC)
-        plantVC.plant = cell.plant
-        vcontroller.present(navController, animated: true, completion: nil)
-        
-    }
-    
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 20
-    }
+//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+//        
+//        guard let cell = collectionView.cellForItem(at: indexPath) as? PlantCardCell else {return}
+//        
+////        pegando o gardenVC
+//        guard let vcontroller = self.parentVC?.parentVC else {return}
+//		
+//        let plantVC = PlantVC(parent: parentVC!.parentVC!)
+//        let navController = UINavigationController(rootViewController: plantVC)
+//        plantVC.plant = cell.plant
+//        vcontroller.present(navController, animated: true, completion: nil)
+//    }
     
     
     func loadImageFromDiskWith(fileName: String) -> UIImage? {

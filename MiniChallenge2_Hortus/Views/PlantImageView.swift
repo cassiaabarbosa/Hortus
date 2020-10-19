@@ -8,8 +8,6 @@
 
 import Foundation
 import UIKit
-import CoreData
-
 
 class PlantImageView: UIView {
     
