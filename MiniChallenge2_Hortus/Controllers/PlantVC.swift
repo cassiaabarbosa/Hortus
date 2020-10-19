@@ -55,7 +55,6 @@ class PlantVC: UIViewController {
         
         plantImageView.translatesAutoresizingMaskIntoConstraints = false
         plantImageView.plantImage.image = loadImageFromDiskWith(fileName: plant?.plantImage ?? " ")
-        
         plantImageView.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
         plantImageView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
         plantImageView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true

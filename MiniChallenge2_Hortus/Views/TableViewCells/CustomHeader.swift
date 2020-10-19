@@ -14,7 +14,9 @@ class CustomHeader: UITableViewHeaderFooterView {
     let image = UIImageView()
     let title = UILabel()
     
-    
+	static var id: String {
+	   return String(describing: self)
+	}
     
      override init(reuseIdentifier: String?) {
             super.init(reuseIdentifier: reuseIdentifier)

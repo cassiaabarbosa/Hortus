@@ -50,6 +50,8 @@ class PickerCell: UITableViewCell, UIPickerViewDelegate, UIPickerViewDataSource 
         contentView.addSubview(picker)
         
         picker.delegate = self
+        picker.dataSource = self
+        
         
         picker.translatesAutoresizingMaskIntoConstraints = false
         picker.topAnchor.constraint(equalTo: self.topAnchor, constant: 0).isActive = true

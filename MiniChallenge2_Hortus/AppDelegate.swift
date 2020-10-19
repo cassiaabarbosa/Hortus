@@ -16,8 +16,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
      func application(_ application: UIApplication,
                       didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
-        let navigationController = UINavigationController.init()
-        let mainVC = GardenVC.init()
+        let navigationController = UINavigationController()
+        let mainVC = GardenVC(viewModel: CreatePlantViewModel())
         navigationController.viewControllers = [mainVC]
         
         window = UIWindow.init(frame: UIScreen.main.bounds)

@@ -8,7 +8,7 @@
 //
 import UIKit
 
-class CreatePlantViewTableHandler: NSObject, UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class CreatePlantViewTableHandler: NSObject, UITableViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     
     let nameCellId: String = "nameCellId"
@@ -806,18 +806,18 @@ class CreatePlantViewTableHandler: NSObject, UITableViewDelegate, UITableViewDat
     
     
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section != 0{
-            return 4
-        }
-        return 2
-    }
+//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        if section != 0{
+//            return 4
+//        }
+//        return 2
+//    }
+//    
     
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        
-        return 8
-    }
+//    func numberOfSections(in tableView: UITableView) -> Int {
+//        
+//        return 8
+//    }
     
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -829,13 +829,13 @@ class CreatePlantViewTableHandler: NSObject, UITableViewDelegate, UITableViewDat
     }
     
     
-    func tableView(_ tableView: UITableView,
-                   viewForHeaderInSection section: Int) -> UIView? {
-        let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: customHeaderCellId) as! CustomHeader
-        header.setHeaderImage(name: imageForSection[section])
-        header.setHeaderLabel(text: titleForSection[section])
-        return header
-    }
+//    func tableView(_ tableView: UITableView,
+//                   viewForHeaderInSection section: Int) -> UIView? {
+//        let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: customHeaderCellId) as! CustomHeader
+//        header.setHeaderImage(name: imageForSection[section])
+//        header.setHeaderLabel(text: titleForSection[section])
+//        return header
+//    }
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -965,7 +965,7 @@ class CreatePlantViewTableHandler: NSObject, UITableViewDelegate, UITableViewDat
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 0{
             if indexPath.row == 0 {
-                return 500
+                return 400
             }else {
                 return 50
             }
