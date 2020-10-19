@@ -9,84 +9,73 @@
 import UIKit
 import CoreData
 
-// MARK: Declarations
 class PlantCardCell: UICollectionViewCell {
-	static var id: String {
-	   return String(describing: self)
-	}
-	
-	@TemplateView var namePlant: UILabel
-	@TemplateView var plantImage: UIImageView
-	
-//    var plantIndex:Int?
-//	var plant: Plant?
-   
-	
-// MARK: Init
+    
+    var plantIndex:Int?
+    
+    var namePlantLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 17)
+        label.textColor = #colorLiteral(red: 0.5336075425, green: 0.7177075744, blue: 0.4416005611, alpha: 1)
+        label.text = "Hortência"
+        label.textAlignment = .center
+        label.backgroundColor = UIColor.white
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.layer.cornerRadius = 20
+        label.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner]
+        return label
+    }()
+    
+    
+    
+    let plantImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "hotencia")
+        imageView.contentMode = .scaleAspectFill
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.layer.cornerRadius = 20
+        return imageView
+    }()
+    
+    
+    var plant: Plant?
+    
+    
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
-		setupCellAttributes()
-		setupPlantNameAttributes()
-		setupPlantImageAttributes()
-		setupSubviewsConstraints()
+
+        
+        addSubview(plantImageView)
+        addSubview(namePlantLabel)
+        
+        plantImageView.layer.masksToBounds = true
+        namePlantLabel.layer.masksToBounds = true
+        
+        backgroundColor = .none
+        self.layer.masksToBounds = false
+        self.layer.shadowColor = UIColor.lightGray.cgColor
+        self.layer.shadowOffset = CGSize(width: 4, height: 4)
+        self.layer.shadowRadius = 3.0
+        self.layer.shadowOpacity = 1
+        
+        
+        plantImageView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
+        plantImageView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
+        plantImageView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
+        plantImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
+
+        namePlantLabel.bottomAnchor.constraint(equalTo: self.plantImageView.bottomAnchor).isActive = true
+        namePlantLabel.leadingAnchor.constraint(equalTo: self.plantImageView.leadingAnchor).isActive = true
+        namePlantLabel.trailingAnchor.constraint(equalTo: self.plantImageView.trailingAnchor).isActive = true
+        namePlantLabel.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        
     }
-	
-	required init?(coder: NSCoder) {
-		fatalError("init(coder:) has not been implemented")
-	}
-	
-// MARK: Content Attributes
-	private func setupPlantNameAttributes() {
-		self.addSubview(namePlant)
-		self.namePlant.font = UIFont.systemFont(ofSize: 17)
-		self.namePlant.textColor = #colorLiteral(red: 0.5336075425, green: 0.7177075744, blue: 0.4416005611, alpha: 1)
-		self.namePlant.textAlignment = .center
-		self.namePlant.backgroundColor = UIColor.white
-		self.namePlant.translatesAutoresizingMaskIntoConstraints = false
-		self.namePlant.layer.cornerRadius = 20
-		self.namePlant.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner]
-		self.namePlant.layer.masksToBounds = true
-	}
+    
+    
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
-	private func setupPlantImageAttributes() {
-		self.addSubview(plantImage)
-		self.plantImage.contentMode = .scaleAspectFill
-		self.plantImage.translatesAutoresizingMaskIntoConstraints = false
-		self.plantImage.layer.cornerRadius = 20
-		self.plantImage.layer.masksToBounds = true
-	}
-	
-	private func setupCellAttributes() {
-		backgroundColor = .none
-		self.layer.masksToBounds = false
-		self.layer.shadowColor = UIColor.lightGray.cgColor
-		self.layer.shadowOffset = CGSize(width: 4, height: 4)
-		self.layer.shadowRadius = 2.0
-		self.layer.shadowOpacity = 1
-	}
-	
-// MARK: Constraints
-	private func setupSubviewsConstraints() {
-		NSLayoutConstraint.activate([
-			plantImage.topAnchor.constraint(equalTo: self.topAnchor),
-			plantImage.bottomAnchor.constraint(equalTo: self.bottomAnchor),
-			plantImage.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-			plantImage.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-
-			namePlant.bottomAnchor.constraint(equalTo: self.plantImage.bottomAnchor),
-			namePlant.leadingAnchor.constraint(equalTo: self.plantImage.leadingAnchor),
-			namePlant.trailingAnchor.constraint(equalTo: self.plantImage.trailingAnchor),
-			namePlant.heightAnchor.constraint(equalToConstant: 50)
-		])
-	}
-
-//MARK: Calling Functions
-	internal func changeCell(name: String) {
-		self.namePlant.text = name
-	}
-	
-	internal func changeCell(image: String) {
-		self.plantImage.image = UIImage(named: image)
-	}
-	
 }

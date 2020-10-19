@@ -26,8 +26,8 @@ class PlantCardView: UIView {
         setPlantCard()
         self.backgroundColor = .white
         parentVC?.navigationItem.searchController = searchController
-//        plantCardCollectionView.delegate = plantCardViewCollectionHandler
-//        plantCardCollectionView.dataSource = plantCardViewCollectionHandler
+        plantCardCollectionView.delegate = plantCardViewCollectionHandler
+        plantCardCollectionView.dataSource = plantCardViewCollectionHandler
     }
     
     

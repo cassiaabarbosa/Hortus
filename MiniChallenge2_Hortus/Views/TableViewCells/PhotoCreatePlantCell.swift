@@ -13,8 +13,7 @@ class PhotoCreatePlantCell: UITableViewCell, UIImagePickerControllerDelegate, UI
     var photo: UIImageView = {
         var photo = UIImageView()
         photo.image = UIImage(named: "AddPhotoImage")
-		photo.contentMode = .scaleToFill
-		photo.translatesAutoresizingMaskIntoConstraints = false
+        photo.contentMode = .scaleAspectFill
         return photo
     }()
     
@@ -22,17 +21,24 @@ class PhotoCreatePlantCell: UITableViewCell, UIImagePickerControllerDelegate, UI
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
+    
+        
         contentView.addSubview(photo)
         
+        photo.translatesAutoresizingMaskIntoConstraints = false
         photo.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
         photo.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
         photo.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
         photo.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
 
+        
         self.separatorInset = .zero
         self.selectionStyle = .default
+        
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder) }
+
+    
 }

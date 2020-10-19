@@ -9,9 +9,8 @@
 import Foundation
 import UIKit
 import CoreData
-import UserNotifications
 
-class CreatePlantView: UIView, UNUserNotificationCenterDelegate {
+class CreatePlantView: UIView {
     
     var table = UITableView(frame: .zero)
     var createPlantViewTableHandler = CreatePlantViewTableHandler()
@@ -36,8 +35,8 @@ class CreatePlantView: UIView, UNUserNotificationCenterDelegate {
         
         set()
         
-//        table.delegate = createPlantViewTableHandler
-//        table.dataSource = createPlantViewTableHandler
+        table.delegate = createPlantViewTableHandler
+        table.dataSource = createPlantViewTableHandler
         
         
     }
@@ -72,7 +71,7 @@ class CreatePlantView: UIView, UNUserNotificationCenterDelegate {
         let floweringInterval: String = String( self.createPlantViewTableHandler.floweringPicker.picker.selectedRow(inComponent: 0))
         let floweringPeriod: Int32 = Int32(self.createPlantViewTableHandler.floweringPicker.picker.selectedRow(inComponent: 1))
         let floweringLastDate: Date = self.createPlantViewTableHandler.floweringDatePicker.datePicker.date
-        
+
         let harvestingInterval: String = String(self.createPlantViewTableHandler.harvestingPicker.picker.selectedRow(inComponent: 0))
         let harvestingPeriod: Int32 = Int32(self.createPlantViewTableHandler.harvestingPicker.picker.selectedRow(inComponent: 1))
         let harvestingLastDate: Date = self.createPlantViewTableHandler.harvestingDatePicker.datePicker.date
@@ -96,13 +95,13 @@ class CreatePlantView: UIView, UNUserNotificationCenterDelegate {
         let pesticideInterval: String = String(self.createPlantViewTableHandler.pesticidePicker.picker.selectedRow(inComponent: 0))
         let pesticidePeriod: Int32 = Int32(self.createPlantViewTableHandler.pesticidePicker.picker.selectedRow(inComponent: 1))
         let pesticideLastDate: Date = self.createPlantViewTableHandler.pesticideDatePicker.datePicker.date
-        
+       
         let plantName: String = String(self.createPlantViewTableHandler.plantName.name.text ?? "Planta")
         
         let temp:String = UUID().uuidString
         
         let imageName = temp 
-        
+         
         guard let image = self.createPlantViewTableHandler.plantPhoto.photo.image else { fatalError("Invalid Image")}
         
         saveImage(imageName: imageName, image: image)
@@ -110,8 +109,8 @@ class CreatePlantView: UIView, UNUserNotificationCenterDelegate {
         let context = CoreDataManager.shared.persistentContainer.viewContext
         
         if let plant =
-            NSEntityDescription.insertNewObject(forEntityName: "Plant",
-                                                into: context) as? Plant {
+        NSEntityDescription.insertNewObject(forEntityName: "Plant",
+                                            into: context) as? Plant {
             
             plant.id = UUID()
             plant.plantName = plantName
@@ -121,46 +120,46 @@ class CreatePlantView: UIView, UNUserNotificationCenterDelegate {
             plant.floweringPeriod = floweringPeriod
             plant.floweringLastDate = floweringLastDate
             switch floweringInterval {
-                case "1":
-                    let nextFloweringDate = self.createPlantViewTableHandler.floweringDatePicker.datePicker.calendar.date(byAdding: .hour, value: Int(floweringPeriod), to: floweringLastDate)
-                    plant.floweringNextDate = nextFloweringDate
+            case "1":
+                let nextFloweringDate = self.createPlantViewTableHandler.floweringDatePicker.datePicker.calendar.date(byAdding: .hour, value: Int(floweringPeriod), to: floweringLastDate)
+                plant.floweringNextDate = nextFloweringDate
                 
-                case "2":
-                    let nextFloweringDate = self.createPlantViewTableHandler.floweringDatePicker.datePicker.calendar.date(byAdding: .day, value: Int(floweringPeriod), to: floweringLastDate)
-                    plant.floweringNextDate = nextFloweringDate
+            case "2":
+                let nextFloweringDate = self.createPlantViewTableHandler.floweringDatePicker.datePicker.calendar.date(byAdding: .day, value: Int(floweringPeriod), to: floweringLastDate)
+                plant.floweringNextDate = nextFloweringDate
                 
-                case "3":
-                    let nextFloweringDate = self.createPlantViewTableHandler.floweringDatePicker.datePicker.calendar.date(byAdding: .weekdayOrdinal, value: Int(floweringPeriod), to: floweringLastDate)
-                    print()
-                    plant.floweringNextDate = nextFloweringDate
+            case "3":
+                let nextFloweringDate = self.createPlantViewTableHandler.floweringDatePicker.datePicker.calendar.date(byAdding: .weekdayOrdinal, value: Int(floweringPeriod), to: floweringLastDate)
+                print()
+                plant.floweringNextDate = nextFloweringDate
                 
-                case "4":
-                    let nextFloweringDate = self.createPlantViewTableHandler.floweringDatePicker.datePicker.calendar.date(byAdding: .month, value: Int(floweringPeriod), to: floweringLastDate)
-                    plant.floweringNextDate = nextFloweringDate
-                default:
-                    print("Não há Intervalo")
+            case "4":
+            let nextFloweringDate = self.createPlantViewTableHandler.floweringDatePicker.datePicker.calendar.date(byAdding: .month, value: Int(floweringPeriod), to: floweringLastDate)
+            plant.floweringNextDate = nextFloweringDate
+            default:
+                print("Não há Intervalo")
             }
             
             plant.harvestingInterval = harvestingInterval
             plant.harvestingPeriod = harvestingPeriod
             plant.harvestingLastDate = harvestingLastDate
             switch harvestingInterval {
-                case "1" :
-                    let nextHarvestingDate = self.createPlantViewTableHandler.harvestingDatePicker.datePicker.calendar.date(byAdding: .hour, value: Int(harvestingPeriod), to: harvestingLastDate)
+            case "1" :
+                let nextHarvestingDate = self.createPlantViewTableHandler.harvestingDatePicker.datePicker.calendar.date(byAdding: .hour, value: Int(harvestingPeriod), to: harvestingLastDate)
                     plant.harvestingNextDate = nextHarvestingDate
-                
-                case "2" :
-                    let nextHarvestingDate = self.createPlantViewTableHandler.harvestingDatePicker.datePicker.calendar.date(byAdding: .day, value: Int(harvestingPeriod), to: harvestingLastDate)
-                    plant.harvestingNextDate = nextHarvestingDate
-                
-                case "3" :
-                    let nextHarvestingDate = self.createPlantViewTableHandler.harvestingDatePicker.datePicker.calendar.date(byAdding: .weekdayOrdinal, value: Int(harvestingPeriod), to: harvestingLastDate)
-                    plant.harvestingNextDate = nextHarvestingDate
-                case "4":
-                    let nextHarvestingDate = self.createPlantViewTableHandler.harvestingDatePicker.datePicker.calendar.date(byAdding: .month, value: Int(harvestingPeriod), to: harvestingLastDate)
-                    plant.harvestingNextDate = nextHarvestingDate
-                default:
-                    print("Não há Intervalo")
+            
+            case "2" :
+                let nextHarvestingDate = self.createPlantViewTableHandler.harvestingDatePicker.datePicker.calendar.date(byAdding: .day, value: Int(harvestingPeriod), to: harvestingLastDate)
+                plant.harvestingNextDate = nextHarvestingDate
+            
+            case "3" :
+                let nextHarvestingDate = self.createPlantViewTableHandler.harvestingDatePicker.datePicker.calendar.date(byAdding: .weekdayOrdinal, value: Int(harvestingPeriod), to: harvestingLastDate)
+                plant.harvestingNextDate = nextHarvestingDate
+            case "4":
+                let nextHarvestingDate = self.createPlantViewTableHandler.harvestingDatePicker.datePicker.calendar.date(byAdding: .month, value: Int(harvestingPeriod), to: harvestingLastDate)
+                plant.harvestingNextDate = nextHarvestingDate
+            default:
+                print("Não há Intervalo")
             }
             
             
@@ -168,22 +167,22 @@ class CreatePlantView: UIView, UNUserNotificationCenterDelegate {
             plant.sunExposurePeriod = sunExposurePeriod
             plant.sunExposureLastDate = sunExposureLastDate
             switch sunExposureInterval {
-                case "1" :
-                    let nextSunExposureDate = self.createPlantViewTableHandler.sunExposureDatePicker.datePicker.calendar.date(byAdding: .hour, value: Int(sunExposurePeriod), to: sunExposureLastDate)
+            case "1" :
+                let nextSunExposureDate = self.createPlantViewTableHandler.sunExposureDatePicker.datePicker.calendar.date(byAdding: .hour, value: Int(sunExposurePeriod), to: sunExposureLastDate)
                     plant.sunExposureNextDate = nextSunExposureDate
+            
+            case "2" :
+                let nextSunExposureDate = self.createPlantViewTableHandler.sunExposureDatePicker.datePicker.calendar.date(byAdding: .day, value: Int(sunExposurePeriod), to: sunExposureLastDate)
+                plant.sunExposureNextDate = nextSunExposureDate
                 
-                case "2" :
-                    let nextSunExposureDate = self.createPlantViewTableHandler.sunExposureDatePicker.datePicker.calendar.date(byAdding: .day, value: Int(sunExposurePeriod), to: sunExposureLastDate)
-                    plant.sunExposureNextDate = nextSunExposureDate
-                
-                case "3" :
-                    let nextSunExposureDate = self.createPlantViewTableHandler.sunExposureDatePicker.datePicker.calendar.date(byAdding: .weekdayOrdinal, value: Int(sunExposurePeriod), to: sunExposureLastDate)
-                    plant.sunExposureNextDate = nextSunExposureDate
-                case "4" :
-                    let nextSunExposureDate = self.createPlantViewTableHandler.sunExposureDatePicker.datePicker.calendar.date(byAdding: .weekdayOrdinal, value: Int(sunExposurePeriod), to: sunExposureLastDate)
-                    plant.sunExposureNextDate = nextSunExposureDate
-                default:
-                    print("Não há Intervalo")
+            case "3" :
+                let nextSunExposureDate = self.createPlantViewTableHandler.sunExposureDatePicker.datePicker.calendar.date(byAdding: .weekdayOrdinal, value: Int(sunExposurePeriod), to: sunExposureLastDate)
+                plant.sunExposureNextDate = nextSunExposureDate
+            case "4" :
+            let nextSunExposureDate = self.createPlantViewTableHandler.sunExposureDatePicker.datePicker.calendar.date(byAdding: .weekdayOrdinal, value: Int(sunExposurePeriod), to: sunExposureLastDate)
+            plant.sunExposureNextDate = nextSunExposureDate
+            default:
+                print("Não há Intervalo")
             }
             
             
@@ -191,24 +190,24 @@ class CreatePlantView: UIView, UNUserNotificationCenterDelegate {
             plant.boosterPeriod = boosterPeriod
             plant.boosterLastDate = boosterLastDate
             switch boosterInterval {
-                case "1" :
-                    let nextBoosterDate = self.createPlantViewTableHandler.boosterDatePicker.datePicker.calendar.date(byAdding: .hour, value: Int(boosterPeriod), to: boosterLastDate)
+            case "1" :
+                let nextBoosterDate = self.createPlantViewTableHandler.boosterDatePicker.datePicker.calendar.date(byAdding: .hour, value: Int(boosterPeriod), to: boosterLastDate)
                     plant.boosterNextDate = nextBoosterDate
                 
-                case "2" :
-                    let nextBoosterDate = self.createPlantViewTableHandler.boosterDatePicker.datePicker.calendar.date(byAdding: .day, value: Int(boosterPeriod), to: boosterLastDate)
-                    plant.boosterNextDate = nextBoosterDate
+            case "2" :
+                let nextBoosterDate = self.createPlantViewTableHandler.boosterDatePicker.datePicker.calendar.date(byAdding: .day, value: Int(boosterPeriod), to: boosterLastDate)
+                plant.boosterNextDate = nextBoosterDate
                 
-                case "3" :
-                    let nextBoosterDate = self.createPlantViewTableHandler.boosterDatePicker.datePicker.calendar.date(byAdding: .weekdayOrdinal, value: Int(boosterPeriod), to: boosterLastDate)
-                    plant.boosterNextDate = nextBoosterDate
+            case "3" :
+                let nextBoosterDate = self.createPlantViewTableHandler.boosterDatePicker.datePicker.calendar.date(byAdding: .weekdayOrdinal, value: Int(boosterPeriod), to: boosterLastDate)
+                plant.boosterNextDate = nextBoosterDate
                 
-                case "4" :
-                    let nextBoosterDate = self.createPlantViewTableHandler.boosterDatePicker.datePicker.calendar.date(byAdding: .month, value: Int(sunExposurePeriod), to: sunExposureLastDate)
-                    plant.sunExposureNextDate = nextBoosterDate
+           case "4" :
+            let nextBoosterDate = self.createPlantViewTableHandler.boosterDatePicker.datePicker.calendar.date(byAdding: .month, value: Int(sunExposurePeriod), to: sunExposureLastDate)
+            plant.sunExposureNextDate = nextBoosterDate
                 
-                default:
-                    print("Não há Intervalo")
+            default:
+                print("Não há Intervalo")
             }
             
             
@@ -216,24 +215,24 @@ class CreatePlantView: UIView, UNUserNotificationCenterDelegate {
             plant.wateringPeriod = wateringPeriod
             plant.wateringLastDate = wateringLastDate
             switch wateringInterval {
-                case "1" :
-                    let nextWateringDate = self.createPlantViewTableHandler.wateringDatePicker.datePicker.calendar.date(byAdding: .hour, value: Int(wateringPeriod), to: wateringLastDate)
+            case "1" :
+                let nextWateringDate = self.createPlantViewTableHandler.wateringDatePicker.datePicker.calendar.date(byAdding: .hour, value: Int(wateringPeriod), to: wateringLastDate)
                     plant.wateringNextDate = nextWateringDate
                 
-                case "2" :
-                    let nextWateringDate = self.createPlantViewTableHandler.wateringDatePicker.datePicker.calendar.date(byAdding: .day, value: Int(wateringPeriod), to: wateringLastDate)
-                    plant.wateringNextDate = nextWateringDate
+            case "2" :
+                let nextWateringDate = self.createPlantViewTableHandler.wateringDatePicker.datePicker.calendar.date(byAdding: .day, value: Int(wateringPeriod), to: wateringLastDate)
+                plant.wateringNextDate = nextWateringDate
                 
-                case "3" :
-                    let nextWateringDate = self.createPlantViewTableHandler.wateringDatePicker.datePicker.calendar.date(byAdding: .weekdayOrdinal, value: Int(wateringPeriod), to: wateringLastDate)
-                    plant.wateringNextDate = nextWateringDate
+            case "3" :
+                let nextWateringDate = self.createPlantViewTableHandler.wateringDatePicker.datePicker.calendar.date(byAdding: .weekdayOrdinal, value: Int(wateringPeriod), to: wateringLastDate)
+                plant.wateringNextDate = nextWateringDate
                 
-                case "4" :
-                    let nextWateringDate = self.createPlantViewTableHandler.wateringDatePicker.datePicker.calendar.date(byAdding: .month, value: Int(wateringPeriod), to: wateringLastDate)
-                    plant.wateringNextDate = nextWateringDate
-                
-                default:
-                    print("Não há Intervalo")
+            case "4" :
+            let nextWateringDate = self.createPlantViewTableHandler.wateringDatePicker.datePicker.calendar.date(byAdding: .month, value: Int(wateringPeriod), to: wateringLastDate)
+            plant.wateringNextDate = nextWateringDate
+            
+            default:
+                print("Não há Intervalo")
             }
             
             
@@ -241,22 +240,22 @@ class CreatePlantView: UIView, UNUserNotificationCenterDelegate {
             plant.pruningPeriod = pruningPeriod
             plant.pruningLastDate = pruningLastDate
             switch pruningInterval {
-                case "1" :
-                    let nextPruningDate = self.createPlantViewTableHandler.pruningDatePicker.datePicker.calendar.date(byAdding: .hour, value: Int(pruningPeriod), to: pruningLastDate)
+            case "1" :
+                let nextPruningDate = self.createPlantViewTableHandler.pruningDatePicker.datePicker.calendar.date(byAdding: .hour, value: Int(pruningPeriod), to: pruningLastDate)
                     plant.pruningNextDate = nextPruningDate
                 
-                case "2" :
-                    let nextPruningDate = self.createPlantViewTableHandler.pruningDatePicker.datePicker.calendar.date(byAdding: .day, value: Int(pruningPeriod), to: pruningLastDate)
-                    plant.pruningNextDate = nextPruningDate
+            case "2" :
+                let nextPruningDate = self.createPlantViewTableHandler.pruningDatePicker.datePicker.calendar.date(byAdding: .day, value: Int(pruningPeriod), to: pruningLastDate)
+                plant.pruningNextDate = nextPruningDate
                 
-                case "3" :
-                    let nextPruningDate = self.createPlantViewTableHandler.pruningDatePicker.datePicker.calendar.date(byAdding: .weekdayOrdinal, value: Int(pruningPeriod), to: pruningLastDate)
-                    plant.pruningNextDate = nextPruningDate
-                case "4" :
-                    let nextPruningDate = self.createPlantViewTableHandler.pruningDatePicker.datePicker.calendar.date(byAdding: .month, value: Int(pruningPeriod), to: pruningLastDate)
-                    plant.pruningNextDate = nextPruningDate
-                default:
-                    print("Não há intervalo")
+            case "3" :
+                let nextPruningDate = self.createPlantViewTableHandler.pruningDatePicker.datePicker.calendar.date(byAdding: .weekdayOrdinal, value: Int(pruningPeriod), to: pruningLastDate)
+                plant.pruningNextDate = nextPruningDate
+            case "4" :
+            let nextPruningDate = self.createPlantViewTableHandler.pruningDatePicker.datePicker.calendar.date(byAdding: .month, value: Int(pruningPeriod), to: pruningLastDate)
+            plant.pruningNextDate = nextPruningDate
+            default:
+                print("Não há intervalo")
             }
             
             
@@ -264,24 +263,24 @@ class CreatePlantView: UIView, UNUserNotificationCenterDelegate {
             plant.pesticidePeriod = pesticidePeriod
             plant.pesticideLastDate = pesticideLastDate
             switch pesticideInterval {
-                case "1" :
-                    let nextPesticideDate = self.createPlantViewTableHandler.pesticideDatePicker.datePicker.calendar.date(byAdding: .hour, value: Int(pesticidePeriod), to: pesticideLastDate)
+            case "1" :
+                let nextPesticideDate = self.createPlantViewTableHandler.pesticideDatePicker.datePicker.calendar.date(byAdding: .hour, value: Int(pesticidePeriod), to: pesticideLastDate)
                     plant.pesticideNextDate = nextPesticideDate
                 
-                case "2" :
-                    let nextPesticideDate = self.createPlantViewTableHandler.pesticideDatePicker.datePicker.calendar.date(byAdding: .day, value: Int(pesticidePeriod), to: pesticideLastDate)
-                    plant.pesticideNextDate = nextPesticideDate
+            case "2" :
+                let nextPesticideDate = self.createPlantViewTableHandler.pesticideDatePicker.datePicker.calendar.date(byAdding: .day, value: Int(pesticidePeriod), to: pesticideLastDate)
+                plant.pesticideNextDate = nextPesticideDate
                 
-                case "3" :
-                    let nextPesticideDate = self.createPlantViewTableHandler.pesticideDatePicker.datePicker.calendar.date(byAdding: .weekdayOrdinal, value: Int(pesticidePeriod), to: pesticideLastDate)
-                    plant.pesticideNextDate = nextPesticideDate
+            case "3" :
+                let nextPesticideDate = self.createPlantViewTableHandler.pesticideDatePicker.datePicker.calendar.date(byAdding: .weekdayOrdinal, value: Int(pesticidePeriod), to: pesticideLastDate)
+                plant.pesticideNextDate = nextPesticideDate
                 
-                case "4" :
-                    let nextPesticideDate = self.createPlantViewTableHandler.pesticideDatePicker.datePicker.calendar.date(byAdding: .month, value: Int(pesticidePeriod), to: pesticideLastDate)
-                    plant.pesticideNextDate = nextPesticideDate
-                
-                default:
-                    print("Não há intervalo")
+            case "4" :
+            let nextPesticideDate = self.createPlantViewTableHandler.pesticideDatePicker.datePicker.calendar.date(byAdding: .month, value: Int(pesticidePeriod), to: pesticideLastDate)
+            plant.pesticideNextDate = nextPesticideDate
+            
+            default:
+                print("Não há intervalo")
             }
             
             do {
