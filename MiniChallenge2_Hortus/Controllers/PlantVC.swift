@@ -14,7 +14,7 @@ import Photos
 
 class PlantVC: UIViewController {
     
-    var plantImageView = PlantImageView(frame: .zero)
+//    var plantImageView = PlantImageView(frame: .zero)
     var plantTasksView =  PlantTasksView(frame: .zero)
     var parentVC: GardenVC?
     var plant: Plant?
@@ -51,14 +51,14 @@ class PlantVC: UIViewController {
     
     func setPlantImageView() {
         
-        self.view.addSubview(plantImageView)
-        
-        plantImageView.translatesAutoresizingMaskIntoConstraints = false
-        plantImageView.plantImage.image = loadImageFromDiskWith(fileName: plant?.plantImage ?? " ")
-        plantImageView.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
-        plantImageView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
-        plantImageView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
-        plantImageView.bottomAnchor.constraint(equalTo: self.view.topAnchor, constant: 400).isActive = true 
+//        self.view.addSubview(plantImageView)
+//
+//        plantImageView.translatesAutoresizingMaskIntoConstraints = false
+//        plantImageView.plantImage.image = loadImageFromDiskWith(fileName: plant?.plantImage ?? " ")
+//        plantImageView.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
+//        plantImageView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
+//        plantImageView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
+//        plantImageView.bottomAnchor.constraint(equalTo: self.view.topAnchor, constant: 400).isActive = true
     }
     
     
@@ -71,32 +71,32 @@ class PlantVC: UIViewController {
         plantTasksView.leftAnchor.constraint(equalTo:self.view.leftAnchor).isActive = true
         plantTasksView.rightAnchor.constraint(equalTo:self.view.rightAnchor).isActive = true
         plantTasksView.bottomAnchor.constraint(equalTo:self.view.bottomAnchor).isActive = true
-        plantTasksView.topAnchor.constraint(equalTo: plantImageView.bottomAnchor, constant: -20).isActive = true
+//        plantTasksView.topAnchor.constraint(equalTo: plantImageView.bottomAnchor, constant: -20).isActive = true
     }
     
     
     
     @objc func  deletePlant() {
-        CoreDataManager.shared.delete(plant: plant)
-        
-        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Plant")
-        request.returnsObjectsAsFaults = false
-        let  context = CoreDataManager.shared.persistentContainer.viewContext
-        do{
-            let result = try context.fetch(request)
-            parentVC?.plantCardView.plantCardViewCollectionHandler.plants = []
-            for data in result as! [NSManagedObject]{
-                parentVC?.plantCardView.plantCardViewCollectionHandler.plants.append(data as! Plant)
-            }
-        }catch{
-            fatalError("404 - Non Entity")
-        }
-        self.parentVC?.plantCardView.plantCardViewCollectionHandler.reloadPlants()
-        
-        if self.parentVC?.plantCardView.plantCardViewCollectionHandler.plants.count == 0{
-            parentVC?.emptyLabel.isHidden = false
-        }
-        self.dismiss(animated: true)
+//        CoreDataManager.shared.delete(plant: plant)
+//        
+//        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Plant")
+//        request.returnsObjectsAsFaults = false
+//        let  context = CoreDataManager.shared.persistentContainer.viewContext
+//        do{
+//            let result = try context.fetch(request)
+//            parentVC?.plantCardView.plantCardViewCollectionHandler.plants = []
+//            for data in result as! [NSManagedObject]{
+//                parentVC?.plantCardView.plantCardViewCollectionHandler.plants.append(data as! Plant)
+//            }
+//        }catch{
+//            fatalError("404 - Non Entity")
+//        }
+//        self.parentVC?.plantCardView.plantCardViewCollectionHandler.reloadPlants()
+//        
+//        if self.parentVC?.plantCardView.plantCardViewCollectionHandler.plants.count == 0{
+//            parentVC?.emptyLabel.isHidden = false
+//        }
+//        self.dismiss(animated: true)
     }
     
     

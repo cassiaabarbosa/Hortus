@@ -17,13 +17,11 @@ class PhotoCreatePlantCell: UITableViewCell, UIImagePickerControllerDelegate, UI
 		photo.translatesAutoresizingMaskIntoConstraints = false
         return photo
     }()
-    
-    
+
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
         contentView.addSubview(photo)
-        
+
         photo.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
         photo.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
         photo.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true

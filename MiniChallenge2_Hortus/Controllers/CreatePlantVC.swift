@@ -8,28 +8,30 @@
 
 import Foundation
 import UIKit
-import CoreData
 import Photos
 
-//MARK: Declarations
 final class CreatePlantVC : UIViewController, UIImagePickerControllerDelegate {
-	
+	//MARK: Declarations
 	@TemplateView private var tableView: UITableView
-	private var viewModel = CreatePlantViewModel()
-	var onDoneBlock:(()->Void)?
 	
-//MARK: Init
-	init() {
+	private var viewModel: CreatePlantViewModel
+//	var onDoneBlock:(()->Void)?
+	
+	//MARK: Init
+	init(viewModel: CreatePlantViewModel) {
+		self.viewModel = viewModel
 		super.init(nibName: nil, bundle: nil)
+	
 	}
 	
 	required init?(coder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
 	}
 	
-//MARK: Life cycle
+	//MARK: Life cycle
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		setupTableView()
 		setupTableViewConstraints()
 		setupViewControllerAttributes()
 		setupNavigationControllerAttributes()
@@ -42,8 +44,13 @@ final class CreatePlantVC : UIViewController, UIImagePickerControllerDelegate {
 			return true
 		}
 	}
+	
+	// MARK: Tableview SetUP
+	private func setupTableView () {
+		tableView.register(CustomHeader.self, forHeaderFooterViewReuseIdentifier: CustomHeader.id)
+	}
 
-// MARK: Constraints
+	// MARK: Tableview Constraints
 	private func setupTableViewConstraints() {
 		self.view.addSubview(tableView)
 		NSLayoutConstraint.activate([
@@ -54,7 +61,7 @@ final class CreatePlantVC : UIViewController, UIImagePickerControllerDelegate {
 		])
 	}
 	
-// MARK: Content Attributes
+	// MARK: Content Attributes
 	private func setupViewControllerAttributes() {
 		self.title = "Nova Planta"
 	}
@@ -70,24 +77,23 @@ final class CreatePlantVC : UIViewController, UIImagePickerControllerDelegate {
 		navigationItem.leftBarButtonItem?.tintColor = UIColor.App.delete
 	}
 
-//MARK: REFATORAR
-//MARK: @objc
+	//MARK: REFATORAR
+	//MARK: @objc
 	@objc func cancelCreation(_ sender: Any) {
 		self.dismiss(animated: true)
 	}
 	
 	@objc func doneCreation(_ sender: Any) {
 //		collectionView.savePlant()
-		self.onDoneBlock?()
+//		self.onDoneBlock?()
 		self.dismiss(animated: true)
 	}
-	
 	
 	@objc func dismissAlertController() {
 		self.dismiss(animated: true, completion: nil)
 	}
 	
-//MARK: REFATORAR HARD
+	//MARK: REFATORAR HARD
 	func saveImage(imageName: String, image: UIImage) {
 		
 		guard let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return }
@@ -126,7 +132,7 @@ extension CreatePlantVC: UITableViewDataSource {
 	
 	func numberOfSections(in tableView: UITableView) -> Int {
 		
-		return 8
+		return viewModel.getNumberOfSections()
 	}
 	
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -253,15 +259,23 @@ extension CreatePlantVC: UITableViewDataSource {
 		return UITableViewCell()
 	}
 }
-
+//MARK: TableView Delegate
 extension CreatePlantVC: UITableViewDelegate {
 	func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
 		if let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: CustomHeader.id) as? CustomHeader {
-//			header.setHeaderImage(name: imageForSection[section])
-//			header.setHeaderLabel(text: titleForSection[section])
+			header.setHeaderTitle(text:viewModel.getTitle(for: section).0)
+			header.setHeaderImage(name: viewModel.getTitle(for: section).1)
 			return header
 		}
-		return UITableViewCell()
+		return UIView()
+	}
+	
+	func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+		
+		if section == 0 {
+			return 0
+		}
+		return 40
 	}
 }
 

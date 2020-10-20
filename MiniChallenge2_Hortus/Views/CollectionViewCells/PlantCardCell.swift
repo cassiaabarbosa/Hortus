@@ -9,25 +9,26 @@
 import UIKit
 import CoreData
 
-// MARK: Declarations
-class PlantCardCell: UICollectionViewCell {
+final class PlantCardCell: UICollectionViewCell {
+	
+	// MARK: Declarations
+	@TemplateView var namePlant: UILabel
+	@TemplateView var plantImage: UIImageView
+	
 	static var id: String {
 	   return String(describing: self)
 	}
-	
-	@TemplateView var namePlant: UILabel
-	@TemplateView var plantImage: UIImageView
 	
 //    var plantIndex:Int?
 //	var plant: Plant?
    
 	
-// MARK: Init
+	// MARK: Init
     override init(frame: CGRect) {
         super.init(frame: frame)
 		setupCellAttributes()
-		setupPlantNameAttributes()
 		setupPlantImageAttributes()
+		setupPlantNameAttributes()
 		setupSubviewsConstraints()
     }
 	
@@ -35,7 +36,7 @@ class PlantCardCell: UICollectionViewCell {
 		fatalError("init(coder:) has not been implemented")
 	}
 	
-// MARK: Content Attributes
+	// MARK: Content Attributes
 	private func setupPlantNameAttributes() {
 		self.addSubview(namePlant)
 		self.namePlant.font = UIFont.systemFont(ofSize: 17)
@@ -54,6 +55,7 @@ class PlantCardCell: UICollectionViewCell {
 		self.plantImage.translatesAutoresizingMaskIntoConstraints = false
 		self.plantImage.layer.cornerRadius = 20
 		self.plantImage.layer.masksToBounds = true
+		self.plantImage.backgroundColor = .systemPink
 	}
 	
 	private func setupCellAttributes() {
@@ -63,9 +65,10 @@ class PlantCardCell: UICollectionViewCell {
 		self.layer.shadowOffset = CGSize(width: 4, height: 4)
 		self.layer.shadowRadius = 2.0
 		self.layer.shadowOpacity = 1
+		self.layer.cornerRadius = 20
 	}
 	
-// MARK: Constraints
+	// MARK: Constraints
 	private func setupSubviewsConstraints() {
 		NSLayoutConstraint.activate([
 			plantImage.topAnchor.constraint(equalTo: self.topAnchor),
@@ -80,7 +83,7 @@ class PlantCardCell: UICollectionViewCell {
 		])
 	}
 
-//MARK: Calling Functions
+	//MARK: Calling Functions
 	internal func changeCell(name: String) {
 		self.namePlant.text = name
 	}
