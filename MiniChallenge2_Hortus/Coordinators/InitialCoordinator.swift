@@ -1,5 +1,5 @@
 //
-//  CreatePlantCoordinator.swift
+//  InitialCoordinator.swift
 //  MiniChallenge2_Hortus
 //
 //  Created by Cassia Aparecida Barbosa on 19/10/20.
@@ -9,18 +9,16 @@
 import Foundation
 import UIKit
 
-struct CreatePlantCoordinator {
+struct InitialCoordinator {
 	var navigationController: UINavigationController
 	
 	init(navigationController: UINavigationController) {
 		self.navigationController = navigationController
 	}
 	
-	func show(viewController: UIViewController) {
-		let viewModel = CreatePlantViewModel()
-		let vc = CreatePlantVC(viewModel: viewModel)
+	func show() {
+		let viewModel = GardenViewModel()
+		let vc = GardenVC(viewModel: viewModel)
 		navigationController.pushViewController(vc, animated: true)
-//		navigationController.present(vc, animated: true, completion: nil)
-		
 	}
 }

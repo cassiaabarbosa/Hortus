@@ -9,28 +9,41 @@
 import UIKit
 
 class PhotoCreatePlantCell: UITableViewCell, UIImagePickerControllerDelegate, UINavigationControllerDelegate  {
-    
-    var photo: UIImageView = {
-        var photo = UIImageView()
-        photo.image = UIImage(named: "AddPhotoImage")
-		photo.contentMode = .scaleToFill
-		photo.translatesAutoresizingMaskIntoConstraints = false
-        return photo
-    }()
+    //MARK: Declarations
+    @TemplateView private var photo: UIImageView
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        contentView.addSubview(photo)
-
-        photo.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
-        photo.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
-        photo.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
-        photo.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
-
-        self.separatorInset = .zero
-        self.selectionStyle = .default
+		setupCellAttributes()
+		setupPhotoAttributes()
+		setupPhotoConstraints()
     }
     
     required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder) }
+        super.init(coder: aDecoder)
+	}
+	
+	//MARK: Setup Cell Attributes
+	private func setupCellAttributes() {
+		self.separatorInset = .zero
+		self.selectionStyle = .default
+	}
+	
+	//MARK: Setup Photo Attributes
+	private func setupPhotoAttributes() {
+		contentView.addSubview(photo)
+		photo.image = UIImage(named: "AddPhotoImage")
+		photo.contentMode = .scaleToFill
+	}
+	
+	//MARK: Setup Photo Constraints
+	private func setupPhotoConstraints() {
+		NSLayoutConstraint.activate([
+			photo.topAnchor.constraint(equalTo: self.topAnchor),
+			photo.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+			photo.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+			photo.trailingAnchor.constraint(equalTo: self.trailingAnchor)
+		])
+	}
+	
 }

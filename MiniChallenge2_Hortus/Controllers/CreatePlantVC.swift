@@ -39,6 +39,8 @@ final class CreatePlantVC : UIViewController, UIImagePickerControllerDelegate {
 		tableView.dataSource = self
 		tableView.delegate = self
 		
+		
+		
 		func textFieldShouldReturn(textField: UITextField) -> Bool {
 			textField.resignFirstResponder()
 			return true
@@ -47,7 +49,9 @@ final class CreatePlantVC : UIViewController, UIImagePickerControllerDelegate {
 	
 	// MARK: Tableview SetUP
 	private func setupTableView () {
+		tableView.register(DismissHeader.self, forHeaderFooterViewReuseIdentifier: DismissHeader.id)
 		tableView.register(CustomHeader.self, forHeaderFooterViewReuseIdentifier: CustomHeader.id)
+		tableView.register(Footer.self, forHeaderFooterViewReuseIdentifier: Footer.id)
 	}
 
 	// MARK: Tableview Constraints
@@ -132,7 +136,7 @@ extension CreatePlantVC: UITableViewDataSource {
 	
 	func numberOfSections(in tableView: UITableView) -> Int {
 		
-		return viewModel.getNumberOfSections()
+		return 2
 	}
 	
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -262,12 +266,21 @@ extension CreatePlantVC: UITableViewDataSource {
 //MARK: TableView Delegate
 extension CreatePlantVC: UITableViewDelegate {
 	func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-		if let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: CustomHeader.id) as? CustomHeader {
-			header.setHeaderTitle(text:viewModel.getTitle(for: section).0)
+		if ((navigationController?.isBeingPresented) == nil) {
+			guard let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: DismissHeader.id) as? DismissHeader else {
+				return UITableViewHeaderFooterView()
+			}
+			print("é modal")
+			header.setHeaderTitle(text: "Título do formulário aparecerá aqui")
 			header.setHeaderImage(name: viewModel.getTitle(for: section).1)
 			return header
+		} else {
+			guard let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: CustomHeader.id) as? CustomHeader else {
+				return UITableViewHeaderFooterView()
+			}
+			header.setHeaderTitle(text: "Título do formulário aparecerá aqui")
+			return header
 		}
-		return UIView()
 	}
 	
 	func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -276,6 +289,13 @@ extension CreatePlantVC: UITableViewDelegate {
 			return 0
 		}
 		return 40
+	}
+
+	func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+		guard let footer = tableView.dequeueReusableHeaderFooterView(withIdentifier: Footer.id) as? Footer else {
+			return UITableViewHeaderFooterView()
+		}
+		return footer
 	}
 }
 

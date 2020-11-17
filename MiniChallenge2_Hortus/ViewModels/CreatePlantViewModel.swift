@@ -11,10 +11,7 @@ import CoreData
 
 struct CreatePlantViewModel {
 	
-//	var plant = Plant()
-	
 	private let titleForSection: [(String,String)] = [("","vazio"), ("Floração","BlackFlower"), ("Colheita","BlackHarvest"), ("Exposição Solar","BlackSun"), ("Fertilizantes","BlackBooster"), ("Rega","BlackDrop"), ("Poda","BlackScissor"), ("Pesticidas","BlackPesticide")]
-
 	
 	func getNumberOfSections() -> Int {
 		return 8
@@ -23,5 +20,7 @@ struct CreatePlantViewModel {
 	func getTitle(for section: Int) -> (String,String) {
 		return titleForSection[section]
 	}
+	
+	
 	
 }

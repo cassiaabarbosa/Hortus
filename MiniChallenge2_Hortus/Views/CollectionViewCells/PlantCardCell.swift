@@ -84,11 +84,11 @@ final class PlantCardCell: UICollectionViewCell {
 	}
 
 	//MARK: Calling Functions
-	internal func changeCell(name: String) {
+	func changeCell(name: String) {
 		self.namePlant.text = name
 	}
 	
-	internal func changeCell(image: String) {
+	func changeCell(image: String) {
 		self.plantImage.image = UIImage(named: image)
 	}
 	

@@ -13,9 +13,9 @@ extension UIColor {
     struct App {
         static var navigation: UIColor { return #colorLiteral(red: 0.4588235294, green: 0.6666666667, blue: 0.3529411765, alpha: 1) }
         static var navigationTitle: UIColor { return #colorLiteral(red: 0.9999018312, green: 1, blue: 0.9998798966, alpha: 1) }
-        static var modalButton: UIColor { return .systemBlue}
+        static var modalButton: UIColor { return .systemBlue }
         static var delete: UIColor { return .systemRed }
-        static var selectedCell: UIColor {return #colorLiteral(red: 0.6156862745, green: 0.7568627451, blue: 0.5137254902, alpha: 1)}
+        static var selectedCell: UIColor {return #colorLiteral(red: 0.6156862745, green: 0.7568627451, blue: 0.5137254902, alpha: 1) }
     }
 }
 
@@ -33,7 +33,6 @@ enum DateFormatType: String {
 
 
 extension Date {
-    
     func convertToString(dateformat formatType: DateFormatType) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = formatType.rawValue
